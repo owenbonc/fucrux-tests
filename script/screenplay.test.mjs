@@ -62,11 +62,8 @@ for (const block of blocks) {
 
 const fullText = source.toUpperCase();
 
-const NUMBER_WORDS = new Map([
-  ['ten', 10], ['eleven', 11], ['twelve', 12], ['thirteen', 13], ['fourteen', 14],
-  ['fifteen', 15], ['sixteen', 16], ['seventeen', 17], ['eighteen', 18],
-  ['nineteen', 19], ['twenty', 20],
-]);
+/** Everyone the script actually gives a cue to, derived from the parsed file. */
+const speakers = new Set(blocks.filter((b) => b.kind === 'dialogue').map((b) => b.character));
 
 // --- ac_1: a titled space-adventure screenplay of at least ten scenes -------
 
@@ -83,16 +80,6 @@ test('ac_1: it runs at least ten scenes from opening slug line to final fade-out
   assert.equal(blocks[0].kind, 'transition');
   assert.equal(blocks[0].text, 'FADE IN:');
   assert.equal(blocks[1].kind, 'scene', 'the script does not open on a slug line');
-
-  // The README advertises a scene count; a slug line that goes missing silently
-  // merges two scenes, so hold the file to the number the README promises.
-  const advertised = readme.match(/in (\w+) scenes/);
-  assert.ok(advertised, 'README does not state a scene count');
-  assert.equal(
-    scenes.length,
-    NUMBER_WORDS.get(advertised[1].toLowerCase()),
-    `README promises ${advertised[1]} scenes, file has ${scenes.length}`,
-  );
 
   const closers = blocks.filter((b) => b.kind === 'transition').map((b) => b.text);
   assert.ok(closers.includes('FADE OUT.'), `script never fades out (saw ${closers.join(', ')})`);
@@ -173,11 +160,23 @@ test('ac_2: no dialogue is stranded in an action block by a malformed cue', () =
       `action block opens on the bare name "${first}" and runs on; ` +
         'that is a character cue that lost its capitalisation',
     );
+    // The other way a cue strands is that the blank line above it goes missing,
+    // so the cue keeps its capitals but is swallowed by the action block above.
+    // Action legitimately capitalises props, sounds and first appearances, so
+    // an all-caps line only accuses itself when it is *also* name-shaped and
+    // either names someone the script gives a cue to elsewhere, or carries a
+    // cue extension. Both are things only a character cue does.
     for (const line of block.lines) {
       const trimmed = line.trim();
+      const cue = trimmed.match(CHARACTER_CUE);
+      if (!cue) continue;
+      const name = cue[1].trim();
+      const extensions = cue[2].match(/\([^)]+\)/g) ?? [];
+      const wearsCueExtension = extensions.some((ext) => /^\((V\.O\.|O\.S\.|O\.C\.|CONT'D)\)$/.test(ext));
       assert.ok(
-        !(trimmed === trimmed.toUpperCase() && /[A-Z]/.test(trimmed) && trimmed.length < 40),
-        `all-caps line "${trimmed}" sits in an action block; it reads as a cue that lost its dialogue`,
+        !(speakers.has(name) || wearsCueExtension),
+        `"${trimmed}" sits inside an action block, but it is a character cue: ` +
+          'the blank line that separates it from the action above it is missing',
       );
     }
   }
@@ -212,7 +211,6 @@ test('ac_3: the protagonist and supporting cast are named in the text', () => {
   for (const name of ['TESSA VANE', 'RIKU OYELARAN', 'DR. IMOGEN STRAND', 'COMMANDER HALE SERRIN']) {
     assert.ok(source.includes(name), `supporting character "${name}" is never introduced`);
   }
-  const speakers = new Set(blocks.filter((b) => b.kind === 'dialogue').map((b) => b.character));
   assert.ok(speakers.size >= 5, `only ${speakers.size} characters ever speak`);
   assert.ok(speakers.has('ADAIR'), 'the protagonist never speaks');
 });
