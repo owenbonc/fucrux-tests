@@ -116,6 +116,24 @@ test('ac_2: every scene opens with an INT./EXT. slug line', () => {
   for (const scene of scenes) {
     assert.match(scene.heading, SCENE_HEADING, `not a slug line: "${scene.heading}"`);
     assert.equal(scene.heading, scene.heading.toUpperCase(), `slug not capitalised: "${scene.heading}"`);
+    // A slug names a place, and conventionally a time of day after it.
+    assert.match(scene.heading, / - /, `slug line names no time or sub-location: "${scene.heading}"`);
+  }
+
+  // The loop above only sees blocks that already matched SCENE_HEADING, so on
+  // its own it cannot catch a scene that opens on a heading missing its
+  // INT./EXT. prefix — that line parses as action instead. Sweep the raw body
+  // for anything shaped like a location line and require it to be a real slug.
+  const headings = new Set(scenes.map((s) => s.heading));
+  const LOCATION_SHAPED = /^[A-Z0-9][A-Z0-9 .,'\-/]* - [A-Z0-9][A-Z0-9 .,'\-/]*$/;
+  const body = source.slice(source.indexOf('\n\n') + 2).split('\n');
+  for (const line of body) {
+    const trimmed = line.trim();
+    if (!LOCATION_SHAPED.test(trimmed)) continue;
+    assert.ok(
+      headings.has(trimmed),
+      `"${trimmed}" is shaped like a scene heading but has no INT./EXT. prefix`,
+    );
   }
 });
 
@@ -134,7 +152,7 @@ test('ac_2: every line of dialogue is preceded by a capitalised character cue', 
     for (const ext of block.lines[0].match(/\([^)]+\)/g) ?? []) {
       assert.match(
         ext,
-        /^\((V\.O\.|O\.S\.|O\.C\.|CONT'D|ON SCREEN)\)$/,
+        /^\((V\.O\.|O\.S\.|O\.C\.|CONT'D)\)$/,
         `odd cue extension: ${ext}`,
       );
     }
@@ -206,12 +224,33 @@ test('ac_3: the mission goal is stated in the opening scenes', () => {
   assert.match(opening, /thirty-nine hours/i, 'the deadline is never stated');
 });
 
-test('ac_3: a crisis is reached before the resolution', () => {
-  const crisis = scenes.findIndex((s) =>
-    s.blocks.some((b) => /fuel for six|Two out of three|Take four hundred/.test(b.lines.join(' '))),
-  );
-  assert.ok(crisis > 0, 'no scene poses the central crisis');
-  assert.ok(crisis < scenes.length - 1, 'the crisis lands in the final scene, leaving no resolution');
+test('ac_3: goal, crisis, climax and resolution fall in that order', () => {
+  /** Index of the first scene whose text matches, or -1. */
+  const sceneWith = (re) =>
+    scenes.findIndex((s) => s.blocks.some((b) => re.test(b.lines.join(' '))));
+
+  const goal = sceneWith(/pull them out of the cone/i);
+  const crisis = sceneWith(/we have fuel for six/i);
+  const choice = sceneWith(/we were going to push her/i);
+  const climax = sceneWith(/burn complete/i);
+  const resolution = scenes.length - 1;
+
+  assert.notEqual(goal, -1, 'no scene states the mission goal');
+  assert.notEqual(crisis, -1, 'no scene poses the central crisis');
+  assert.notEqual(choice, -1, 'no scene resolves the crisis into a decision');
+  assert.notEqual(climax, -1, 'no scene plays out the climax');
+
+  const beats = { goal, crisis, choice, climax, resolution };
+  const order = ['goal', 'crisis', 'choice', 'climax', 'resolution'];
+  for (let i = 1; i < order.length; i += 1) {
+    assert.ok(
+      beats[order[i - 1]] <= beats[order[i]],
+      `beat "${order[i]}" (scene ${beats[order[i]] + 1}) precedes ` +
+        `"${order[i - 1]}" (scene ${beats[order[i - 1]] + 1})`,
+    );
+  }
+  assert.ok(crisis > goal, 'the crisis is posed before the goal it threatens');
+  assert.ok(climax < resolution, 'the climax lands in the final scene, leaving no resolution');
 });
 
 test('ac_3: the final scene resolves the arc', () => {
