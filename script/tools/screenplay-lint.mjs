@@ -1,12 +1,21 @@
 // Screenplay parser + format checker for the plain-text (Courier-style)
 // scripts in script/. No dependencies: node: builtins only.
 //
-// Layout conventions this file understands, which are the standard
-// US spec-script columns expressed in a 12pt Courier monospace grid:
+// This file does not define what standard screenplay format is. The geometry
+// lives in screenplay-format.mjs, derived from the published page and element
+// margins of a US spec script, and the columns it yields are the ones used
+// here:
 //
-//   col 0   scene headings, action, transitions
-//   col 20  dialogue            (35 characters wide)
-//   col 25  character cues and parentheticals
+//   col 0   scene headings, action, and the bookend transitions
+//   col 10  dialogue            (2.5", 35 characters wide)
+//   col 16  parentheticals      (3.1")
+//   col 22  character cues      (3.7")
+//   right   transitions ending in TO:, flush to the 7.5" right margin
+//
+// fountain.mjs reads the same file again by Fountain's syntax rules, which
+// ignore indentation entirely; the test suite requires the two readings to
+// agree line for line, so neither is left as the sole authority on what a
+// line is.
 //
 // Run as a CLI for a human-readable report:
 //   node script/tools/screenplay-lint.mjs script/the-atlas-of-severed-hours.txt
@@ -14,16 +23,35 @@
 import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
-export const DIALOGUE_INDENT = 20;
-export const CUE_INDENT = 25;
-export const MAX_LINE_WIDTH = 61; // 61 characters fit a 1.5"/1" margined page
-export const LINES_PER_PAGE = 55;
-export const WORDS_PER_PAGE = 190;
+import {
+  ELEMENTS,
+  TEXT_WIDTH,
+  LINES_PER_PAGE,
+  WORDS_PER_PAGE,
+  indentFor,
+  widthFor,
+} from './screenplay-format.mjs';
+
+export { LINES_PER_PAGE, WORDS_PER_PAGE, TEXT_WIDTH };
+
+export const ACTION_INDENT = ELEMENTS.action.indent; // 0
+export const DIALOGUE_INDENT = ELEMENTS.dialogue.indent; // 10
+export const PARENTHETICAL_INDENT = ELEMENTS.parenthetical.indent; // 16
+export const CUE_INDENT = ELEMENTS.character.indent; // 22
+
+/** The element of a page each parsed line type is laid out as. */
+const ELEMENT_OF = {
+  slugline: 'scene-heading',
+  action: 'action',
+  transition: 'transition',
+  cue: 'character',
+  parenthetical: 'parenthetical',
+  dialogue: 'dialogue',
+};
 
 const SLUGLINE_RE = /^(INT\.|EXT\.|INT\.\/EXT\.|I\/E\.)\s+\S/;
-// Transitions sit at column 0 in this file and are all-caps slugs that either
-// end in a colon (FADE IN:, CUT TO:, MATCH CUT TO:) or are one of the
-// conventional terminal forms.
+// Transitions are all-caps slugs that either end in a colon (FADE IN:,
+// CUT TO:, MATCH CUT TO:) or are one of the conventional terminal forms.
 const TRANSITION_RE = /^(?:[A-Z0-9 '’.\-\/]+:|FADE OUT\.|FADE TO BLACK\.|THE END)$/;
 // A cue is all-caps, may carry a variant suffix (MERCY-OF-CINDER), an age or
 // year in parentheses, and the usual extensions: (V.O.), (O.S.), (CONT'D).
@@ -56,7 +84,12 @@ export function looksLikeSlugline(text) {
   return NEAR_SLUGLINE_PREFIX_RE.test(bare) || SCENE_TIME_TAIL_RE.test(bare);
 }
 
-/** Classify a single raw line of a plain-text screenplay. */
+/**
+ * Classify a single raw line of a plain-text screenplay: what element it is.
+ * Where a line is *placed* is judged separately, against the columns the
+ * format module derives, so that a correctly shaped line at the wrong column
+ * is reported as misplaced rather than as unrecognisable.
+ */
 export function classify(line) {
   if (line.trim() === '') return { type: 'blank' };
   const indent = line.length - line.trimStart().length;
@@ -67,12 +100,17 @@ export function classify(line) {
     if (TRANSITION_RE.test(text)) return { type: 'transition', indent, text };
     return { type: 'action', indent, text };
   }
-  if (indent === CUE_INDENT) {
-    if (text.startsWith('(')) return { type: 'parenthetical', indent, text };
-    if (CUE_ANY_CASE_RE.test(text)) return { type: 'cue', indent, text };
-    return { type: 'unknown', indent, text };
+  if (TRANSITION_RE.test(text) && indent + text.length === TEXT_WIDTH) {
+    return { type: 'transition', indent, text };
+  }
+  if (text.startsWith('(') && text.endsWith(')')) {
+    return { type: 'parenthetical', indent, text };
   }
   if (indent === DIALOGUE_INDENT) return { type: 'dialogue', indent, text };
+  if (indent === CUE_INDENT && CUE_ANY_CASE_RE.test(text)) {
+    return { type: 'cue', indent, text };
+  }
+  if (SLUGLINE_RE.test(text)) return { type: 'slugline', indent, text };
   return { type: 'unknown', indent, text };
 }
 
@@ -123,15 +161,38 @@ export function parseScreenplay(source) {
   const violation = (i, rule, message) =>
     violations.push({ line: i + 1, rule, message, text: lines[i] });
 
+  const blankAt = (i) => i < 0 || i >= lines.length || lines[i].trim() === '';
+
   lines.forEach((raw, i) => {
-    if (raw.length > MAX_LINE_WIDTH) {
-      violation(i, 'line-width', `line is ${raw.length} characters (max ${MAX_LINE_WIDTH})`);
-    }
     if (/\s$/.test(raw)) {
       violation(i, 'trailing-space', 'line has trailing whitespace');
     }
 
     const node = classify(raw);
+
+    // Placement and measure, judged against the page geometry rather than
+    // against a remembered number: every element has a column it starts at
+    // and a width it must fit inside.
+    const element = ELEMENT_OF[node.type];
+    if (element) {
+      const expected = indentFor(element, node.text);
+      if (node.indent !== expected) {
+        violation(
+          i,
+          'indent',
+          `${element} sits at column ${node.indent}; the format puts it at column ${expected}`
+        );
+      }
+      const width = widthFor(element);
+      if (node.text.length > width) {
+        violation(
+          i,
+          'line-width',
+          `${element} is ${node.text.length} characters wide (max ${width})`
+        );
+      }
+    }
+
     switch (node.type) {
       case 'blank':
         pendingCue = null;
@@ -163,6 +224,18 @@ export function parseScreenplay(source) {
         return;
 
       case 'action':
+        // A parenthetical dragged out to the left margin, still inside a
+        // speech. Naming it here puts the fault on the line that moved
+        // rather than on the dialogue it orphans.
+        if (pendingCue && node.text.startsWith('(') && node.text.endsWith(')')) {
+          violation(
+            i,
+            'indent',
+            `parenthetical sits at column ${node.indent}; ` +
+              `the format puts it at column ${PARENTHETICAL_INDENT}`
+          );
+          return;
+        }
         if (looksLikeSlugline(node.text)) {
           violation(
             i,
@@ -184,6 +257,14 @@ export function parseScreenplay(source) {
         }
         if (node.text !== node.text.toUpperCase()) {
           violation(i, 'cue-case', 'character cue is not in all caps');
+        }
+        // Fountain's own definition of a cue, which a Courier column cannot
+        // express: a blank line above it, and the speech it introduces below.
+        if (!blankAt(i - 1)) {
+          violation(i, 'cue-block', 'character cue does not have a blank line above it');
+        }
+        if (blankAt(i + 1)) {
+          violation(i, 'cue-block', 'character cue introduces no dialogue');
         }
         pendingCue = { name: cueName(node.text), line: i + 1, used: false };
         if (scene) scene.cues.push(pendingCue.name);
@@ -214,7 +295,9 @@ export function parseScreenplay(source) {
         violation(
           i,
           'indent',
-          `line sits at column ${node.indent}; expected 0 (action), ${DIALOGUE_INDENT} (dialogue) or ${CUE_INDENT} (cue)`
+          `line sits at column ${node.indent}; expected ${ACTION_INDENT} (action), ` +
+            `${DIALOGUE_INDENT} (dialogue), ${PARENTHETICAL_INDENT} (parenthetical) ` +
+            `or ${CUE_INDENT} (cue)`
         );
     }
   });
@@ -323,8 +406,8 @@ function main(argv) {
   console.log(`closes with:       ${JSON.stringify(r.lastContentLine)}`);
   console.log(`lines:             ${r.lines.length}`);
   console.log(`words:             ${r.words}`);
-  console.log(`pages (lines/55):  ${r.pagesByLines}`);
-  console.log(`pages (words/190): ${r.pagesByWords.toFixed(1)}`);
+  console.log(`pages (lines/${LINES_PER_PAGE}):  ${r.pagesByLines}`);
+  console.log(`pages (words/${WORDS_PER_PAGE}): ${r.pagesByWords.toFixed(1)}`);
   console.log(`scene headings:    ${r.scenes.length}`);
   console.log(`universe crossings:${r.crossings}`);
   console.log('universes:');

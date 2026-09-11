@@ -1,15 +1,19 @@
 Action that arrives before any scene heading at all.
 
-                    Dialogue with nobody speaking it.
+          Dialogue with nobody speaking it.
 
 INT. A ROOM - NIGHT
 
-                         (an orphan parenthetical)
+                (orphan parenthetical)
 
-                         anna
-                    Her cue is not in capitals.
+                      anna
+          Her cue is not in capitals.
+
+                      BORIS
 
        A line indented to no column this format knows.
+
+CUT TO:
 
 EXT. A LONG STREET - DAY (GAMMA - DAY 1 - 09:00)
 
