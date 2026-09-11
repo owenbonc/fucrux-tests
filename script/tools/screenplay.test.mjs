@@ -23,6 +23,7 @@ import path from 'node:path';
 import {
   classify,
   cueName,
+  looksLikeSlugline,
   parseSluglineLabel,
   compareTime,
   parseScreenplay,
@@ -280,7 +281,45 @@ test('parser: classify recognises each line type by column', () => {
   assert.equal(classify(' '.repeat(25) + '(whisper)').type, 'parenthetical');
   assert.equal(classify(' '.repeat(20) + 'It is an hour.').type, 'dialogue');
   assert.equal(classify(' '.repeat(7) + 'adrift').type, 'unknown');
-  assert.equal(classify(' '.repeat(25) + 'lower case').type, 'unknown');
+  // A cue typed in lower case is still read as a cue, so that the all-caps
+  // rule has something to fire on rather than losing it to 'unknown'.
+  assert.equal(classify(' '.repeat(25) + 'lower case').type, 'cue');
+  assert.equal(classify(' '.repeat(25) + '!!!').type, 'unknown');
+});
+
+test('parser: a lower-case character cue is reported as one', () => {
+  const bad = [
+    'FADE IN:',
+    '',
+    'INT. A ROOM - NIGHT (ALPHA - DAY 1 - 09:00)',
+    '',
+    ' '.repeat(25) + 'anna',
+    ' '.repeat(20) + 'Her cue is not in capitals.',
+    '',
+  ].join('\n');
+  const rules = parseScreenplay(bad).violations.map((v) => v.rule);
+  assert.deepEqual(rules, ['cue-case']);
+});
+
+test('parser: a scene heading without INT./EXT. does not pass as action', () => {
+  // The near-miss shapes: a dropped period, a dropped prefix, a labelled one.
+  assert.equal(looksLikeSlugline('INT A ROOM - NIGHT'), true);
+  assert.equal(looksLikeSlugline('A ROOF - NIGHT'), true);
+  assert.equal(looksLikeSlugline('EXTERIOR THE PIER - DAWN'), true);
+  assert.equal(looksLikeSlugline('THE STOPPED SQUARE - DAY (CINDER - 06:05)'), true);
+
+  // And the shapes a real script keeps at column zero, which must not trip it.
+  assert.equal(looksLikeSlugline('INT. A ROOM - NIGHT (ALPHA - DAY 1 - 09:00)'), false);
+  assert.equal(looksLikeSlugline('TITLE CARD: THE ATLAS OF SEVERED HOURS'), false);
+  assert.equal(looksLikeSlugline('VESPER. CINDER.'), false);
+  assert.equal(looksLikeSlugline('THE EVENT.'), false);
+  assert.equal(looksLikeSlugline('INTO THE WATER SHE GOES.'), false);
+  assert.equal(looksLikeSlugline('She wades between the tables.'), false);
+
+  const bad = ['FADE IN:', '', 'A ROOF THAT FORGOT ITS PREFIX - NIGHT', ''].join('\n');
+  const v = parseScreenplay(bad).violations;
+  assert.equal(v.length, 2, JSON.stringify(v));
+  assert.deepEqual(new Set(v.map((x) => x.rule)), new Set(['scene-heading']));
 });
 
 test('parser: cueName strips speech extensions', () => {
@@ -313,10 +352,16 @@ test('parser: a malformed script is reported, not passed', () => {
     '',
     ' '.repeat(3) + 'wrongly indented',
     '',
+    ' '.repeat(25) + 'anna',
+    ' '.repeat(20) + 'Her cue is not in capitals.',
+    '',
+    'A ROOF THAT FORGOT ITS PREFIX - NIGHT',
+    '',
   ].join('\n');
   const rules = new Set(parseScreenplay(bad).violations.map((v) => v.rule));
   assert.ok(rules.has('scene-heading'));
   assert.ok(rules.has('dialogue-cue'));
+  assert.ok(rules.has('cue-case'));
   assert.ok(rules.has('slugline-label'));
   assert.ok(rules.has('orphan-parenthetical'));
   assert.ok(rules.has('indent'));
@@ -393,6 +438,7 @@ test('cli: the checker fails a deliberately malformed script', () => {
   for (const rule of [
     'scene-heading',
     'dialogue-cue',
+    'cue-case',
     'slugline-label',
     'orphan-parenthetical',
     'indent',

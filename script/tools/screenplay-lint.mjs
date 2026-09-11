@@ -28,6 +28,33 @@ const TRANSITION_RE = /^(?:[A-Z0-9 '’.\-\/]+:|FADE OUT\.|FADE TO BLACK\.|THE E
 // A cue is all-caps, may carry a variant suffix (MERCY-OF-CINDER), an age or
 // year in parentheses, and the usual extensions: (V.O.), (O.S.), (CONT'D).
 const CUE_RE = /^[A-Z][A-Z0-9'’.\-\/ ]*(?: \((?:[A-Z0-9'’.\- ]+|\d+)\))*$/;
+// The same shape ignoring case, so a cue typed in lower case is still read as
+// a cue and reported as one — rather than disappearing into 'unknown', which
+// would leave the "all-caps character cue" rule with nothing to fire on.
+const CUE_ANY_CASE_RE = new RegExp(CUE_RE.source.replace(/A-Z/g, 'A-Za-z'), 'i');
+
+// A scene heading that forgot to be one. A column-zero, all-caps line that
+// carries a heading's shape — a near-miss INT/EXT prefix, or a "- NIGHT"
+// time-of-day tail — but fails SLUGLINE_RE would otherwise be filed as action,
+// and a scene opened that way would never be checked at all.
+const TIME_OF_DAY =
+  'DAY|NIGHT|DAWN|DUSK|MORNING|AFTERNOON|EVENING|NOON|MIDNIGHT|' +
+  'CONTINUOUS|LATER|MOMENTS LATER|SAME|SAME TIME|SUNSET|SUNRISE|NO TIME';
+const NEAR_SLUGLINE_PREFIX_RE =
+  /^(?:INT|EXT|INTERIOR|EXTERIOR|INT\/EXT|EXT\/INT|I\/E|E\/I)\b/;
+const SCENE_TIME_TAIL_RE = new RegExp(`\\s[-–—]\\s(?:${TIME_OF_DAY})\\.?$`);
+
+/**
+ * Does this column-zero line read as a scene heading without being a valid
+ * one? Used to catch headings that drop the INT./EXT. prefix or its period.
+ */
+export function looksLikeSlugline(text) {
+  if (SLUGLINE_RE.test(text)) return false; // it is a real slugline
+  if (/[a-z]/.test(text)) return false; // prose, not a heading
+  const bare = text.replace(/\s*\([^()]*\)\s*$/, '').trim();
+  if (!bare) return false;
+  return NEAR_SLUGLINE_PREFIX_RE.test(bare) || SCENE_TIME_TAIL_RE.test(bare);
+}
 
 /** Classify a single raw line of a plain-text screenplay. */
 export function classify(line) {
@@ -42,7 +69,7 @@ export function classify(line) {
   }
   if (indent === CUE_INDENT) {
     if (text.startsWith('(')) return { type: 'parenthetical', indent, text };
-    if (CUE_RE.test(text)) return { type: 'cue', indent, text };
+    if (CUE_ANY_CASE_RE.test(text)) return { type: 'cue', indent, text };
     return { type: 'unknown', indent, text };
   }
   if (indent === DIALOGUE_INDENT) return { type: 'dialogue', indent, text };
@@ -136,6 +163,13 @@ export function parseScreenplay(source) {
         return;
 
       case 'action':
+        if (looksLikeSlugline(node.text)) {
+          violation(
+            i,
+            'scene-heading',
+            'line reads as a scene heading but does not open with an INT./EXT. slugline'
+          );
+        }
         if (!scene) {
           violation(i, 'scene-heading', 'action appears before any INT./EXT. scene heading');
         } else {
