@@ -51,7 +51,7 @@ Iris looks up. The sixteen clocks strike at once --
 
 CUT TO:
 
-EXT. RIG CATWALK - DUSK (HOLLOWAY - HOUR 09 - 17:40)
+EXT. RIG CATWALK - DUSK (HOLLOWAY - YEAR 60 - 17:40)
 
 -- and the strike becomes a BELL, hammered by hand, over
 an ocean with no shore in it.
@@ -64,7 +64,7 @@ MERCY OKONKWO, 62, weathered, coat of stitched flags,
 rings the bell with a wrench. Below her, the rig wakes.
 
                          MERCY
-                    Nine hours! Nine hours and the
+                    Six hours! Six hours and the
                     archive goes down! Anything
                     you want remembered, you bring
                     it to the Vault now!
@@ -108,7 +108,7 @@ Mercy does not look surprised. She looks tired.
 
 CUT TO:
 
-INT. MINISTRY CLOCK HALL - DAY (VESPER - CYCLE 9 - 11:20)
+INT. CLOCK HALL - DAY (VESPER - YEAR 41 - DAY 2 - 11:20)
 
 Brass. Vacuum tubes the size of men. A hall of machines
 that were designed by people who had never seen a
@@ -161,7 +161,7 @@ in the fog: OKONKWO.
 
 SMASH CUT TO:
 
-EXT. THE STOPPED SQUARE - DAY (CINDER - DAY 1 - 06:05)
+EXT. THE STOPPED SQUARE - DAY (CINDER - YEAR 61 - 06:05)
 
 A city square under a sky like a lid. Ash falls upward.
 
@@ -320,7 +320,7 @@ Silence.
 
 CUT TO:
 
-INT. RIG VAULT - NIGHT (HOLLOWAY - HOUR 08 - 18:20)
+INT. RIG VAULT - NIGHT (HOLLOWAY - YEAR 60 - 18:20)
 
 A cathedral of shelving inside a rusted hull. Not books
 -- objects. A wedding dress in a jar. A traffic light. A
@@ -426,7 +426,7 @@ Mercy's charts. The coastlines match. Exactly.
 
 DISSOLVE TO:
 
-INT. MINISTRY CELL - NIGHT (VESPER - CYCLE 8 - 20:00)
+INT. MINISTRY CELL - NIGHT (VESPER - YEAR 41 - DAY 1 - 20:00)
 
 A cell that is more office than cell. A desk bolted down.
 A brass radiator ticking.
@@ -513,7 +513,7 @@ Iris says nothing.
 
 CUT TO:
 
-EXT. ALLEY OFF THE SQUARE - DAY (CINDER - DAY 1 - 06:07)
+EXT. ALLEY OFF THE SQUARE - DAY (CINDER - YEAR 61 - 06:07)
 
 MERCY-OF-CINDER presses into a doorway as the searchlight
 crawls past. In the square behind her, the six minutes
@@ -819,7 +819,7 @@ The rain hardens.
 
 CUT TO:
 
-INT. TOWER HIGH OFFICE - DAY (CINDER - DAY 1 - 06:09)
+INT. TOWER HIGH OFFICE - DAY (CINDER - YEAR 61 - 06:09)
 
 A room of instruments and no windows that open. On every
 surface, clocks with their hands removed.
@@ -900,7 +900,7 @@ He touches the frame with two fingers. Gentle, briefly.
 
 CUT TO:
 
-INT. CLOCK SHOP - DAY (VESPER - CYCLE 7 - 08:00)
+INT. CLOCK SHOP - DAY (VESPER - YEAR 41 - DAY 2 - 08:00)
 
 Two hundred clocks, brass and walnut, and a smell of oil.
 A bell over the door.
@@ -994,7 +994,7 @@ Ministry reference number.
 
 CUT TO:
 
-EXT. RIG UPPER DECK - NIGHT (HOLLOWAY - HOUR 07 - 19:10)
+EXT. RIG UPPER DECK - NIGHT (HOLLOWAY - YEAR 60 - 19:10)
 
 Rain sideways. The rig groans like a whale.
 
@@ -1205,7 +1205,7 @@ He closes it. Opens the ocean-door instead.
 
 CUT TO:
 
-INT. RIG GALLEY - NIGHT (HOLLOWAY - HOUR 06 - 20:14)
+INT. RIG GALLEY - NIGHT (HOLLOWAY - YEAR 60 - 20:14)
 
 A long table bolted to the floor. Fifty PEOPLE eating
 fast, because everything on this rig is done fast now.
@@ -1276,7 +1276,7 @@ She hands Iris a brass ring of keys.
 
 CUT TO:
 
-EXT. MINISTRY COURTYARD - DAY (VESPER - CYCLE 6 - 11:20)
+EXT. COURTYARD - DAY (VESPER - YEAR 41 - DAY 1 - 11:20)
 
 Brass light. Gravel. Nine GUARDS with rifles they have
 never fired, arranged around nothing.
@@ -1353,7 +1353,7 @@ Elias, who does not know her, and does, hears it land.
 
 CUT TO:
 
-INT. TOWER STAIR - DAY (CINDER - DAY 1 - 06:10)
+INT. TOWER STAIR - DAY (CINDER - YEAR 61 - 06:10)
 
 A spiral of iron. MERCY-OF-CINDER, RASHID, OYIN and DEK
 climb at a dead run.
@@ -1558,7 +1558,7 @@ Tobias goes very still.
 
 CUT TO:
 
-EXT. DROWNED CLOCK TOWER - (HOLLOWAY - HOUR 05 - 21:14)
+EXT. DROWNED CLOCK TOWER - NIGHT (HOLLOWAY - YEAR 60 - 21:14)
 
 Eighty metres down. Black, then --
 
@@ -1619,7 +1619,7 @@ sentence she has not yet written:
 
 CUT TO:
 
-INT. MINISTRY ENGINE VAULT - NIGHT (VESPER - CYCLE 5 - 03:00)
+INT. ENGINE VAULT - NIGHT (VESPER - YEAR 41 - DAY 3 - 03:00)
 
 Underground. Enormous. A machine of brass and glass
 occupying a space the size of a church, and at its centre
@@ -1689,7 +1689,7 @@ Iris looks at her own face, in profile, in struck bronze.
 
 CUT TO:
 
-INT. TOWER HIGH OFFICE - DAY (CINDER - DAY 1 - 06:11)
+INT. TOWER HIGH OFFICE - DAY (CINDER - YEAR 61 - 06:11)
 
 MERCY-OF-CINDER comes through the iron door with a length
 of pipe in her hand and finds VOSS-OF-CINDER sitting in a
@@ -1912,7 +1912,7 @@ this kindly and it is the cruellest thing in the film.
 
 CUT TO:
 
-INT. CLOCK SHOP - EVENING (VESPER - CYCLE 4 - 17:30)
+INT. CLOCK SHOP - EVENING (VESPER - YEAR 41 - DAY 3 - 17:30)
 
 Two hundred clocks. One lamp. ELIAS and IRIS on either
 side of the bench, with tea, and neither of them drinking
@@ -2001,7 +2001,7 @@ his, the way a man holds a mechanism he intends to keep.
 
 CUT TO:
 
-EXT. ASH FIELDS - DAWN (CINDER - DAY 1 - 05:58)
+EXT. ASH FIELDS - DAWN (CINDER - YEAR 61 - 05:58)
 
 Grey. Beyond the city wall, where the world thins.
 
@@ -2054,7 +2054,7 @@ square will begin again.
 
 CUT TO:
 
-EXT. RIG CATWALK - NIGHT (HOLLOWAY - HOUR 04 - 22:14)
+EXT. RIG CATWALK - NIGHT (HOLLOWAY - YEAR 60 - 22:14)
 
 Water at the third gantry. People on the roofs of the
 houses. The bell still ringing, hoarse now.
@@ -2102,7 +2102,7 @@ Mercy grips the rail. Says nothing for a long moment.
 The rig LURCHES. Somewhere below, steel gives.
 
                          MERCY
-                    Four hours.
+                    Ninety minutes.
 
                          IRIS
                     I know.
@@ -2126,7 +2126,7 @@ scarred.
 
 CUT TO:
 
-INT. MINISTRY CLOCK HALL - DAY (VESPER - CYCLE 3 - 11:20)
+INT. CLOCK HALL - DAY (VESPER - YEAR 41 - DAY 4 - 11:20)
 
 Brass. Dust in the beams. The hall of machines.
 
@@ -2202,4 +2202,3064 @@ frightened, well-meant machinery.
 
 CUT TO:
 
-ZZZ_APPEND_HERE
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 6)
+
+The stove has gone out. All four doors are shut, and the
+room is smaller for it.
+
+TOBIAS is on the floor with his back against the ash-door,
+which is the only thing holding him upright. IRIS kneels
+in front of him with a cup he will not take.
+
+                         IRIS
+                    Drink it.
+
+                         TOBIAS
+                    I stopped needing that in
+                    nineteen ninety-four. I keep
+                    the pot because a table with
+                    nothing on it is a table in a
+                    waiting room.
+
+She sets the cup down. Looks at the room properly for the
+first time: four doors, four walls -- no. Three walls.
+
+The fourth side of the room is simply where the room
+stops. No door. No wall. An edge.
+
+                         IRIS
+                    There are four doors and three
+                    walls.
+
+                         TOBIAS
+                    Well spotted. It took me eleven
+                    years.
+
+                         IRIS
+                    What is on that side?
+
+                         TOBIAS
+                    Nothing has ever been on that
+                    side. That is not a poetic
+                    answer, Doctor. It is a
+                    surveyor's one.
+
+Iris stands. Walks to the edge. Puts her hand out.
+
+Her fingers go grey at the tips. Not cold -- unplaced.
+She pulls back fast.
+
+                         IRIS
+                    It is the same grey.
+
+                         TOBIAS
+                    Which grey?
+
+                         IRIS
+                    There is a world with a road
+                    that stops. I have seen it in
+                    the ash-door. The horizon is
+                    four kilometres out and coming
+                    in.
+
+Tobias closes his eyes.
+
+                         TOBIAS
+                    Cinder is not dying of the
+                    hour. Cinder is dying of not
+                    being on a map.
+
+                         IRIS
+                    Say that again.
+
+                         TOBIAS
+                    A world holds its edges because
+                    somebody, somewhere, has the
+                    shape of it. That is what the
+                    ferrymen were drawing for six
+                    hundred years and none of us
+                    ever said out loud, because it
+                    sounds like something a child
+                    says about the dark.
+
+Iris looks at the leather tube. At the edge. At the tube.
+
+                         IRIS
+                    Tobias. What happens to a place
+                    that gets drawn for the first
+                    time?
+
+                         TOBIAS
+                    I have no idea.
+                         (beat)
+                    I have wanted somebody to ask
+                    me that for sixty years.
+
+CUT TO:
+
+INT. TOWER HIGH OFFICE - DAY (CINDER - YEAR 61 - 06:12)
+
+MERCY-OF-CINDER, pipe still in hand, is watching a clock
+that has no hands, and the clock is doing something it
+has not done in sixty-one years.
+
+It is going past.
+
+Outside the window, the square: four hundred people take
+one step. The pigeon closes its wings and lands.
+
+                         MERCY-OF-CINDER
+                    Six-twelve.
+
+                         VOSS-OF-CINDER
+                    Yes.
+
+                         MERCY-OF-CINDER
+                    There is no six-twelve.
+
+                         VOSS-OF-CINDER
+                    There is now, and I did not do
+                    it, and I would very much like
+                    to know who did.
+
+He crosses to the alcove. The scorched doorframe, bolted
+dead into the floor for sixty-one years, has begun to
+smell of rain.
+
+RASHID and OYIN crowd the doorway. DEK on the stair,
+staring at his own hands, counting nothing.
+
+                         DEK
+                    Four hundred and ten.
+
+                         OYIN
+                    Dek.
+
+                         DEK
+                    Four hundred and ten and it did
+                    not stop. Oyin. It did not stop.
+
+Oyin puts her hand over her mouth and makes a sound that
+has been waiting nineteen years to be made.
+
+Voss-of-Cinder does not turn around. He touches the
+doorframe with two fingers.
+
+                         VOSS-OF-CINDER
+                    Captain Wren.
+
+WREN appears, uniform askew, having run.
+
+                         VOSS-OF-CINDER (CONT'D)
+                    Somewhere in the next hour a
+                    woman will step out of this
+                    frame carrying a paper tube. I
+                    want the square cleared, the
+                    stair held, and not one rifle
+                    loaded.
+
+                         WREN
+                    Not one, sir?
+
+                         VOSS-OF-CINDER
+                    She has been shot at in three
+                    worlds already. I would like to
+                    be the exception. It is the
+                    only leverage I have.
+
+Mercy looks at him with the pipe still raised, and slowly,
+without deciding to, lowers it.
+
+                         MERCY-OF-CINDER
+                    You knew her.
+
+                         VOSS-OF-CINDER
+                    I held her while she died and I
+                    have been trying to deserve the
+                    conversation ever since.
+
+SMASH CUT TO:
+
+INT. CLOCK HALL - DAY (VESPER - YEAR 41 - DAY 4 - 11:26)
+
+Six minutes later. HAAS stands under the great brass
+movement with her gloves off, which for her is nakedness.
+
+Two hundred machines. The whole slow, frightened, decent
+century of them.
+
+                         HAAS
+                    Six minutes.
+
+                         IRIS
+                    Six minutes.
+
+                         HAAS
+                    And then we weld it, and Vesper
+                    gets its noise back, and in
+                    eleven years somebody in this
+                    building will build a bomb.
+
+                         IRIS
+                    Probably.
+
+                         HAAS
+                    You could lie to me. I would
+                    let you. I am asking.
+
+Iris does not lie to her.
+
+                         IRIS
+                    You will get aircraft, and
+                    antibiotics, and a telephone in
+                    every house, and the bomb, and
+                    a machine that lets a farmer in
+                    one country see the face of a
+                    child in another. You do not
+                    get to order from the menu. You
+                    get the century.
+
+Haas turns to CLERK ONE, who has been standing at the end
+of the hall pretending not to hear any of this.
+
+                         HAAS
+                    Wind them all. Every one.
+
+                         CLERK ONE
+                    Ma'am, the schedule --
+
+                         HAAS
+                    Burn the schedule. I want every
+                    clock in this hall running at
+                    the same second when it
+                    happens, so that whatever we
+                    are about to lose, we lose it
+                    together and on the record.
+
+Clerk One goes. Haas puts one bare hand flat on the brass.
+
+                         HAAS (CONT'D)
+                    Forty-one years I have kept
+                    this country still enough to
+                    hear itself think.
+
+                         IRIS
+                    It thought something worth
+                    hearing.
+
+                         HAAS
+                    It thought the same thing every
+                    day. That is not thinking,
+                    Doctor. That is a pulse.
+
+MATCH CUT TO:
+
+EXT. RIG CATWALK - NIGHT (HOLLOWAY - YEAR 60 - 22:40)
+
+A hand flat on rusted steel. MERCY's. The rail is warm,
+which is wrong, and singing, which is worse.
+
+Water at the third gantry and climbing visibly, in steps,
+the way a tide does not.
+
+Below her the rig is being emptied upward. People on the
+roofs of the welded houses. Someone is still ringing the
+bell and the bell has gone hoarse.
+
+The DECKHAND arrives at a run, soaked.
+
+                         DECKHAND
+                    Admiral, the south leg has gone
+                    past its mark. If it shears, the
+                    Vault floods in eleven minutes
+                    and takes the galley with it.
+
+                         MERCY
+                    Then we do not put anybody in
+                    the galley.
+
+                         DECKHAND
+                    There are four hundred people
+                    on this rig and one high place.
+
+                         MERCY
+                    I can count.
+
+She looks out at the water. Out where the freestanding
+door stood at dusk, there is nothing now. Just weather.
+
+                         DECKHAND
+                    Ma'am. What do we save?
+
+Mercy is quiet for a moment. Then she does the thing that
+will be in the songs, if there are songs.
+
+                         MERCY
+                    Nothing. We save nobody's
+                    doorknobs. Open the Vault and
+                    let the sea have every object
+                    in it, and put four hundred
+                    people on the shelves.
+
+                         DECKHAND
+                    The archive --
+
+                         MERCY
+                    Is a bucket, son, and I have
+                    just found something better to
+                    put in it.
+
+She takes the wrench off him. Starts to ring, herself.
+
+                         MERCY (CONT'D)
+                         (shouting, below)
+                    EVERY SOUL TO THE VAULT.
+                    EVERY SOUL.
+
+CUT TO:
+
+INT. DROWNED CLOCK TOWER - DAY (HOLLOWAY - YEAR 29 - 14:14)
+
+Thirty-one years earlier. The water is shallower here --
+forty metres, green, still lit by a sun that has not
+given up on this world yet.
+
+TOBIAS LUNN, younger, unthin, in a canvas diving suit,
+works his way into the tower's brass room with a body in
+his arms.
+
+A woman in a diving suit. The helmet window shows a face
+we know. IRIS. Older than ours by fifteen years. Dead
+perhaps an hour.
+
+He sets her against the wall. Straightens her. Folds her
+gloved hands around a leather tube.
+
+                         TOBIAS (V.O.)
+                    She came up out of the sea in
+                    the spring and said she could
+                    put the hour back, and I
+                    believed her, because she was
+                    the cleverest person I had ever
+                    met and because I wanted to go
+                    home.
+
+He takes a grease pencil from his belt. Writes on the
+vellum sticking out of the tube, in her hand, which he
+has been practising.
+
+We read it upside down: DO NOT PUT IT BACK TOGETHER.
+
+                         TOBIAS (V.O.) (CONT'D)
+                    She got it three-quarters
+                    closed. Holloway went under to
+                    the second gantry in eleven
+                    seconds. I have never told
+                    anybody what that sounded like
+                    and I am not going to start.
+
+He turns to the mechanism at the centre of the brass room
+-- a thing of gears with no housing, turning in water,
+which should be impossible and is.
+
+There is a gap in it. Exactly a man wide.
+
+                         TOBIAS (V.O.) (CONT'D)
+                    The house needs a ferryman. She
+                    was going to be it. She was
+                    always going to be it.
+
+He unlatches his own helmet. Water floods in. He does not
+struggle.
+
+                         TOBIAS (V.O.) (CONT'D)
+                    I was extremely fast and not at
+                    all brave. Those get confused.
+
+He steps into the gap in the gears.
+
+The tower LIGHTS UP -- every window, the tram stop, the
+drowned streets for a kilometre in every direction.
+
+Above, on a rig that is only thirty years old, a woman of
+thirty-one hears the sea strike the quarter for the first
+time.
+
+CUT TO:
+
+EXT. RIG SOUTH RAIL - DAY (HOLLOWAY - YEAR 29 - 14:20)
+
+MERCY, 31, dark-haired, no coat of flags yet, runs to the
+south rail with a tool bag banging her hip.
+
+The water is flat. The line that went down is slack.
+
+She hauls it. It comes up easy. It comes up cut.
+
+                         MERCY (31)
+                    Lunn.
+
+She says it again, to the water, and then a third time,
+and then she stops saying it and starts hauling, hand
+over hand, on a line with nothing on the end of it, and
+she does not stop for a very long time.
+
+Eighty metres down, the city is on.
+
+                         IRIS (V.O.)
+                    She hauled that line for six
+                    hours. There was nothing on it.
+                    She knew there was nothing on
+                    it. My sister has never in any
+                    world been able to let go of a
+                    rope.
+
+CUT TO:
+
+INT. OBSERVATORY MAP ROOM - NIGHT (MERIDIAN - DAY 4 - 02:20)
+
+Water to the ankles. Sixteen clocks at 2:14 and staying
+there.
+
+IRIS kneels over the vellum. VOSS wades behind her with
+the torch, lighting the page.
+
+The fifth shape in the centre of the map is half drawn:
+an outline with no coast.
+
+                         VOSS
+                    What is it?
+
+                         IRIS
+                    A house with three walls.
+
+                         VOSS
+                    Iris.
+
+                         IRIS
+                    I am not being clever, Callum,
+                    I am telling you what it is. It
+                    is a room between the four of
+                    them that has never been
+                    anywhere. It holds the hour
+                    open. It has held it open since
+                    before anybody wrote anything
+                    down.
+
+Voss crouches, knees in the water, elbows on his thighs,
+an old man looking at a map.
+
+                         VOSS
+                    And if you finish it.
+
+                         IRIS
+                    Then it is a place. It has
+                    edges. It can be gone to.
+                    Anything with edges can hold
+                    something.
+
+                         VOSS
+                    Can hold the hour.
+
+                         IRIS
+                    Instead of four worlds holding
+                    a quarter each and all of them
+                    bleeding at the seam, yes.
+
+                         VOSS
+                    And a country needs what,
+                    exactly?
+
+Iris does not answer that. She keeps drawing.
+
+Voss watches her not answer.
+
+                         VOSS (CONT'D)
+                    Ah.
+
+                         IRIS
+                    Do not.
+
+                         VOSS
+                    I have known you eleven years
+                    and I have never once seen you
+                    fail to answer a question about
+                    a map.
+
+The water rises a centimetre. Both of them notice and
+neither of them mentions it.
+
+                         VOSS (CONT'D)
+                    There is a version of this
+                    where you come back, and there
+                    is a version where you do not,
+                    and you have already decided
+                    which one you are in.
+
+                         IRIS
+                    Hold the torch steady.
+
+CUT TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 7)
+
+TOBIAS, upright now, propped against the table, is
+teaching. It costs him.
+
+                         TOBIAS
+                    You have been going through
+                    doors the way a letter goes
+                    through a slot. Today you post
+                    yourself.
+
+                         IRIS
+                    How.
+
+                         TOBIAS
+                    Wrong question. Where.
+
+He taps the rain-door, the ocean-door, the brass-door,
+the ash-door, in turn.
+
+                         TOBIAS (CONT'D)
+                    A door does not open onto a
+                    world. It opens onto an hour.
+                    Every one of these is the same
+                    two fourteen wearing a local
+                    accent. If you want to arrive
+                    somewhere in particular you do
+                    not think about the place. You
+                    think about what the place is
+                    doing at that minute.
+
+                         IRIS
+                    Cinder at six minutes past six.
+
+                         TOBIAS
+                    What is it doing?
+
+                         IRIS
+                    Repeating.
+
+                         TOBIAS
+                    No. That is what it looks like.
+                    What is it doing?
+
+Iris thinks. The ash-door has begun, very faintly, to let
+grey in around the hinges.
+
+                         IRIS
+                    Holding its breath.
+
+The ash-door swings open by itself. Grey light. Ash
+falling upward.
+
+Tobias smiles, and it is the last uncomplicated thing he
+will do in this film.
+
+                         TOBIAS
+                    There. You are a ferryman for
+                    nine seconds. How was it?
+
+                         IRIS
+                    Cold.
+
+                         TOBIAS
+                    It does not improve.
+
+She goes to the door. Stops. Comes back. Kisses the top
+of his head like a daughter.
+
+                         IRIS
+                    Do not finish while I am out.
+
+                         TOBIAS
+                    I will do my best. I have been
+                    doing my best since nineteen
+                    ninety-one and look where it
+                    got everyone.
+
+CUT TO:
+
+EXT. THE STOPPED SQUARE - DAY (CINDER - YEAR 61 - 06:13)
+
+The square, moving.
+
+Four hundred people who have taken one step, and then
+another, and are now standing in the ash looking at their
+own feet.
+
+An old MAN in the middle of the square finishes a sentence
+he began sixty-one years ago. He has forgotten what it was
+about. He cries anyway.
+
+IRIS steps out of nothing at the north end of the square,
+soaked from another world's rain, tube under her arm.
+
+Four hundred faces turn.
+
+Nobody screams. That is the strange part. They have been
+waiting so long that a miracle reads as a scheduled
+event.
+
+DEK pushes through the crowd and stops in front of her.
+He is counting. He cannot stop counting.
+
+                         DEK
+                    Four hundred and ten. Four
+                    hundred and eleven. Four
+                    hundred and twelve.
+
+                         IRIS
+                    What are you counting now?
+
+                         DEK
+                    Seconds. Nobody has ever let me
+                    count seconds.
+
+Iris crouches to his level. Behind her the ash falls
+upward and behind that the horizon is closer than it was
+at dawn.
+
+                         IRIS
+                    Keep counting. Out loud. All
+                    the way up. When you get tired,
+                    give it to somebody else.
+
+                         DEK
+                    Why?
+
+                         IRIS
+                    Because at some point today
+                    somebody is going to tell this
+                    city that time stopped again,
+                    and I want four hundred people
+                    who can say exactly how long
+                    it went on for.
+
+MERCY-OF-CINDER comes down the tower steps two at a time
+and stops dead at fifty metres, because she is looking at
+a stranger and she knows the shape of her hands.
+
+CUT TO:
+
+INT. HOTEL LIFT - NIGHT (VESPER - YEAR 0 - DAY 1 - 02:14)
+
+Nineteen twenty-one. A brass cage lift in a railway
+hotel, descending, very slowly, with three people in it.
+
+A WOMAN on the floor, bleeding through a coat that was
+never made in this world. Her face is IRIS's face. Older,
+harder, grey at the temple.
+
+Kneeling over her, the MINISTER OF WAR, 60s, in evening
+dress, holding a folded tablecloth against her side.
+
+Beside him, a YOUNG MAN in a porter's uniform, terrified.
+His name badge reads HAAS.
+
+                         MINISTER
+                    Stay with me. Madam. Stay with
+                    me. What is your name.
+
+                         THE WOMAN WHO WAS LATE
+                    It does not travel.
+
+                         MINISTER
+                    Then something else. Anything.
+
+She pulls the tablecloth out of his hands. On it, in
+wine, four shapes. She has drawn them at the table
+upstairs, in front of nine witnesses, while dying.
+
+                         THE WOMAN WHO WAS LATE
+                    Four. There are four and you
+                    are one and you are all going
+                    at different speeds.
+
+                         MINISTER
+                    I do not understand.
+
+                         THE WOMAN WHO WAS LATE
+                    You will. Slow down. However
+                    much it costs, however stupid
+                    it looks, however many of your
+                    clever men laugh at you. Slow
+                    down, or you will tear.
+
+The lift passes a floor. Light crosses her face.
+
+                         MINISTER
+                    And if we do? Slow down?
+
+                         THE WOMAN WHO WAS LATE
+                    Then in about forty years
+                    somebody with my face walks
+                    into your building and you give
+                    her the hour.
+
+                         MINISTER
+                    Whose face? Madam. Whose --
+
+She is gone. The lift keeps descending, because lifts do.
+
+The young porter, HAAS, stares at the tablecloth. At the
+four shapes. At the wine going brown.
+
+He will name a daughter, and the daughter will name
+herself, and forty-one years later a woman with her
+gloves off will put her hand on a brass machine.
+
+CUT TO:
+
+INT. CLOCK SHOP - NIGHT (VESPER - YEAR 41 - DAY 4 - 22:00)
+
+Two hundred clocks and every one of them wound. The noise
+is enormous and nobody in the room minds.
+
+ELIAS works at the bench with his sleeves rolled and four
+lamps lit. Spread in front of him: the vellum map, weighed
+down with a screwdriver, a teacup, a spring gauge and a
+stone from another world's car park.
+
+HAAS stands behind him with a notebook, taking dictation
+like a clerk, which she has not done in thirty years.
+
+                         ELIAS
+                    Another. Eleven and one over
+                    three, and tell the vault men
+                    it wants to be brass, not steel,
+                    or it will sing.
+
+                         HAAS
+                    Eleven and a third. Brass.
+
+                         ELIAS
+                    And a hole through the middle
+                    of it the width of your thumb,
+                    Minister, and not your thumb,
+                    a normal one.
+
+Haas writes it down without looking up.
+
+IRIS comes in from the back with two plates of something
+hot, and sets one at her father's elbow, and he eats it
+without noticing that he is eating.
+
+                         IRIS
+                    You have made the same part
+                    four times.
+
+                         ELIAS
+                    I have made four of the same
+                    part. There is a difference and
+                    it is the whole job.
+
+He holds one up to the lamp. A brass ring, the size of a
+bracelet, with a gap in it.
+
+                         ELIAS (CONT'D)
+                    Four worlds, four rings. Each
+                    one goes in the machine that
+                    world keeps its hour in. Your
+                    flooded tower. Your square with
+                    the six minutes. Minister's
+                    engine downstairs. And your own
+                    house, child, whatever it has
+                    got.
+
+                         IRIS
+                    A room with sixteen clocks in
+                    it.
+
+                         ELIAS
+                    That will do. Sixteen wrong
+                    clocks is a better regulator
+                    than one right one. It always
+                    was. That is the whole of what
+                    I know.
+
+He sets the ring down. Looks at the gap in it.
+
+                         ELIAS (CONT'D)
+                    And the fifth.
+
+                         IRIS
+                    There is no fifth ring.
+
+                         ELIAS
+                    There is a fifth shape on that
+                    map and you have drawn a coast
+                    on it, so do not sit in my shop
+                    and tell me arithmetic.
+
+Silence, except for two hundred clocks.
+
+                         HAAS
+                    Doctor.
+
+                         IRIS
+                    The fifth one is not brass.
+
+Elias puts both hands flat on the bench, the way he did
+when he was shown a photograph two days ago.
+
+                         ELIAS
+                    No. I did not think it would
+                    be.
+
+CUT TO:
+
+INT. RIG VAULT - NIGHT (HOLLOWAY - YEAR 60 - 23:00)
+
+The cathedral of shelving, emptied of objects and filling
+with people. Four hundred of them, on the shelves, in the
+aisles, children handed up over heads.
+
+The wedding dress in its jar is gone. The traffic light is
+gone. The crate marked LONDON, RESIDENTIAL, PRE-FLOOD sits
+open and empty by the door, and a toddler is sitting in it.
+
+MERCY moves through with a lamp, counting, touching
+shoulders, saying names.
+
+                         MERCY
+                    Ademola. Ruth. Ruth's boy.
+                    Ezinne and the twins. Baker.
+                    Other Baker.
+
+                         DECKHAND
+                    Admiral, why are you naming
+                    them?
+
+                         MERCY
+                    Because the archive is not
+                    gone, son, it has just changed
+                    format.
+
+She reaches the far wall. Sets the lamp on the empty
+shelf where the charts were.
+
+Then she does a thing she has clearly been putting off:
+she takes out a small tin, opens it, and removes a coil
+of cut rope, thirty years old, frayed at one end.
+
+She looks at it. Puts it in her coat.
+
+                         DECKHAND
+                    What is that?
+
+                         MERCY
+                    A grudge. I am taking it with
+                    me. I have paid for the space.
+
+The rig LURCHES. Dust comes down. Four hundred people make
+one sound and then, remarkably, stop making it.
+
+                         MERCY (CONT'D)
+                         (loud, steady)
+                    That is the south leg going.
+                    That is expected. Anybody who
+                    wants to be frightened, be
+                    frightened quietly, we have
+                    children in here.
+
+Somebody laughs. Somebody always does.
+
+                         MERCY (CONT'D)
+                    Forty minutes. Then either my
+                    sister opens a door in this
+                    wall or she does not, and
+                    either way you will not have to
+                    listen to me ring that bell
+                    again.
+
+CUT TO:
+
+INT. TOWER HIGH OFFICE - DAY (CINDER - YEAR 61 - 06:20)
+
+IRIS and MERCY-OF-CINDER and VOSS-OF-CINDER, in a room
+with clocks that have no hands and a doorframe that smells
+of rain.
+
+Nobody is sitting down.
+
+                         VOSS-OF-CINDER
+                    You are wondering why I have
+                    not had you taken.
+
+                         IRIS
+                    No. You need me to draw, and
+                    frightened people draw badly. I
+                    am wondering why she is still
+                    holding a pipe.
+
+                         MERCY-OF-CINDER
+                    Because I do not know you.
+
+                         IRIS
+                    That is fair.
+
+                         MERCY-OF-CINDER
+                    And because you have been
+                    looking at me since the square
+                    like a woman reading a headline
+                    about her own house.
+
+Iris makes herself stop looking at her.
+
+Voss-of-Cinder crosses to the window and pulls the blind
+all the way up. The grey.
+
+                         VOSS-OF-CINDER
+                    Four kilometres. Yesterday it
+                    was four point two. Doctor, I
+                    am going to say my position
+                    plainly and then you may call
+                    me whatever you like.
+
+                         IRIS
+                    Go on.
+
+                         VOSS-OF-CINDER
+                    I intend to take the whole hour
+                    into Cinder and shut the door
+                    behind it. Your world floods,
+                    the brass one stops, the ash
+                    one -- forgive me, that is this
+                    one -- lives. Nine million
+                    people.
+
+                         IRIS
+                    And three worlds.
+
+                         VOSS-OF-CINDER
+                    I have never met them.
+
+                         MERCY-OF-CINDER
+                    I have not met them either and
+                    I am not doing it.
+
+Both of them turn.
+
+                         MERCY-OF-CINDER (CONT'D)
+                    Four hundred and nine times I
+                    watched my mother say the same
+                    word with the same mouth. You
+                    want to do that to somebody
+                    else's mother forever so that
+                    mine can get to the end of a
+                    sentence.
+
+                         VOSS-OF-CINDER
+                    Yes.
+
+                         MERCY-OF-CINDER
+                    At least you say it.
+
+                         VOSS-OF-CINDER
+                    I am seventy-nine years old,
+                    girl, and I have run out of
+                    the energy required for
+                    euphemism.
+
+Iris unrolls the map on a desk of handless clocks.
+
+                         IRIS
+                    There is a third thing.
+
+                         VOSS-OF-CINDER
+                    There is never a third thing.
+
+                         IRIS
+                    There is tonight. Sit down,
+                    Magistrate. You have been
+                    waiting sixty-one years for
+                    this conversation and you are
+                    conducting it standing up.
+
+CUT TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 8)
+
+The ash-door opens and MERCY-OF-CINDER comes through it
+badly, the way everyone does the first time, and lands on
+her hands and knees on a floor that is not a floor.
+
+She looks up.
+
+TOBIAS, grey, holding the table.
+
+                         TOBIAS
+                    You can come in. It is not
+                    polite to kneel in a door.
+
+                         MERCY-OF-CINDER
+                    What is this place?
+
+                         TOBIAS
+                    Between. It is not a good name.
+
+She gets up. Sees the four doors. Sees, through the
+ocean-door, a rig in a black sea with every window lit.
+
+Sees, through the rain-door, a room with sixteen clocks.
+
+                         MERCY-OF-CINDER
+                    Those are real.
+
+                         TOBIAS
+                    Yes.
+
+                         MERCY-OF-CINDER
+                    People live in them.
+
+                         TOBIAS
+                    Yes.
+
+                         MERCY-OF-CINDER
+                         (quietly)
+                    Oh, that is much worse.
+
+                         TOBIAS
+                    It is. Well done. Most people
+                    take a day to get there.
+
+IRIS comes through behind her. Stops when she sees the
+two of them in the same room.
+
+Tobias watches her face and understands everything at
+once, because he has had sixty years of practice at
+watching faces in this room.
+
+                         TOBIAS (CONT'D)
+                    Ah.
+
+                         IRIS
+                    Do not.
+
+                         TOBIAS
+                    I am not going to. But you are
+                    going to have to, and soon, and
+                    not in a corridor.
+
+He picks up the water-damaged book of maps. Holds it out
+to Mercy-of-Cinder, who takes it because she is the kind
+of person who takes things people hold out.
+
+                         TOBIAS (CONT'D)
+                    Page two hundred and eleven.
+
+She opens it. Looks. Looks up.
+
+                         MERCY-OF-CINDER
+                    This is my square.
+
+                         TOBIAS
+                    Drawn in nineteen forty by a
+                    ferryman from a world that is
+                    not there any more. Your square
+                    is the oldest thing in this
+                    book that is still standing.
+                    Cinder has been dying longer
+                    than anybody told you, and it
+                    has been refusing longer than
+                    that, and I have always thought
+                    that was the more interesting
+                    number.
+
+CUT TO:
+
+INT. OBSERVATORY MAP ROOM - NIGHT (MERIDIAN - DAY 4 - 02:26)
+
+Water at the knees now. The sixteen clocks. VOSS has got
+the ceiling open with the fire axe and is running cable
+into it for reasons of his own.
+
+IRIS comes through the doorway that is not a doorway, and
+MERCY-OF-CINDER comes through behind her, and stops, and
+stares at a room full of rain falling upward from a
+floor made of water.
+
+                         MERCY-OF-CINDER
+                    Is it always like this?
+
+                         IRIS
+                    It has been like this since
+                    Tuesday.
+
+Voss turns around on the ladder with a cable in his teeth.
+
+He sees the girl.
+
+He goes absolutely still, and the cable falls out of his
+mouth into the water, and he does not notice.
+
+                         VOSS
+                    Oh.
+
+                         IRIS
+                    Callum.
+
+                         VOSS
+                    Iris, I can see her.
+
+                         IRIS
+                    I know.
+
+                         VOSS
+                    No. Listen to me. For two days
+                    I have had a name in my mouth
+                    that would not come out, and I
+                    have been able to see the shape
+                    of a girl on a stool and not
+                    her face, and I am looking at
+                    her face.
+
+He comes down the ladder too fast for a man his age.
+
+Mercy-of-Cinder takes a step back, because a stranger is
+crossing a flooded room toward her with his hands out
+and his eyes wet.
+
+                         MERCY-OF-CINDER
+                    Sir --
+
+                         VOSS
+                    Mercy.
+
+Beat.
+
+He has said it. It came out.
+
+                         VOSS (CONT'D)
+                    Mercy. Mercy Okonkwo. There.
+                    There it is. Thirty-one months
+                    old and cross about a bus.
+
+                         MERCY-OF-CINDER
+                    My name is Mercy.
+
+                         VOSS
+                    Yes.
+
+                         MERCY-OF-CINDER
+                    Nobody has ever told me why.
+
+Iris has to put her hand on a drafting table.
+
+DISSOLVE TO:
+
+INT. INSTRUMENT DECK - NIGHT (MERIDIAN - DAY 2 - 02:14)
+
+THE EVENT. Again. The same four seconds, from a camera we
+have not used.
+
+The still room. Dust held. Rain on the skylight held.
+
+MERCY (19) on the stool by the door, phone up, grinning.
+
+And now we see what the first pass did not show us:
+
+Behind Mercy, in the doorway of the instrument deck,
+where there was nothing, there is a DOOR. Freestanding.
+Rain falling through it from a sky that is not this sky.
+
+A WOMAN stands in it, soaked, a leather tube under one
+arm. Her face is in shadow and we do not need it.
+
+She reaches out and takes Mercy (19) by the wrist.
+
+Mercy turns. Sees her. Says something we cannot hear,
+because the room has no sound in it.
+
+And then the woman pulls, gently, the way you pull
+somebody out of traffic.
+
+                         IRIS (V.O.)
+                    I have watched four seconds of
+                    telephone footage more times
+                    than I have watched anything
+                    else in my life.
+
+The stool is empty. The phone hangs in the air where a
+hand was. Begins to fall.
+
+                         IRIS (V.O.) (CONT'D)
+                    And it took me until the fourth
+                    day to ask the only question
+                    that mattered, which was not
+                    where she went.
+
+The point in the empty air OPENS. Like a page turning.
+
+                         IRIS (V.O.) (CONT'D)
+                    It was who was already standing
+                    in the door.
+
+CUT TO:
+
+EXT. THE STOPPED SQUARE - DAWN (CINDER - YEAR 0 - 06:05)
+
+Sixty-one years earlier. The square is not stopped. It is
+a market. Ash falls downward, like ash.
+
+A younger VOSS-OF-CINDER, 18, in a student's coat, is
+buying apples badly.
+
+And then, in the middle of the square, a DOORFRAME arrives
+with a sound like a page turning, and a WOMAN comes out of
+it at a dead run with a wound in her side and a leather
+tube in her fist.
+
+She makes thirty metres. She goes down.
+
+Voss is the nearest person. He is eighteen and he does not
+know what to do, so he kneels and holds her head out of
+the ash, which is the correct thing.
+
+Her face is IRIS's face. Thirty-four. Ours, or one exactly
+like ours.
+
+                         THE CARTOGRAPHER
+                    Is this the ash one?
+
+                         VOSS-OF-CINDER (18)
+                    This is Cinder.
+
+                         THE CARTOGRAPHER
+                    Good. Good, that is -- listen.
+                    Listen to me, I have about a
+                    minute and I have done this
+                    four times and I get better at
+                    it.
+
+She pushes the tube at him. He takes it.
+
+                         THE CARTOGRAPHER (CONT'D)
+                    Your world is not sick. Your
+                    world is unmapped. It has no
+                    edges of its own, so it is
+                    using the hour as a fence, and
+                    the hour is being pulled four
+                    ways.
+
+                         VOSS-OF-CINDER (18)
+                    I do not -- madam, I am a
+                    student, you want the
+                    university, it is --
+
+                         THE CARTOGRAPHER
+                    I want anybody who is here.
+
+Behind them the doorframe is already scorching, blackening
+at the joints, dying.
+
+                         THE CARTOGRAPHER (CONT'D)
+                    Do not put the hour back. Do
+                    not let anybody take it. Draw
+                    the room between. Draw me a
+                    border, you beautiful idiot,
+                    and put somebody in it.
+
+                         VOSS-OF-CINDER (18)
+                    Put who in it?
+
+She looks at him. And she laughs, which is horrible.
+
+                         THE CARTOGRAPHER
+                    Whoever is standing in the
+                    door.
+
+She dies in an ash market at five past six in the morning,
+and a boy of eighteen kneels in the grey holding a tube of
+paper he will spend sixty-one years failing to read.
+
+The great civic clock behind him reads 06:05.
+
+It will read 06:05 for a very long time.
+
+MATCH CUT TO:
+
+INT. TOWER HIGH OFFICE - DAY (CINDER - YEAR 61 - 06:34)
+
+The same clock, handless, on a desk.
+
+VOSS-OF-CINDER sets down the leather tube -- the original,
+scorched, sixty-one years old -- in front of IRIS.
+
+                         VOSS-OF-CINDER
+                    I could not open it. I want
+                    that understood. It has been in
+                    a strongbox since nineteen
+                    sixty-one and it does not open,
+                    for me, or for a locksmith, or
+                    for a man with a saw.
+
+Iris picks it up. It opens in her hands like a jar of jam
+for a parent.
+
+                         VOSS-OF-CINDER (CONT'D)
+                         (very quietly)
+                    Of course.
+
+Inside: a map. Four shapes. And a fifth, in the centre,
+drawn complete -- coast, contour, hatching for high
+ground -- by a hand identical to Iris's.
+
+                         IRIS
+                    She finished it.
+
+                         VOSS-OF-CINDER
+                    Then why is nothing better?
+
+                         IRIS
+                    Because a map is not a place.
+                    Somebody has to go and live
+                    there or it is a picture of a
+                    hole.
+
+Voss-of-Cinder sits down. All the way down, in a chair,
+like a man.
+
+                         VOSS-OF-CINDER
+                    Sixty-one years I have had the
+                    answer in a box in my own
+                    office.
+
+                         IRIS
+                    You have had the instructions.
+                    That is not the same thing and
+                    it is why people leave them in
+                    boxes.
+
+                         MERCY-OF-CINDER
+                    What did she call it?
+
+Iris turns the sheet over. On the back, one word, in her
+own handwriting, written by a woman who died before her
+mother was born.
+
+                         IRIS
+                    She did not. There is a space
+                    for the name and she left it
+                    empty.
+
+                         VOSS-OF-CINDER
+                    Why?
+
+                         IRIS
+                    Professional courtesy. You do
+                    not name a country you are not
+                    going to live in.
+
+CUT TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 9)
+
+Two women at a table with four cups on it. IRIS and
+MERCY-OF-CINDER. Tobias has gone somewhere that is not a
+room, tactfully.
+
+                         MERCY-OF-CINDER
+                    Say it in the corridor. I do
+                    not care about the corridor.
+
+                         IRIS
+                    In my world I have a sister.
+                    Had. The verb is a problem.
+
+                         MERCY-OF-CINDER
+                    And she looks like me.
+
+                         IRIS
+                    She is you.
+
+Mercy-of-Cinder absorbs that the way she has absorbed
+everything since she was fourteen: by getting slightly
+more still.
+
+                         MERCY-OF-CINDER
+                    No. I had a mother in a square
+                    and a father who drove a tram
+                    and a brother who died of the
+                    grey and I remember the smell
+                    of the tram depot.
+
+                         IRIS
+                    Yes.
+
+                         MERCY-OF-CINDER
+                    So I am not a piece of
+                    somebody.
+
+                         IRIS
+                    No. You are a whole person who
+                    was made out of a piece of
+                    somebody, and I am not going to
+                    insult you by pretending that
+                    is the same problem.
+
+Beat.
+
+                         MERCY-OF-CINDER
+                    What happened to her?
+
+                         IRIS
+                    We opened a hole in an hour,
+                    and she was sitting in the
+                    hour, and she went into it, and
+                    it let her out in four places
+                    at four different ages and
+                    none of the four of you is
+                    short of anything.
+
+                         MERCY-OF-CINDER
+                    Four.
+
+                         IRIS
+                    Two survived. There is a woman
+                    of sixty-two on a rig in a
+                    black ocean who has been
+                    ringing a bell for me for
+                    sixty years. And there is you.
+
+                         MERCY-OF-CINDER
+                    And the other two?
+
+                         IRIS
+                    One was never born. One is at
+                    the bottom of the sea.
+
+Mercy-of-Cinder picks up one of the four cups and drinks
+from it, because somebody in this room ought to.
+
+                         MERCY-OF-CINDER
+                    Do you want me to be her.
+
+                         IRIS
+                    God, no. That is the one thing
+                    I am certain of. I have wanted
+                    her back for four days and I
+                    have met two of you and neither
+                    of you needs anything from me
+                    except to be left the right way
+                    up.
+
+                         MERCY-OF-CINDER
+                    Then what do you want?
+
+                         IRIS
+                    I want to not be the reason.
+                    And that is not available, so I
+                    will take the next one down.
+
+CUT TO:
+
+EXT. RIG UPPER DECK - NIGHT (HOLLOWAY - YEAR 60 - 23:14)
+
+Rain gone sideways. The rig is listing four degrees and
+everything not bolted down has already decided which way
+is downhill.
+
+A DOOR stands on the upper deck, freestanding, brass light
+behind it. IRIS holds it the way you hold a gate for
+somebody with shopping.
+
+MERCY does not go through it.
+
+                         IRIS
+                    Mercy.
+
+                         MERCY
+                    Four hundred people in my
+                    Vault.
+
+                         IRIS
+                    I cannot open a door that big.
+
+                         MERCY
+                    Then do not open it here. Open
+                    it there.
+
+Iris looks at her.
+
+                         MERCY (CONT'D)
+                    You put a door in the middle of
+                    an ocean. Put one in the middle
+                    of a wall.
+
+                         IRIS
+                    It does not go where I aim it.
+                    It goes where the hour is
+                    doing the same thing on both
+                    sides.
+
+                         MERCY
+                    Then tell me what an hour is
+                    doing in a room with four
+                    hundred frightened people in
+                    it, and I will make my room do
+                    that, because I have been
+                    making this rig do things it
+                    did not want to do since before
+                    you were standing up.
+
+Iris starts to laugh, and it turns into something else
+halfway, and Mercy lets her have it for exactly four
+seconds and then hands her a wrench.
+
+                         MERCY (CONT'D)
+                    Answer.
+
+                         IRIS
+                    Waiting. It is waiting.
+
+                         MERCY
+                    Everything waits.
+
+                         IRIS
+                    Not like that. Not four hundred
+                    people counting the same
+                    minute. Mercy -- there is a
+                    square in another world with
+                    four hundred people in it
+                    counting out loud.
+
+                         MERCY
+                    Then we count.
+
+She takes the wrench back and starts down the ladder
+toward the Vault, shouting before she is halfway.
+
+                         MERCY (CONT'D)
+                    EVERY SOUL COUNTS ALOUD. FROM
+                    ONE. AND LOUD, OR I WILL COME
+                    DOWN THERE.
+
+CUT TO:
+
+INT. ENGINE VAULT - NIGHT (VESPER - YEAR 41 - DAY 5 - 01:00)
+
+The church-sized machine. The riveted steel doorframe at
+its heart. Four brass rings laid out on a cloth like
+surgical instruments.
+
+HAAS, ELIAS, IRIS. Four VAULT TECHNICIANS at a respectful
+distance, pretending to read gauges.
+
+                         IRIS
+                    Once more, and then nobody asks
+                    again.
+
+She sets the four rings at four points around the frame.
+
+                         IRIS (CONT'D)
+                    Meridian keeps the hour in a
+                    room with sixteen clocks.
+                    Vesper keeps it in this. Cinder
+                    keeps it in a civic clock in a
+                    public square. Holloway keeps
+                    it in a tower under eighty
+                    metres of water.
+
+                         HAAS
+                    And the rings.
+
+                         ELIAS
+                    Let it go. Politely. Each ring
+                    tells its machine that the hour
+                    is no longer its property and
+                    it may stop gripping.
+
+                         HAAS
+                    And if one of the four does not
+                    let go?
+
+                         ELIAS
+                    Then the other three tear, and
+                    the one that held on has the
+                    whole hour, and everybody who
+                    disagrees with that outcome is
+                    at the bottom of something.
+
+                         HAAS
+                    Thank you. That was very clear
+                    and I hated it.
+
+Iris lays her hand on the doorframe.
+
+                         IRIS
+                    They have to let go at the same
+                    second. All four. And there is
+                    no second that all four of
+                    those worlds share.
+
+                         HAAS
+                    Then what do they share?
+
+                         IRIS
+                    The hour itself. Two fourteen
+                    in my house. Eleven twenty in
+                    yours. Six minutes past six in
+                    Cinder. Fourteen minutes past
+                    anything in Holloway. It is one
+                    hour wearing four watches.
+
+Elias, who has been quiet, sets down his screwdriver.
+
+                         ELIAS
+                    And someone has to be standing
+                    in the middle of it holding
+                    all four doors at once.
+
+                         IRIS
+                    Yes.
+
+                         ELIAS
+                    And the man who currently does
+                    that is dying.
+
+                         IRIS
+                    Yes.
+
+Elias nods slowly. He does not look at her. He picks the
+screwdriver back up and goes on working, and his hands
+are not steady, and nobody says anything about it.
+
+DISSOLVE TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 10)
+
+The stove is cold. Two of the four doors have gone dim,
+like bulbs at the end of a filament.
+
+TOBIAS is on the table. Not sitting on it. On it, laid
+out, because he could not get down.
+
+IRIS holds his hand and it is like holding a glove.
+
+                         TOBIAS
+                    Do not make the face.
+
+                         IRIS
+                    I am not making a face.
+
+                         TOBIAS
+                    You are making the face of a
+                    woman who intends to be brave
+                    at somebody.
+
+He turns his head. Looks at the edge of the room. The
+place with no wall.
+
+                         TOBIAS (CONT'D)
+                    Ask me the question you have
+                    been carrying since the tower.
+
+                         IRIS
+                    The woman in the doorway. In my
+                    sister's telephone footage. Who
+                    is standing in the door.
+
+                         TOBIAS
+                    You know.
+
+                         IRIS
+                    I want you to say it, because
+                    if I say it I will have to
+                    believe it from the inside.
+
+Tobias breathes. It takes a while.
+
+                         TOBIAS
+                    Nobody cut that hour, Doctor.
+                    You cannot cut an hour with
+                    sixteen cameras. You opened a
+                    door, and something on the
+                    other side reached through,
+                    and every world within reach
+                    paid a quarter of an hour for
+                    it, and that has been happening
+                    for six hundred years and it
+                    will happen again in a hundred.
+
+                         IRIS
+                    That is not an answer.
+
+                         TOBIAS
+                    It is the first half. Here is
+                    the second. The person in the
+                    door was you, and the reason
+                    she was there is that in about
+                    forty minutes you are going to
+                    go and stand in it.
+
+Iris does not move.
+
+                         TOBIAS (CONT'D)
+                    You did not lose her by
+                    accident and then spend four
+                    days trying to get her back.
+                    You got her out. On purpose.
+                    You have simply not done it
+                    yet.
+
+                         IRIS
+                    That is the worst sentence
+                    anyone has ever said to me.
+
+                         TOBIAS
+                    I know. I have been saving it
+                    up.
+
+CUT TO:
+
+INT. TOWER STAIR - DAY (CINDER - YEAR 61 - 06:47)
+
+The spiral of iron, and for the first time in sixty-one
+years there are people on it who are not frozen.
+
+CAPTAIN WREN comes up with twelve GUARDS behind her and
+finds RASHID and OYIN holding the landing with a length
+of pipe and a fire bucket respectively.
+
+                         RASHID
+                    That is close enough.
+
+                         WREN
+                    I have twelve rifles.
+
+                         OYIN
+                    Loaded?
+
+Beat.
+
+                         WREN
+                    No.
+
+                         OYIN
+                    Then I have a fire bucket and
+                    the moral high ground, Captain,
+                    and I have been waiting
+                    nineteen years to use both.
+
+Wren looks up the stair. Down the stair. At the square
+below, through the slit window, where four hundred people
+are counting out loud in ragged unison and have got to
+two thousand nine hundred and something.
+
+                         WREN
+                    What are they counting?
+
+                         RASHID
+                    Seconds.
+
+                         WREN
+                    Why?
+
+                         RASHID
+                    Because they can.
+
+Wren takes off her cap. Looks at it. This is a woman who
+has enforced six minutes for eleven years.
+
+                         WREN
+                    My daughter is in that square.
+
+                         OYIN
+                    So is my mother.
+
+                         WREN
+                    She was four hundred and nine
+                    times four.
+                         (working it out)
+                    She has been four for eleven
+                    years.
+
+She hands Oyin the cap. Nobody knows why. Neither does
+she.
+
+                         WREN
+                         (to the guards)
+                    Stand down. Go and find
+                    somebody you have not been able
+                    to finish a conversation with.
+
+The guards do not move.
+
+                         WREN (CONT'D)
+                    That was an order and it is the
+                    last one I intend to give.
+
+CUT TO:
+
+INT. OBSERVATORY MAP ROOM - NIGHT (MERIDIAN - DAY 4 - 02:31)
+
+Water at the thigh. The sixteen clocks are under it now,
+still visible, still reading 2:14, still ticking, which
+is obscene.
+
+VOSS wades with a brass ring in his hand.
+
+                         VOSS
+                    Which one?
+
+                         IRIS (V.O.)
+                    All sixteen. It does not go on
+                    a clock. It goes in the middle
+                    of them.
+
+Voss looks at the drowned room. At the exact geometric
+centre of sixteen clocks, which is a point in the water
+above the third drafting table.
+
+                         VOSS
+                    Of course it does.
+
+He wades to it. Holds the ring out at arm's length in
+empty air over the water.
+
+                         VOSS (CONT'D)
+                    And I let go when?
+
+                         IRIS (V.O.)
+                    When the clocks stop being
+                    wrong in different directions.
+
+                         VOSS
+                    Iris, that is not an
+                    instruction, that is a line of
+                    poetry.
+
+                         IRIS (V.O.)
+                    It is what my father said, and
+                    he is the only one of us who
+                    ever fixed anything.
+
+Voss stands in chest-deep water in a ruined building at
+half past two in the morning holding a bracelet over
+nothing.
+
+                         VOSS
+                    Eleven years ago I gave a girl
+                    a job because her application
+                    had a drawing on it.
+
+                         IRIS (V.O.)
+                    Callum.
+
+                         VOSS
+                    I object. Let the minutes show
+                    it.
+
+                         IRIS (V.O.)
+                    Objection noted.
+
+                         VOSS
+                    Go.
+
+Under the water, sixteen second hands begin, very slowly,
+to agree.
+
+CUT TO:
+
+EXT. DROWNED CLOCK TOWER - NIGHT (HOLLOWAY - YEAR 60 - 23:20)
+
+Eighty metres down, and the city is on.
+
+A single brass suit descends through the lit streets,
+lamp on its chest, line running up into the black.
+
+It is not Iris. It is too broad in the shoulder and it
+comes down too slowly, because the woman inside it is
+sixty-two years old.
+
+                         MERCY (V.O.)
+                         (over suit radio)
+                    Tram stop. Second junction.
+                    There is a bicycle chained to a
+                    railing down here. Sixty years
+                    and somebody's bicycle is still
+                    chained up.
+
+                         IRIS (V.O.)
+                         (radio, distorted)
+                    Mercy, your air.
+
+                         MERCY (V.O.)
+                    My air is my business.
+
+She reaches the tower. The service door stands open. She
+goes in.
+
+INT. CLOCK TOWER - CONTINUOUS (HOLLOWAY - YEAR 60 - 23:22)
+
+The small brass room. The gears turning in water with a
+gap in them exactly a man wide, and no man in it.
+
+And against the wall, upright in the weight of her own
+boots, the dead woman in the diving suit.
+
+Mercy's lamp finds the helmet window. The face inside is
+her sister's, fifteen years older than the one upstairs.
+
+Mercy stands very still for eleven seconds.
+
+                         MERCY
+                         (radio)
+                    Iris.
+
+                         IRIS (V.O.)
+                    I am here.
+
+                         MERCY
+                    You did not tell me she was
+                    sitting up.
+
+Mercy crosses the brass room. Kneels, awkward in the
+suit, in front of the drowned woman.
+
+She takes the coil of thirty-year-old cut rope out of the
+tin at her belt. Puts it in the dead woman's gloved hands
+where the leather tube used to be.
+
+                         MERCY (CONT'D)
+                    There. That is yours. I have
+                    carried it since nineteen
+                    ninety-one and it was never
+                    mine.
+
+She sets the fourth brass ring into the gap in the gears.
+
+The tower LIGHT changes. Not brighter. Warmer, the way a
+room changes when somebody stops arguing in it.
+
+                         IRIS (V.O.)
+                    Mercy. Come up.
+
+                         MERCY
+                    In a minute.
+
+                         IRIS (V.O.)
+                    You have nine.
+
+                         MERCY
+                    Then I have eight to sit with
+                    her, and you are going to let
+                    me have them, because you had
+                    four days and I had sixty
+                    years.
+
+MATCH CUT TO:
+
+INT. CLOCK SHOP - NIGHT (VESPER - YEAR 41 - DAY 5 - 01:40)
+
+A warmer light. Two hundred clocks, all wound, all
+running, all disagreeing beautifully.
+
+ELIAS washes two cups at a small sink. IRIS stands in the
+doorway with her coat already on.
+
+                         ELIAS
+                    You are going to say something
+                    that ends this.
+
+                         IRIS
+                    I have about four minutes.
+
+                         ELIAS
+                    Then do not spend them on the
+                    end. Spend them on anything
+                    else. Tell me what she was like
+                    at six.
+
+                         IRIS
+                    Mercy?
+
+                         ELIAS
+                    I have got the nineteen-year-old
+                    from you. I would like a six.
+
+Iris comes into the room. Sits on the customer stool she
+has been avoiding for two days.
+
+                         IRIS
+                    She was a liar. Enormously. Not
+                    to get out of things. She lied
+                    for the architecture of it. She
+                    told her whole class that we
+                    had a horse.
+
+                         ELIAS
+                    In a flat.
+
+                         IRIS
+                    On the balcony. And when they
+                    asked to see it she said it was
+                    a very shy horse, and this
+                    satisfied eleven children for
+                    most of a year.
+
+Elias laughs. It is the first time we have heard it and
+it is exactly Mercy's laugh, which lands on Iris like a
+dropped plate.
+
+                         ELIAS
+                    And you.
+
+                         IRIS
+                    I backed her up. Every time.
+                    For a year I answered questions
+                    about the feeding of a horse
+                    that did not exist.
+
+                         ELIAS
+                    Good girl.
+
+He dries his hands. Comes over. Takes her face in both
+of them, the way a man holds a mechanism he intends to
+keep.
+
+                         ELIAS (CONT'D)
+                    Now. I am not your father.
+
+                         IRIS
+                    I know.
+
+                         ELIAS
+                    I am something much rarer,
+                    which is a man being given the
+                    chance to say the thing the
+                    other one ran out of time for.
+
+                         IRIS
+                    Do not.
+
+                         ELIAS
+                    Goodnight, Iris.
+
+She breaks. Entirely. In a shop full of clocks at twenty
+to two in the morning.
+
+                         ELIAS (CONT'D)
+                    Goodnight. Goodnight. There.
+                    That is all it ever was.
+
+CUT TO:
+
+EXT. THE STOPPED SQUARE - DAY (CINDER - YEAR 61 - 07:02)
+
+The square, full, and moving, and loud.
+
+Four hundred people counting out loud, and the number is
+somewhere past five thousand, and a boy called DEK has a
+crowd repeating after him like a congregation.
+
+At the base of the great civic clock, a ladder.
+
+VOSS-OF-CINDER climbs it with a brass ring in his teeth,
+seventy-nine years old, in a good coat, absolutely
+determined not to be helped.
+
+MERCY-OF-CINDER holds the ladder anyway.
+
+                         MERCY-OF-CINDER
+                    I could do that.
+
+                         VOSS-OF-CINDER
+                         (around the ring)
+                    You could. It would be
+                    faster, and safer, and it
+                    would mean that at the end of
+                    all this the person who stopped
+                    the clock and the person who
+                    started it were different
+                    people, and Cinder would spend
+                    the next century telling
+                    itself a story with a villain
+                    in it.
+
+                         MERCY-OF-CINDER
+                    They will do that anyway.
+
+                         VOSS-OF-CINDER
+                    Yes. But they will be lying,
+                    and somewhere in the archive
+                    there will be a note.
+
+He reaches the clock face. Opens the access hatch. Inside:
+a mechanism that has been holding the same six minutes
+since 1961 and is very, very tired.
+
+He sets the ring in.
+
+Below, four hundred people go on counting, and do not
+look up, which is the correct thing for them to be doing.
+
+                         VOSS-OF-CINDER (CONT'D)
+                         (to the mechanism)
+                    Thank you. You held.
+
+The hands, which are not there, move anyway.
+
+The clock face reads 07:02.
+
+DISSOLVE TO:
+
+INT. ENGINE VAULT - NIGHT (VESPER - YEAR 41 - DAY 5 - 02:14)
+
+The church-sized machine. HAAS at a brass lever with both
+bare hands on it. ELIAS at the frame with the third ring.
+Four TECHNICIANS at the gauges, and this time they are
+not pretending.
+
+                         CLERK ONE
+                         (on the speaking tube)
+                    Clock hall reports two hundred
+                    and eleven movements running at
+                    one second.
+
+                         HAAS
+                    All of them?
+
+                         CLERK ONE
+                    All of them, ma'am. For the
+                    first time since the hall was
+                    built.
+
+Haas closes her eyes for one second, which is all she
+allows herself.
+
+                         HAAS
+                    Six minutes. Mark it.
+
+She pulls the lever.
+
+The vault door -- riveted steel, forty-one years shut --
+opens onto rain.
+
+Not a corridor. Not a room. Rain, and beyond the rain a
+drowned observatory, and beyond that a black ocean with
+a rig in it, and beyond that a square full of counting.
+
+Every gauge in the vault goes to zero and stays there,
+calmly, as though it had been waiting to.
+
+                         ELIAS
+                    Minister.
+
+                         HAAS
+                    I see it.
+
+                         ELIAS
+                    You are the first person in
+                    this country in forty-one years
+                    to look at another world.
+
+                         HAAS
+                    I am aware, Elias. I am trying
+                    to have a professional
+                    reaction and it is not going
+                    well.
+
+CUT TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 11)
+
+All four doors stand open at once.
+
+Rain. Ocean. Brass light. Ash. Four weathers in one room
+and the table between them holding still.
+
+TOBIAS is on his feet in the centre, arms out, and he is
+holding them open with his body, and he is nearly not
+there. The light from the four doors goes all the way
+through him now.
+
+IRIS is shouting over a wind that has four directions.
+
+                         IRIS
+                    Sit down. Tobias. Sit down, I
+                    have got it --
+
+                         TOBIAS
+                    You have not got it. You have
+                    not been given it. There is a
+                    difference and it is the whole
+                    job.
+
+                         IRIS
+                    Then give it to me.
+
+                         TOBIAS
+                    That is not how. Nobody gives
+                    it. You take it out of the
+                    hands of somebody who is glad.
+
+He turns his head. Looks at the fourth side of the room.
+The edge. The place with no wall.
+
+There is a coastline there now. Faint. Drawn.
+
+                         TOBIAS (CONT'D)
+                    Oh, well done. Well done,
+                    Doctor, that is -- that is a
+                    country.
+
+                         IRIS
+                    It has no name.
+
+                         TOBIAS
+                    It has a ferryman's house in
+                    it, which is more than most of
+                    them start with.
+
+He begins to go. Not to fall -- to thin.
+
+                         TOBIAS (CONT'D)
+                    The wage. Ask for the wage.
+                    They always forget and I have
+                    watched three of them forget.
+
+                         IRIS
+                    An hour with the people I gave
+                    up.
+
+                         TOBIAS
+                    Say when you want it.
+
+                         IRIS
+                    Two fourteen. Day two.
+
+Tobias laughs, delighted, and it is the sound of a man
+being proved right at the very last available moment.
+
+                         TOBIAS
+                    Of course it is. Of course it
+                    is. It was always going to be
+                    you in that door.
+
+                         IRIS
+                    Tobias --
+
+                         TOBIAS
+                    Sixty-one years and seven hours.
+                    Tell the next one the stove
+                    does not work and it does not
+                    matter.
+
+He is gone.
+
+The four doors stay open, because somebody else is
+holding them.
+
+SMASH CUT TO:
+
+INT. INSTRUMENT DECK - NIGHT (MERIDIAN - DAY 2 - 02:14)
+
+THE EVENT. The third time. And now we are on the other
+side of it.
+
+The still room. Dust held. Sixteen cameras. Sixteen
+technicians, mid-blink, mid-breath.
+
+MERCY (19) on the stool, phone up, grinning at a frozen
+world.
+
+And in the doorway, in the rain, IRIS. Ours. Four days
+older and a great deal further than that.
+
+She steps into the stopped room. Her own coat is on the
+back of a chair three metres away.
+
+                         IRIS
+                    Mercy.
+
+Mercy turns. Sees a woman in the doorway who is her
+sister and is soaked and is wrong.
+
+                         MERCY (19)
+                    Iris? You are over -- you were
+                    just --
+
+                         IRIS
+                    I know. I need you to do
+                    something very quickly and I
+                    need you to not ask me why for
+                    about five minutes.
+
+                         MERCY (19)
+                    That is your bad news voice.
+
+                         IRIS
+                    It is my worst one.
+
+Behind them, at the exact centre of the room, the point
+in the empty air is beginning to OPEN.
+
+Mercy looks at it. Then at her sister. Then at the stool,
+and at her own feet on it, and something in her face
+does the arithmetic faster than anyone has given her
+credit for in her whole short life.
+
+                         MERCY (19)
+                    Am I in the way of it?
+
+                         IRIS
+                    You are sitting in it.
+
+Mercy puts her hand out.
+
+                         MERCY (19)
+                    Okay.
+
+                         IRIS
+                    Okay?
+
+                         MERCY (19)
+                    You have never once lied to me
+                    about anything except a horse.
+
+Iris takes her sister by the wrist and pulls, gently, the
+way you pull somebody out of traffic.
+
+And the phone falls, still recording, from a place where
+a hand was.
+
+CUT TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 12)
+
+MERCY (19) lands on the floor of a room with four doors
+and a coastline where a wall should be, and sits there in
+a visitor badge, dripping, looking up.
+
+IRIS shuts the rain-door behind them.
+
+                         MERCY (19)
+                    What is this place.
+
+                         IRIS
+                    Between.
+
+                         MERCY (19)
+                    Between what?
+
+                         IRIS
+                    Everything I am about to break.
+
+Mercy gets up. Goes to the ocean-door. Looks through it
+at a rig in a black sea with four hundred lit windows.
+
+                         MERCY (19)
+                    Is that now?
+
+                         IRIS
+                    It is sixty years from your
+                    now, in a world where the sea
+                    came up, and there is a woman
+                    on it who is you, and she is
+                    the best person I have ever
+                    met, and she will not thank me
+                    for saying it.
+
+Mercy stares. Then goes to the ash-door, where a square
+full of people is counting out loud.
+
+                         MERCY (19)
+                    And that one?
+
+                         IRIS
+                    Also you. Nineteen. She would
+                    like you. You would find her
+                    exhausting.
+
+Mercy turns around. And she is nineteen, and her sister
+has just taken her out of her own life, and she does the
+thing that Mercy Okonkwo does in every world there is.
+
+She looks for the practical question.
+
+                         MERCY (19)
+                    What do you need?
+
+                         IRIS
+                    Mercy --
+
+                         MERCY (19)
+                    You have got a face on you like
+                    a woman about to volunteer for
+                    something. What do you need.
+
+Iris looks at the gap in the room. At the edge. At the
+coastline.
+
+                         IRIS
+                    I need you to be somewhere
+                    else in about ten minutes, and
+                    I need you to let me not
+                    explain it, and I need you to
+                    remember that you said okay
+                    once already tonight and it was
+                    the bravest thing anybody has
+                    done this week.
+
+CUT TO:
+
+INT. RIG VAULT - NIGHT (HOLLOWAY - YEAR 60 - 23:38)
+
+Four hundred people on the shelves of an emptied archive,
+counting out loud, and the water is at the second step
+and climbing.
+
+MERCY, back from the dive, still in the undersuit, stands
+on a crate at the front with the wrench in her hand,
+conducting.
+
+                         MERCY
+                    LOUDER. You are a rig. Behave
+                    like one.
+
+The count staggers past three hundred.
+
+The far wall -- riveted steel, sixty years rusted -- goes
+suddenly warm, and then bright at the edges, and then it
+is not a wall.
+
+It is a doorway onto a brass hall, where a woman with
+her gloves off is standing with two hundred clocks
+behind her, waiting, because she was asked to.
+
+                         HAAS
+                         (across two worlds)
+                    Admiral.
+
+                         MERCY
+                    Minister.
+
+                         HAAS
+                    You have four minutes and
+                    eleven seconds and then I weld
+                    it.
+
+                         MERCY
+                    That will do.
+
+She turns to four hundred people in a flooding archive
+and does not make a speech.
+
+                         MERCY (CONT'D)
+                    Children and anybody who
+                    carried one. Then anybody who
+                    is frightened. Then anybody who
+                    said they were not. Then me.
+                    GO.
+
+They go.
+
+They go the way people actually go, which is badly, in
+the wrong order, with somebody dropping a bag, and a man
+turning back for a dog, and the dog getting there first.
+
+Mercy stands on her crate in the rising water and counts
+them out by name.
+
+                         MERCY (CONT'D)
+                    Ademola. Ruth. Ruth's boy.
+                    Ezinne and the twins. Baker.
+                    Other Baker.
+
+CUT TO:
+
+EXT. ASH FIELDS - DAY (CINDER - YEAR 61 - 07:09)
+
+The road that stops.
+
+VOSS-OF-CINDER walks out to it alone, coat buttoned, no
+lantern this time, because it is morning.
+
+The grey stands where it has always stood, four
+kilometres from his window, and it is doing something it
+has not done in sixty-one years.
+
+It is holding still.
+
+                         VOSS-OF-CINDER
+                    Good morning.
+
+Nothing answers. He did not expect it to.
+
+And then, along the whole length of the horizon, the grey
+draws back. Not fast. Not dramatically. The way a tide
+goes out: by being somewhere else when you look again.
+
+Behind it: ground. Ordinary ground, ash-coloured, going
+on to a real distance with a real edge on it.
+
+Voss-of-Cinder puts his hand out into a place where his
+hand can be.
+
+He stands there for a while.
+
+                         VOSS-OF-CINDER (CONT'D)
+                    Sixty-one years I have been
+                    the man who stopped the clock.
+
+He looks back at the city, where the counting has become
+a noise you can hear four kilometres out.
+
+                         VOSS-OF-CINDER (CONT'D)
+                    I am not sorry. I want that in
+                    the note as well.
+
+MERCY-OF-CINDER arrives behind him, out of breath, pipe
+long since put down.
+
+                         MERCY-OF-CINDER
+                    Magistrate.
+
+                         VOSS-OF-CINDER
+                    Not any more, I should think.
+
+                         MERCY-OF-CINDER
+                    No. Probably not.
+                         (beat)
+                    There is going to be a
+                    committee. It is going to be
+                    dreadful. I am told I am on
+                    it.
+
+                         VOSS-OF-CINDER
+                    Then God help the committee.
+
+They stand at the edge of a world that has an edge now,
+in the morning, which Cinder has not had in sixty-one
+years.
+
+DISSOLVE TO:
+
+INT. CLOCK HALL - DAY (VESPER - YEAR 41 - DAY 5 - 02:20)
+
+The last second of the six minutes.
+
+The doorway in the wall shuts, and it is a wall again,
+and it is only a wall.
+
+HAAS lowers a welding mask and burns a seam across
+forty-one years of history with her own hands, badly,
+because she has never welded anything.
+
+CLERK ONE and CLERK TWO hold the shield for her.
+
+When it is done she stands up and her back hurts and she
+is sixty years old.
+
+                         CLERK ONE
+                    Ma'am. The hall.
+
+Two hundred and eleven brass movements, all running, all
+agreeing.
+
+And then, one by one, beginning at the far end, they
+begin to disagree. A second here. Two there. The hall
+fills with a sound it has not made since it was built:
+the ordinary, untidy racket of clocks being slightly
+wrong in different directions.
+
+                         CLERK TWO
+                    Should we correct them?
+
+                         HAAS
+                    No.
+
+                         CLERK TWO
+                    Ma'am, the licensing --
+
+                         HAAS
+                    Draft me a repeal.
+
+The clerks stare.
+
+                         HAAS (CONT'D)
+                    All of it. Aircraft. Engines.
+                    Clocks. Put my name on it so
+                    that when it goes badly there
+                    is somebody to blame who can be
+                    reached.
+
+She takes off the welding mask and looks up at a high
+window where, for the first time in her professional
+life, she can imagine something flying past it.
+
+                         HAAS (CONT'D)
+                    Forty-one years of quiet. Let
+                    us hear what we have been
+                    saving up.
+
+CUT TO:
+
+INT. OBSERVATORY MAP ROOM - NIGHT (MERIDIAN - DAY 4 - 02:40)
+
+Chest-deep. VOSS with the ring held out over nothing.
+
+Under the water, sixteen second hands come, at last, into
+a single line.
+
+                         VOSS
+                    Oh, you beautiful --
+
+He lets go.
+
+The ring does not fall. It hangs in the air over the
+water, turning slowly.
+
+And the ceiling stops raining.
+
+That is all. It simply stops, the way a tap stops, and
+the sound that goes out of the room is so large that Voss
+puts a hand over his own mouth.
+
+The water begins to go down. Not drain -- go down, in
+steps, fourteen minutes' worth at a time, sixty years of
+somebody else's flood running backwards out of a
+building in Meridian.
+
+The sixteen clocks come up out of it one shelf at a time.
+
+Every one of them reads 2:40.
+
+Every one of them is wrong by a different amount.
+
+                         VOSS
+                         (to an empty room)
+                    Iris. Iris, it let go.
+
+Nobody answers.
+
+Voss stands alone in a draining map room at twenty to
+three in the morning with his hand over his mouth.
+
+                         VOSS (CONT'D)
+                    Ah.
+
+CUT TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 13)
+
+The room has five sides now.
+
+Through the fifth: a coast. Grey light, but the good
+grey, the kind that has weather in it. A shoreline going
+away in both directions further than a room should allow.
+
+In the centre of the floor, where there was nothing,
+there is a mechanism. Gears with no housing, turning in
+air.
+
+There is a gap in it exactly a woman wide.
+
+IRIS stands in front of it with the vellum in her hands.
+
+Behind her: MERCY (19). MERCY-OF-CINDER. And in the
+ocean-door, dripping, in an undersuit, MERCY, 62.
+
+Three of them. Looking at each other. Nobody has said
+anything for some time.
+
+                         MERCY (62)
+                    Well.
+
+                         MERCY-OF-CINDER
+                    Yes.
+
+                         MERCY (19)
+                    Is this going to be weird
+                    forever or does it wear off?
+
+                         MERCY (62)
+                    It wears off in about eleven
+                    years, love, and then it is
+                    just family.
+
+Iris laughs. It is wet and it is real.
+
+                         MERCY (19)
+                    Iris. The gap in the gears.
+
+                         IRIS
+                    Yes.
+
+                         MERCY (19)
+                    That is you-sized.
+
+                         IRIS
+                    Yes.
+
+                         MERCY (62)
+                    It is also me-sized and I am
+                    the one with the shortest
+                    remaining bill, so let us all
+                    be adults about the --
+
+                         IRIS
+                    No.
+
+                         MERCY (62)
+                    Iris.
+
+                         IRIS
+                    You have run an archive for
+                    sixty years with your hands.
+                    She has held a square together
+                    with a pipe. And she is
+                    nineteen and has never been
+                    anywhere and is owed a life.
+
+She turns around. Looks at the three of them.
+
+                         IRIS (CONT'D)
+                    I opened it. Four days ago I
+                    stood in a room and said go,
+                    and there were sixteen cameras
+                    and a girl on a stool, and
+                    every person in four worlds who
+                    has been late for anything
+                    since has been late because of
+                    me.
+
+                         MERCY-OF-CINDER
+                    That is not an argument. That
+                    is a confession looking for a
+                    job.
+
+                         IRIS
+                    I know. Take it anyway.
+
+She holds out the vellum. Mercy-of-Cinder takes it,
+because she takes things people hold out.
+
+                         IRIS (CONT'D)
+                    There is a space for the name.
+                    Do not let it be Okonkwo, it is
+                    an awful name for a country.
+
+                         MERCY (19)
+                    Iris --
+
+                         IRIS
+                    You said okay once tonight.
+
+                         MERCY (19)
+                    That was before I knew what it
+                    was for.
+
+                         IRIS
+                    That is what okay is.
+
+She steps back into the gap in the gears.
+
+The room LIGHTS -- all five sides, and the coast beyond
+the fifth, all the way out to a horizon that stays where
+it is put.
+
+DISSOLVE TO:
+
+EXT. THE NEW COAST - DAY (THE SEAM - MOMENT 14)
+
+First light on a shoreline that did not exist an hour
+ago.
+
+Surf. Actual surf, with the sound a page makes when it
+turns.
+
+Four figures small on a long beach: MERCY (19),
+MERCY-OF-CINDER, MERCY (62), and, a little apart,
+standing in the water to the ankles, IRIS.
+
+She is here and she is not. She has edges the way a
+lighthouse has edges.
+
+                         MERCY (62)
+                    How long?
+
+                         IRIS
+                    Tobias did sixty-one years.
+
+                         MERCY (62)
+                    That was not the question.
+
+                         IRIS
+                    No.
+
+Mercy (62) wades out to her sister and stands beside her
+in the water, and does not touch her, because she has
+already tried and she is not going to make them both live
+through it twice.
+
+                         MERCY (62)
+                    Say the thing.
+
+                         IRIS
+                    Which thing?
+
+                         MERCY (62)
+                    The one you have been saving up
+                    since the Vault.
+
+Iris looks at a coastline she drew.
+
+                         IRIS
+                    I am sorry I did not come home.
+
+                         MERCY (62)
+                    I know. I have known since
+                    about nineteen sixty-four. I
+                    just wanted to hear it in your
+                    actual voice before I stopped
+                    being able to remember what it
+                    sounded like.
+
+She goes back up the beach to the other two.
+
+Behind her, Iris stands in the water and the tide comes
+in around her and does not move her.
+
+                         IRIS (V.O.)
+                    There is a wage. He told me
+                    twice and I forgot both times,
+                    because it is the only kind of
+                    thing a person forgets.
+
+MATCH CUT TO:
+
+INT. INSTRUMENT DECK - NIGHT (MERIDIAN - DAY 2 - 02:14)
+
+The stopped room.
+
+Dust held. Rain on the skylight held. Sixteen cameras.
+Sixteen technicians mid-breath. Voss at the console with
+his hands flat.
+
+Two people move in it.
+
+IRIS -- and MERCY (19), on the stool, phone in her lap,
+not filming.
+
+They have been talking for some time. There are two
+cups of machine coffee on the optical bench, going
+nowhere, not cooling.
+
+                         MERCY (19)
+                    How long have we got?
+
+                         IRIS
+                    An hour.
+
+                         MERCY (19)
+                    Of this hour.
+
+                         IRIS
+                    Of this hour.
+
+                         MERCY (19)
+                    That is cheating.
+
+                         IRIS
+                    It is a wage. I earned it. Ask
+                    anybody.
+
+Mercy looks around the frozen room. At Voss, mid-objection,
+mouth open, beloved.
+
+                         MERCY (19)
+                    He looks like a fish.
+
+                         IRIS
+                    He is going to be the only
+                    person in Meridian who
+                    remembers you, and he is going
+                    to be insufferable about it for
+                    thirty years.
+
+                         MERCY (19)
+                    Good.
+
+She swings her legs. Nineteen years old, on a stool, at
+the end of the world.
+
+                         MERCY (19) (CONT'D)
+                    Tell me about the horse.
+
+                         IRIS
+                    We had a horse.
+
+                         MERCY (19)
+                    We did have a horse.
+
+                         IRIS
+                    On the balcony.
+
+                         MERCY (19)
+                    She was very shy.
+
+                         IRIS
+                    She was extremely shy. That is
+                    why nobody ever saw her.
+
+Mercy leans her head on her sister's shoulder, in a room
+where the dust is holding still, and the rain has stopped
+in the air outside the skylight, and there is exactly one
+hour left and both of them know the number.
+
+                         MERCY (19)
+                    Iris.
+
+                         IRIS
+                    Mm.
+
+                         MERCY (19)
+                    Do not spend it saying sorry.
+
+                         IRIS
+                    I was not going to.
+
+                         MERCY (19)
+                    Liar.
+
+                         IRIS
+                    Enormously.
+
+The sixteen cameras watch two women sit still in a still
+room.
+
+The countdown board reads 00:00 and stays there for an
+hour.
+
+FADE TO BLACK.
+
+INT. OBSERVATORY MAP ROOM - DAY (MERIDIAN - DAY 4 - 09:30)
+
+Sunlight. A dry floor with tidemarks on the walls at
+three heights.
+
+Sixteen clocks, rehung, running, cheerfully wrong.
+
+VOSS, in dry clothes for the first time in three days,
+supervises two TECHNICIANS hanging a sheet of vellum in
+a frame on the long wall.
+
+Four shapes. And a fifth, in the centre, complete.
+
+                         TECHNICIAN
+                    Doctor Voss. What do we call
+                    it in the catalogue?
+
+                         VOSS
+                    It is a map.
+
+                         TECHNICIAN
+                    Of what?
+
+Voss looks at it for a while.
+
+                         VOSS
+                    Put: cartographer unknown.
+                    Provenance disputed. Do not
+                    lend it to anybody.
+
+The technicians go. Voss stays.
+
+In the doorway, quietly, MERCY-OF-CINDER, in a coat that
+is not from this world, holding the vellum's twin.
+
+                         MERCY-OF-CINDER
+                    They let me in downstairs. I
+                    said I was family.
+
+                         VOSS
+                    You are.
+
+She comes and stands beside him and looks at the wall.
+
+                         MERCY-OF-CINDER
+                    We named it.
+
+                         VOSS
+                    Do not tell me.
+
+                         MERCY-OF-CINDER
+                    Why not?
+
+                         VOSS
+                    Because I will write it down,
+                    and I will publish it, and in
+                    eleven years somebody with
+                    funding will go looking.
+
+                         MERCY-OF-CINDER
+                    Good. She left the space for
+                    a reason.
+
+She puts her hand on the old man's arm, and he puts his
+hand over it, and two people who have lost the same girl
+in two different worlds stand in front of a map.
+
+DISSOLVE TO:
+
+INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 15)
+
+The room with five sides.
+
+The stove is lit. It is not connected to anything. It has
+never been connected to anything.
+
+IRIS moves between the doors with the ease of a woman
+watering plants. There are five now. She is thin, and her
+hands are steady, and she is humming something her father
+used to hum over a bench.
+
+She sets five cups on the table. Pours from a pot into
+all five, though only one of them has anybody to drink
+it.
+
+On the table beside the cups: a bound book, new, barely
+begun. Page one is a coastline.
+
+Behind her, in the rain-door, a SHAPE. Soaked. Holding
+something rolled.
+
+Iris does not turn around.
+
+                         IRIS
+                    You can come in. It is not
+                    polite to stand in a door.
+
+                         A VOICE
+                    Where is this?
+
+                         IRIS
+                    Between. It is not a good name,
+                    but it is an honest one.
+
+                         A VOICE
+                    Between what?
+
+Iris turns around, at last, and we do not see who is in
+the doorway, and it does not matter, and it has never
+mattered.
+
+                         IRIS
+                    Sit down. You have one hour,
+                    and you have already used nine
+                    minutes of it standing in my
+                    doorway.
+
+She pushes a cup toward the empty chair.
+
+Through the fifth door, beyond a lit coastline, the tide
+comes in on a country that is on the map.
+
+FADE OUT.
+
+THE END
