@@ -1,0 +1,44 @@
+# The screenplay format check, and what it printed.
+#
+# This file is output, not prose: it is the recorded stdout and exit status
+# of the command below, run against the screenplay as it stands on disk.
+#
+#   rewrite:  npm run report --prefix script
+#   verify:   npm run check  --prefix script   (re-runs and diffs this file)
+#
+# The test suite verifies it too, so it cannot drift from the screenplay.
+
+$ node script/tools/screenplay-lint.mjs script/the-atlas-of-severed-hours.txt
+file:              script/the-atlas-of-severed-hours.txt
+opens with:        "FADE IN:"
+closes with:       "THE END"
+lines:             5266
+words:             19262
+pages (lines/54):  98
+pages (words/190): 101.4
+scene headings:    72
+universe crossings:63
+universes:
+  MERIDIAN     15 scenes
+  HOLLOWAY     14 scenes
+  VESPER       14 scenes
+  CINDER       14 scenes
+  THE SEAM     15 scenes
+characters in 2+ universes: 5
+  IRIS               MERIDIAN, THE SEAM, HOLLOWAY, VESPER, CINDER
+  MERCY              HOLLOWAY, MERIDIAN, THE SEAM
+  MERCY-OF-CINDER    CINDER, THE SEAM, MERIDIAN
+  HAAS               VESPER, HOLLOWAY
+  TOBIAS             THE SEAM, HOLLOWAY
+chronology inversions: 12
+  MERIDIAN: "MERIDIAN - DAY 4 - 02:14" is shown before "MERIDIAN - DAY 1 - 09:30"
+  VESPER: "VESPER - YEAR 41 - DAY 2 - 11:20" is shown before "VESPER - YEAR 41 - DAY 1 - 20:00"
+  MERIDIAN: "MERIDIAN - DAY 3 - 23:50" is shown before "MERIDIAN - DAY 1 - 21:15"
+  VESPER: "VESPER - YEAR 41 - DAY 2 - 08:00" is shown before "VESPER - YEAR 41 - DAY 1 - 11:20"
+  MERIDIAN: "MERIDIAN - DAY 4 - 02:14" is shown before "MERIDIAN - DAY 2 - 02:16"
+  CINDER: "CINDER - YEAR 61 - 06:11" is shown before "CINDER - YEAR 61 - 05:58"
+placeholder markers: 0
+format violations: 0
+
+$ echo $?
+0

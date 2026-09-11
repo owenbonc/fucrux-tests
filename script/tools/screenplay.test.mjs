@@ -15,7 +15,15 @@
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
+import {
+  readFileSync,
+  readdirSync,
+  existsSync,
+  statSync,
+  mkdtempSync,
+  writeFileSync,
+  rmSync,
+} from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
@@ -50,6 +58,16 @@ import {
   layout,
 } from './screenplay-format.mjs';
 import { parseFountain, isUpperCase, isSceneHeadingText } from './fountain.mjs';
+import {
+  REPORT_PATH,
+  CHECK_COMMAND,
+  CHECK_ARGV,
+  runCheck,
+  renderTranscript,
+  currentTranscript,
+  recordedTranscript,
+  normalise,
+} from './record-check.mjs';
 
 const at = (indent, text) => ' '.repeat(indent) + text;
 
@@ -58,6 +76,7 @@ const SCRIPT_DIR = path.join(REPO, 'script');
 const SCREENPLAY = path.join(SCRIPT_DIR, 'the-atlas-of-severed-hours.txt');
 const README = path.join(REPO, 'README.md');
 const LINT = path.join(SCRIPT_DIR, 'tools', 'screenplay-lint.mjs');
+const RECORD_CHECK = path.join(SCRIPT_DIR, 'tools', 'record-check.mjs');
 const FIXTURES = path.join(SCRIPT_DIR, 'tools', 'fixtures');
 const PACKAGE_JSON = path.join(SCRIPT_DIR, 'package.json');
 
@@ -787,14 +806,170 @@ test('cli: script/package.json runs both checks as its own npm scripts', () => {
   assert.match(pkg.scripts.test, /^node --test\b/);
   assert.match(path.basename(fileURLToPath(import.meta.url)), /\.test\.mjs$/);
 
-  // `npm run lint --prefix script` must point at a file that exists.
-  const [, ...args] = pkg.scripts.lint.split(/\s+/);
-  for (const arg of args) {
-    if (arg.startsWith('-')) continue;
-    assert.ok(
-      existsSync(path.join(SCRIPT_DIR, arg)),
-      `lint script references a missing path: ${arg}`
-    );
+  // ...and it must reach the format check too. npm runs `pretest` before
+  // `test`, so a bare `npm test --prefix script` lints the screenplay and
+  // verifies the recorded report before a single assertion here runs.
+  assert.match(pkg.scripts.pretest, /\blint\b/);
+  assert.match(pkg.scripts.pretest, /\bverify-report\b/);
+  assert.match(pkg.scripts.check, /\btest\b/);
+
+  // Every npm script here must point at a file that exists.
+  for (const [name, body] of Object.entries(pkg.scripts)) {
+    for (const arg of body.split(/\s+/).slice(1)) {
+      if (arg.startsWith('-') || !arg.includes('/')) continue;
+      assert.ok(
+        existsSync(path.join(SCRIPT_DIR, arg)),
+        `the ${name} script references a missing path: ${arg}`
+      );
+    }
   }
   assert.equal(pkg.type, 'module');
+});
+
+// ---------------------------------------------------------------------------
+// The check's own output, recorded.
+//
+// A verdict of "zero format violations" is only as good as the run behind it,
+// and a run leaves no trace in a repository. So the run's stdout and exit
+// status are checked in at script/tools/check-report.txt, and these tests
+// require that file to equal what the command prints *now*, against the
+// screenplay as it stands on disk. The recording cannot be written by hand and
+// survive: change the screenplay, or fake a number, and the check fails.
+// ---------------------------------------------------------------------------
+
+test('report: the recorded check output matches a live run of the checker', () => {
+  const recorded = recordedTranscript();
+  assert.ok(recorded !== null, `${REPORT_PATH} is not checked in`);
+
+  const live = currentTranscript();
+  assert.equal(
+    recorded,
+    live,
+    `${REPORT_PATH} is stale; re-record it with: npm run report --prefix script`
+  );
+});
+
+test('report: the recorded output is the checker passing, with its exit status', () => {
+  const recorded = recordedTranscript();
+
+  // The command it claims to be, and the command it actually is.
+  assert.ok(recorded.includes(`$ ${CHECK_COMMAND}`), 'the transcript names the command it ran');
+  assert.deepEqual(CHECK_ARGV, [
+    'script/tools/screenplay-lint.mjs',
+    'script/the-atlas-of-severed-hours.txt',
+  ]);
+
+  // The exit status is recorded, and it is the passing one.
+  assert.match(recorded, /\$ echo \$\?\n0\n$/, 'the transcript ends in an exit status of 0');
+
+  // The lines the acceptance criteria are read off.
+  assert.match(recorded, /^format violations: 0$/m);
+  assert.match(recorded, /^placeholder markers: 0$/m);
+  assert.match(recorded, /^scene headings:\s+(\d+)$/m);
+
+  // And those lines are about this screenplay, not some other file.
+  const scenes = Number(recorded.match(/^scene headings:\s+(\d+)$/m)[1]);
+  const words = Number(recorded.match(/^words:\s+(\d+)$/m)[1]);
+  assert.equal(scenes, report.scenes.length);
+  assert.equal(words, report.words);
+});
+
+test('report: a recording that does not match the run is rejected', () => {
+  // The staleness check has to be able to fail, or its silence means nothing.
+  // Point it at a doctored copy — one that says the screenplay is clean when
+  // the live run says something else — and it must exit non-zero.
+  const scratch = mkdtempSync(path.join(SCRIPT_DIR, 'tools', 'scratch-'));
+  try {
+    const honest = currentTranscript();
+    const doctored = path.join(scratch, 'check-report.txt');
+
+    for (const [what, text] of [
+      ['a changed count', honest.replace(/^scene headings:(\s+)\d+$/m, 'scene headings:$17')],
+      ['a changed verdict', honest.replace('format violations: 0', 'format violations: 99')],
+      ['a truncated transcript', honest.split('\n').slice(0, 12).join('\n') + '\n'],
+      ['an empty transcript', ''],
+    ]) {
+      assert.notEqual(text, honest, `the ${what} mutation changed nothing`);
+      writeFileSync(doctored, text);
+      const r = spawnSync(process.execPath, [RECORD_CHECK, doctored], {
+        cwd: REPO,
+        encoding: 'utf8',
+      });
+      assert.equal(r.status, 1, `the staleness check accepted ${what}:\n${r.stdout}`);
+      assert.match(r.stderr, /stale|missing/);
+    }
+
+    // ...and it passes the honest one, run the same way.
+    writeFileSync(doctored, honest);
+    const ok = spawnSync(process.execPath, [RECORD_CHECK, doctored], {
+      cwd: REPO,
+      encoding: 'utf8',
+    });
+    assert.equal(ok.status, 0, `the staleness check rejected an honest recording:\n${ok.stderr}`);
+  } finally {
+    rmSync(scratch, { recursive: true, force: true });
+  }
+});
+
+test('report: the transcript is the run, not a template around it', () => {
+  // renderTranscript is not free to invent: whatever the command printed has
+  // to appear in the transcript verbatim, and a different run has to render
+  // differently. Both directions, against a real run.
+  const run = runCheck();
+  assert.equal(run.status, 0, `the checker failed:\n${run.stdout}\n${run.stderr}`);
+
+  const rendered = renderTranscript(run);
+  for (const line of normalise(run.stdout).split('\n')) {
+    if (line.trim() === '') continue;
+    assert.ok(rendered.includes(line), `the transcript dropped a printed line: ${line}`);
+  }
+
+  const failed = renderTranscript({ stdout: run.stdout, status: 1 });
+  assert.notEqual(failed, rendered, 'a failing exit status renders the same as a passing one');
+  assert.match(failed, /\$ echo \$\?\n1\n$/);
+});
+
+test('report: every command the README gives is a command that exists', () => {
+  // The README is prose, and prose about a check proves nothing on its own.
+  // What can be proved is that the commands it tells a reader to run are real:
+  // each npm script it names is defined, and each file it invokes is present.
+  // Line endings depend on the checkout (core.autocrlf), the commands do not.
+  const text = normalise(readme);
+  const shell = [...text.matchAll(/```sh\n([\s\S]*?)```/g)].map((m) => m[1]).join('\n');
+  assert.ok(shell.includes('npm test --prefix script'), 'the README gives the one-command check');
+
+  const pkg = JSON.parse(readFileSync(PACKAGE_JSON, 'utf8'));
+  const named = [...text.matchAll(/npm run ([a-z-]+)\s+--prefix script/g)].map((m) => m[1]);
+  assert.ok(named.length >= 3, `expected the README to name npm scripts; saw ${named}`);
+  for (const name of named) {
+    assert.ok(pkg.scripts[name], `the README names a script that does not exist: ${name}`);
+  }
+
+  // ...and every node invocation in a fenced block points at a real file.
+  const invoked = [...shell.matchAll(/^node .*?(script\/\S+)/gm)].map((m) => m[1]);
+  assert.ok(invoked.length >= 1, 'the README shows at least one direct node command');
+  for (const rel of invoked) {
+    assert.ok(existsSync(path.join(REPO, rel)), `the README invokes a missing file: ${rel}`);
+  }
+
+  // The transcript the README points at is the one the tooling writes.
+  assert.ok(text.includes(REPORT_PATH), `the README does not point at ${REPORT_PATH}`);
+});
+
+test('report: npm runs the format check as a script, and it exits 0', () => {
+  // The finding this closes was that nothing observable ran the check. This
+  // runs it the documented way — through npm, in its own process — so the
+  // exit code of `npm run verify-report --prefix script` is on the record.
+  // (`npm run check` is not spawned here: it runs this file.)
+  const r = spawnSync('npm', ['run', 'verify-report', '--prefix', 'script'], {
+    cwd: REPO,
+    encoding: 'utf8',
+    shell: true,
+  });
+  assert.equal(
+    r.status,
+    0,
+    `npm run verify-report --prefix script exited ${r.status}:\n${r.stdout}\n${r.stderr}`
+  );
+  assert.match(r.stdout, new RegExp(`matches a live run of: ${CHECK_COMMAND.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`));
 });

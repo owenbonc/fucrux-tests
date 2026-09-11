@@ -13,7 +13,10 @@
   ],
   "scripts": {
     "lint": "node tools/screenplay-lint.mjs the-atlas-of-severed-hours.txt",
+    "report": "node tools/record-check.mjs --write",
+    "verify-report": "node tools/record-check.mjs",
+    "pretest": "npm run lint && npm run verify-report",
     "test": "node --test",
-    "check": "npm run lint && npm test"
+    "check": "npm test"
   }
 }

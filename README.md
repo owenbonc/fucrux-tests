@@ -56,21 +56,49 @@ and bottom, at six lines to the inch.
 ## Checking the script
 
 The script is a package of its own, `script/`, with no dependencies beyond
-Node's built-ins (Node 20 or newer). Run its checks with:
+Node's built-ins (Node 20 or newer). There is nothing to install. One command
+runs everything:
 
 ```sh
-npm run check --prefix script     # lint, then the test suite
-npm run lint  --prefix script     # the report below, exit 1 on any fault
-npm test      --prefix script     # node:test, over script/tools/*.test.mjs
+npm test --prefix script          # lint, then the recorded report, then the suite
 ```
 
-There is nothing to install, so the same two checks run straight from the
-repository root without npm:
+`npm test` is the whole check because npm runs `pretest` first, and `pretest`
+is `npm run lint && npm run verify-report`. `npm run check --prefix script` is
+an alias for it. The pieces are separately runnable:
+
+```sh
+npm run lint          --prefix script   # the report below, exit 1 on any fault
+npm run verify-report --prefix script   # re-run the check, diff the recording
+npm run report        --prefix script   # re-record it after changing the script
+```
+
+With nothing to install, the same checks run straight from the repository root
+without npm — `node --test` with no arguments finds the suite:
+
+```sh
+node --test
+node script/tools/screenplay-lint.mjs script/the-atlas-of-severed-hours.txt
+```
+
+### The check's own output, checked in
+
+A verdict of "zero format violations" is worth only as much as the run behind
+it, and a run leaves nothing behind in a repository. So the run is left behind:
+[script/tools/check-report.txt](script/tools/check-report.txt) is the recorded
+stdout and exit status of
 
 ```sh
 node script/tools/screenplay-lint.mjs script/the-atlas-of-severed-hours.txt
-node --test script/tools/screenplay.test.mjs
 ```
+
+against the screenplay as it stands on disk. It is output, not prose, and it
+cannot be written by hand and survive: `npm run verify-report` and the test
+suite both re-run the command and require the recording to match it byte for
+byte. Change a line of the screenplay and the check fails until the recording
+is rewritten from a real run — as a further test demonstrates, by pointing the
+staleness check at doctored copies (a changed count, a changed verdict, a
+truncated file, an empty one) and requiring each to be rejected.
 
 `npm run lint` prints a report — line and word counts, page estimates, scene
 headings, per-universe scene counts, which characters cross worlds, every point
@@ -85,7 +113,7 @@ on an `INT.`/`EXT.` slugline and every dialogue block is introduced by an
 all-caps character cue, the page and scene counts, and the interleaving of the
 worlds.
 
-Three of those tests exist because a checker agreeing with itself proves
+Four of those tests exist because a checker agreeing with itself proves
 nothing:
 
 * **The geometry is derived, not chosen.** The columns above are asserted to
@@ -102,6 +130,9 @@ nothing:
   over two checked-in fixtures in `script/tools/fixtures/` — one well-formed,
   one deliberately broken — and the broken one has to be rejected by name,
   rule by rule, before the verdict on the screenplay counts for anything.
+* **The run is on the record.** The checked-in transcript above is compared
+  with a live run of the checker, and the staleness check that does the
+  comparing is itself made to fail on doctored recordings.
 
-Both commands are reproducible from a clean checkout; the numbers in the table
-above are whatever they print today.
+Every command here is reproducible from a clean checkout; the numbers in the
+table above, and in the transcript, are whatever they print today.
