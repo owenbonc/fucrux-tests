@@ -4,15 +4,19 @@
 // assertion below reads script/the-atlas-of-severed-hours.txt (and README.md)
 // and measures the artifact itself.
 //
-//   node --test script/tools/
+//   npm test --prefix script
 //
-// The last block ("parser") is the exception, and is deliberately separate:
-// it pins the classifier's behaviour against tiny literal fixtures so that a
-// broken parser cannot silently report a clean script above.
+// The last two blocks are deliberately separate. "parser" pins the
+// classifier's behaviour against tiny literal fixtures so that a broken parser
+// cannot silently report a clean script above; "cli" runs the checker as the
+// repository's own entry point runs it — as a child process, on real files,
+// with the exit code as the verdict — including a known-bad fixture that must
+// fail, so a checker that passes everything cannot pass this suite.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, existsSync, statSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -32,8 +36,12 @@ import {
 } from './screenplay-lint.mjs';
 
 const REPO = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
-const SCREENPLAY = path.join(REPO, 'script', 'the-atlas-of-severed-hours.txt');
+const SCRIPT_DIR = path.join(REPO, 'script');
+const SCREENPLAY = path.join(SCRIPT_DIR, 'the-atlas-of-severed-hours.txt');
 const README = path.join(REPO, 'README.md');
+const LINT = path.join(SCRIPT_DIR, 'tools', 'screenplay-lint.mjs');
+const FIXTURES = path.join(SCRIPT_DIR, 'tools', 'fixtures');
+const PACKAGE_JSON = path.join(SCRIPT_DIR, 'package.json');
 
 const source = readFileSync(SCREENPLAY, 'utf8');
 const report = parseScreenplay(source);
@@ -69,6 +77,13 @@ function resolveTarget(target) {
 test('ac_1: exactly one screenplay file lives under script/', () => {
   assert.ok(statSync(SCREENPLAY).isFile(), 'the screenplay is a file');
   assert.ok(report.words > 0, 'the screenplay is not empty');
+
+  // One file, not a folder of drafts: script/ itself holds a single script.
+  // (Fixtures for the checker live a level down, in script/tools/fixtures/.)
+  const drafts = readdirSync(SCRIPT_DIR, { withFileTypes: true })
+    .filter((e) => e.isFile() && /\.(txt|fountain|fdx)$/i.test(e.name))
+    .map((e) => e.name);
+  assert.deepEqual(drafts, ['the-atlas-of-severed-hours.txt']);
 });
 
 test('ac_1: the screenplay opens with FADE IN:', () => {
@@ -349,4 +364,85 @@ test('parser: markdown link extraction handles the shapes a README uses', () => 
   ]);
   assert.equal(resolveTarget('https://example.com/f.txt'), null);
   assert.equal(resolveTarget('script/a.txt'), path.join(REPO, 'script', 'a.txt'));
+});
+
+// ---------------------------------------------------------------------------
+// The checker as an entry point: run the way `npm run lint` runs it, in its
+// own process, judged by its exit code. A checker that cannot fail proves
+// nothing, so the known-bad fixture is checked first.
+// ---------------------------------------------------------------------------
+
+/** Run the lint CLI on a file exactly as the npm script does. */
+function runLint(file) {
+  const r = spawnSync(process.execPath, [LINT, file], {
+    cwd: REPO,
+    encoding: 'utf8',
+  });
+  assert.equal(r.error, undefined, `could not spawn the linter: ${r.error}`);
+  return { status: r.status, stdout: r.stdout ?? '', stderr: r.stderr ?? '' };
+}
+
+test('cli: the checker fails a deliberately malformed script', () => {
+  const bad = path.join(FIXTURES, 'malformed.txt');
+  assert.ok(existsSync(bad), 'the known-bad fixture is checked in');
+
+  const r = runLint(bad);
+  assert.notEqual(r.status, 0, `the linter passed a malformed script:\n${r.stdout}`);
+
+  // It is not merely exiting non-zero: it names each fault it was given.
+  for (const rule of [
+    'scene-heading',
+    'dialogue-cue',
+    'slugline-label',
+    'orphan-parenthetical',
+    'indent',
+    'line-width',
+    'fade-in',
+  ]) {
+    assert.match(r.stdout, new RegExp(`\\b${rule}:`), `no ${rule} violation reported`);
+  }
+});
+
+test('cli: the checker passes a deliberately well-formed script', () => {
+  const good = path.join(FIXTURES, 'well-formed.txt');
+  assert.ok(existsSync(good), 'the known-good fixture is checked in');
+
+  const r = runLint(good);
+  assert.equal(r.status, 0, `the linter failed a well-formed script:\n${r.stdout}\n${r.stderr}`);
+  assert.match(r.stdout, /format violations: 0/);
+});
+
+test('cli: the checker passes the screenplay itself, with zero violations', () => {
+  const r = runLint(SCREENPLAY);
+  assert.equal(r.status, 0, `the linter rejected the screenplay:\n${r.stdout}\n${r.stderr}`);
+  assert.match(r.stdout, /format violations: 0/);
+  assert.match(r.stdout, /placeholder markers: 0/);
+
+  // The headline numbers a reader would quote come out of this process, not
+  // out of the in-process parse above; the two must agree.
+  const scenes = Number(r.stdout.match(/scene headings:\s+(\d+)/)[1]);
+  const words = Number(r.stdout.match(/words:\s+(\d+)/)[1]);
+  assert.equal(scenes, report.scenes.length);
+  assert.equal(words, report.words);
+  assert.ok(scenes >= 60 && words / WORDS_PER_PAGE >= 90);
+});
+
+test('cli: script/package.json runs both checks as its own npm scripts', () => {
+  const pkg = JSON.parse(readFileSync(PACKAGE_JSON, 'utf8'));
+
+  // `npm test --prefix script` must reach this very file, so the acceptance
+  // checks are the package's own test command rather than a step to remember.
+  assert.match(pkg.scripts.test, /^node --test\b/);
+  assert.match(path.basename(fileURLToPath(import.meta.url)), /\.test\.mjs$/);
+
+  // `npm run lint --prefix script` must point at a file that exists.
+  const [, ...args] = pkg.scripts.lint.split(/\s+/);
+  for (const arg of args) {
+    if (arg.startsWith('-')) continue;
+    assert.ok(
+      existsSync(path.join(SCRIPT_DIR, arg)),
+      `lint script references a missing path: ${arg}`
+    );
+  }
+  assert.equal(pkg.type, 'module');
 });

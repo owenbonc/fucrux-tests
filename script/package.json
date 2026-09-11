@@ -1,0 +1,19 @@
+{
+  "name": "the-atlas-of-severed-hours",
+  "version": "1.0.0",
+  "private": true,
+  "description": "The Atlas of Severed Hours — a feature-length multiverse adventure screenplay, and the checks that hold it to standard screenplay format.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "the-atlas-of-severed-hours.txt"
+  ],
+  "scripts": {
+    "lint": "node tools/screenplay-lint.mjs the-atlas-of-severed-hours.txt",
+    "test": "node --test",
+    "check": "npm run lint && npm test"
+  }
+}

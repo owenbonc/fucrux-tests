@@ -35,20 +35,28 @@ INT. FERRY HOUSE - NO TIME (THE SEAM - MOMENT 1)
 
 ## Checking the script
 
-`script/tools/screenplay-lint.mjs` parses the screenplay and reports format
-violations, length, universe coverage and the points at which the film jumps
-backwards in a world's own chronology. It has no dependencies beyond Node's
-built-ins.
+The script is a package of its own, `script/`, with no dependencies beyond
+Node's built-ins (Node 20 or newer). Run its checks with:
 
 ```sh
-node script/tools/screenplay-lint.mjs script/the-atlas-of-severed-hours.txt
-node --test script/tools/screenplay.test.mjs
+npm run check --prefix script     # lint, then the test suite
+npm run lint  --prefix script     # the report below, exit 1 on any fault
+npm test      --prefix script     # node:test, over script/tools/*.test.mjs
 ```
 
-The test suite in `script/tools/screenplay.test.mjs` asserts all of the above
-against the file on disk: that it opens on `FADE IN:` and closes on
-`FADE OUT.` / `THE END`, that it carries no placeholder text, that this README
-links to it, that every scene opens on an `INT.`/`EXT.` slugline and every
-dialogue block is introduced by an all-caps character cue, that it runs to
-feature length, and that the worlds are interleaved rather than told one after
-another.
+`npm run lint` prints a report — line and word counts, page estimates, scene
+headings, per-universe scene counts, which characters cross worlds, every point
+at which the film jumps backwards in a world's own chronology, and every format
+violation — and exits non-zero if there is a violation or a placeholder marker
+anywhere in the file.
+
+`npm test` runs `script/tools/screenplay.test.mjs`, which measures the file on
+disk: the first and last lines, the absence of placeholder text, whether this
+README holds a link that resolves to the screenplay, whether every scene opens
+on an `INT.`/`EXT.` slugline and every dialogue block is introduced by an
+all-caps character cue, the page and scene counts, and the interleaving of the
+worlds. It also runs the linter as a child process over two checked-in
+fixtures in `script/tools/fixtures/` — one well-formed, one deliberately
+broken — so the checker has to be able to fail before its verdict on the
+screenplay counts for anything. Both commands are reproducible from a clean
+checkout; the numbers in the table above are whatever they print today.
