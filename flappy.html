@@ -7,16 +7,33 @@
   <style>
     html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
     body { display: grid; place-items: center; background: #244859; }
-    canvas { display: block; width: min(100vw, 66.666667vh); height: auto; max-height: 100vh; aspect-ratio: 2 / 3; touch-action: none; cursor: pointer; }
+    #play { position: relative; width: min(100vw, 66.666667vh); aspect-ratio: 2 / 3; }
+    canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: pointer; }
+    #hud { position: absolute; top: 2%; left: 4.5%; right: 4.5%; display: flex; justify-content: space-between; color: white; font: bold min(5.75vw, 3.833vh) sans-serif; pointer-events: none; }
+    #panel { position: absolute; left: 8.75%; right: 8.75%; top: 30%; height: 28.333%; box-sizing: border-box; border: 3px solid #fff4c8; background: rgba(17, 45, 57, 0.7); color: white; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; text-align: center; font: min(4.5vw, 3vh) sans-serif; pointer-events: none; }
+    #panel.ready { top: 12%; }
+    #panel[hidden] { display: none; }
+    #panel-title { font-size: 1.85em; font-weight: bold; }
+    #panel-hint { font-size: .85em; }
   </style>
 </head>
 <body>
-  <canvas id="game" width="400" height="600" aria-label="Flappy Bird play area" role="img"></canvas>
+  <div id="play">
+    <canvas id="game" width="400" height="600" aria-label="Flappy Bird play area" role="img"></canvas>
+    <div id="hud"><span id="score">Score 0</span><span id="best">Best 0</span></div>
+    <div id="panel" class="ready"><div id="panel-title">Get Ready</div><div id="panel-detail">Fly through the gaps</div><div id="panel-hint">Space, click or tap to flap</div></div>
+  </div>
   <script>
   (() => {
     'use strict';
     const canvas = document.getElementById('game');
     const ctx = canvas.getContext('2d');
+    const scoreText = document.getElementById('score');
+    const bestText = document.getElementById('best');
+    const panelElement = document.getElementById('panel');
+    const panelTitle = document.getElementById('panel-title');
+    const panelDetail = document.getElementById('panel-detail');
+    const panelHint = document.getElementById('panel-hint');
     const WIDTH = 400, HEIGHT = 600, GROUND = 520;
     const BIRD_X = 105, RADIUS = 14;
     const GRAVITY = 0.32, KICK = -5.8;
@@ -116,9 +133,12 @@
           crash();
         } else {
           for (const pipe of game.pipes) {
-            const overlapsX = game.bird.x + RADIUS > pipe.x && game.bird.x - RADIUS < pipe.x + PIPE_WIDTH;
-            const outsideGap = game.bird.y - RADIUS < pipe.gapTop || game.bird.y + RADIUS > pipe.gapBottom;
-            if (overlapsX && outsideGap) { crash(); break; }
+            const overlapsBody = game.bird.x + RADIUS > pipe.x && game.bird.x - RADIUS < pipe.x + PIPE_WIDTH;
+            const overlapsCap = game.bird.x + RADIUS > pipe.x - 5 && game.bird.x - RADIUS < pipe.x + PIPE_WIDTH + 5;
+            const hitsBody = overlapsBody && (game.bird.y - RADIUS < pipe.gapTop || game.bird.y + RADIUS > pipe.gapBottom);
+            const hitsCap = overlapsCap && (game.bird.y - RADIUS < pipe.gapTop && game.bird.y + RADIUS > pipe.gapTop - 20 ||
+              game.bird.y - RADIUS < pipe.gapBottom + 20 && game.bird.y + RADIUS > pipe.gapBottom);
+            if (hitsBody || hitsCap) { crash(); break; }
             if (!pipe.scored && pipe.x + PIPE_WIDTH < game.bird.x - RADIUS) {
               pipe.scored = true;
               game.score++;
@@ -174,23 +194,6 @@
       ctx.restore();
     }
 
-    function panel(title, subtitle) {
-      const top = game.state === 'get-ready' ? 72 : 180;
-      ctx.fillStyle = 'rgba(17, 45, 57, 0.7)';
-      ctx.fillRect(35, top, WIDTH - 70, 170);
-      ctx.strokeStyle = '#fff4c8';
-      ctx.lineWidth = 3;
-      ctx.strokeRect(35, top, WIDTH - 70, 170);
-      ctx.fillStyle = '#fff';
-      ctx.textAlign = 'center';
-      ctx.font = 'bold 34px sans-serif';
-      ctx.fillText(title, WIDTH / 2, top + 52);
-      ctx.font = '18px sans-serif';
-      ctx.fillText(subtitle, WIDTH / 2, top + 93);
-      ctx.font = '16px sans-serif';
-      ctx.fillText(game.state === 'game-over' ? 'Flap to try again' : 'Space, click or tap to flap', WIDTH / 2, top + 136);
-    }
-
     function draw() {
       ctx.fillStyle = '#70c9ef';
       ctx.fillRect(0, 0, WIDTH, HEIGHT);
@@ -202,14 +205,14 @@
       ctx.fillStyle = '#c6ae70';
       for (let x = -32 + game.groundOffset; x < WIDTH; x += 32) ctx.fillRect(x, GROUND + 27, 19, 4);
       drawBird();
-      ctx.fillStyle = '#fff';
-      ctx.textAlign = 'left';
-      ctx.font = 'bold 23px sans-serif';
-      ctx.fillText('Score ' + game.score, 18, 38);
-      ctx.textAlign = 'right';
-      ctx.fillText('Best ' + game.best, WIDTH - 18, 38);
-      if (game.state === 'get-ready') panel('Get Ready', 'Fly through the gaps');
-      if (game.state === 'game-over') panel('Game Over', 'Score ' + game.score + '   Best ' + game.best);
+      scoreText.textContent = 'Score ' + game.score;
+      bestText.textContent = 'Best ' + game.best;
+      panelElement.hidden = game.state === 'playing';
+      panelElement.classList.toggle('ready', game.state === 'get-ready');
+      panelTitle.textContent = game.state === 'game-over' ? 'Game Over' : 'Get Ready';
+      panelDetail.textContent = game.state === 'game-over'
+        ? 'Score ' + game.score + '   Best ' + game.best : 'Fly through the gaps';
+      panelHint.textContent = game.state === 'game-over' ? 'Flap to try again' : 'Space, click or tap to flap';
     }
 
     document.addEventListener('keydown', event => {

@@ -11,6 +11,7 @@ function load() {
   const events = new Map();
   const drawing = [];
   const tones = [];
+  const elements = new Map();
   const canvas = {
     width: 400, height: 600,
     addEventListener(type, fn) { events.set('canvas:' + type, fn); },
@@ -36,7 +37,11 @@ function load() {
   const window = { AudioContext, PointerEvent: function () {} };
   const context = vm.createContext({
     window, document: {
-      getElementById(id) { assert.equal(id, 'game'); return canvas; },
+      getElementById(id) {
+        if (id === 'game') return canvas;
+        if (!elements.has(id)) elements.set(id, { textContent: '', hidden: false, classList: { toggle() {} } });
+        return elements.get(id);
+      },
       addEventListener(type, fn) { events.set('document:' + type, fn); }
     },
     location: { search: '?test=1' }, URLSearchParams, Math, JSON,
@@ -49,22 +54,39 @@ function load() {
     events.get(target + ':' + type)(event);
     return event;
   };
-  return { api, drawing, tones, dispatch, advance(ms) { now += ms; } };
+  return { api, drawing, tones, elements, dispatch, advance(ms) { now += ms; } };
 }
 
 function throughGap(g) {
-  const before = g.api.snapshot().score;
-  g.api.setBird(250, 0);
-  g.api.setPipes([{ x: 30, gapTop: 100, gapBottom: 400, scored: false }]);
-  g.api.step();
-  assert.equal(g.api.snapshot().score, before + 1);
+  const a = g.api, c = a.constants, before = a.snapshot().score;
+  if (!a.snapshot().pipes.length) { a.setBird(260, 0); a.step(); }
+  const target = a.snapshot().pipes.find(p => !p.scored);
+  assert.ok(target.x > a.snapshot().bird.x + c.RADIUS);
+  let overlapped = false;
+  for (let i = 0; i < 240 && a.snapshot().score === before; i++) {
+    const p = a.snapshot().pipes.find(p => p.gapTop === target.gapTop);
+    assert.ok(p, 'spawned pair remains until passed');
+    a.setBird((p.gapTop + p.gapBottom) / 2, 0);
+    a.step();
+    const s = a.snapshot();
+    assert.equal(s.state, 'playing');
+    if (p.x - c.SPEED < s.bird.x + c.RADIUS && p.x - c.SPEED + c.PIPE_WIDTH > s.bird.x - c.RADIUS) overlapped = true;
+  }
+  assert.ok(overlapped, 'bird and spawned pipe actually crossed in the gap');
+  assert.equal(a.snapshot().score, before + 1);
+  for (let i = 0; i < 3; i++) {
+    a.setBird((target.gapTop + target.gapBottom) / 2, 0);
+    a.step();
+    assert.equal(a.snapshot().state, 'playing');
+  }
 }
 
 test('self-contained disk document and canvas drawing', () => {
   assert.match(html, /<canvas\b/);
-  assert.doesNotMatch(html, /<(?:script|link|img)\b[^>]*(?:src|href)\s*=/i);
+  assert.doesNotMatch(html, /<[^>]+\b(?:src|href|srcset)\s*=/i);
+  assert.doesNotMatch(html, /<(?:img|audio|source|video|track|iframe)\b/i);
   assert.doesNotMatch(html, /\b(?:fetch|XMLHttpRequest|WebSocket|EventSource)\s*\(/);
-  assert.doesNotMatch(html, /(?:url\s*\(|data:image|<img\b|localStorage|sessionStorage|document\.cookie)/i);
+  assert.doesNotMatch(html, /(?:url\s*\(|data:(?:image|audio)|<img\b|localStorage|sessionStorage|document\.cookie|new\s+Audio\s*\(\s*['"]|\.(?:mp3|wav|ogg|m4a|aac)\b)/i);
   const g = load();
   assert.ok(g.drawing.some(x => x[0] === 'rect' && x[1] === '#70c9ef'));
   assert.ok(g.drawing.some(x => x[0] === 'fill' && x[1] === '#ffd43b'));
@@ -73,8 +95,11 @@ test('self-contained disk document and canvas drawing', () => {
 test('get-ready hover, first flap, gravity and fixed kick', () => {
   const g = load(), a = g.api;
   assert.equal(a.snapshot().state, 'get-ready');
-  for (let i = 0; i < 300; i++) a.step();
-  assert.ok(Math.abs(a.snapshot().bird.y - 260) <= 5.01);
+  for (let i = 0; i < 300; i++) {
+    a.step();
+    assert.ok(Math.abs(a.snapshot().bird.y - 260) <= 5.01);
+    assert.equal(a.snapshot().pipes.length, 0);
+  }
   assert.equal(a.snapshot().pipes.length, 0);
   a.flap();
   assert.equal(a.snapshot().state, 'playing');
@@ -112,9 +137,13 @@ test('top clamps without crash; rotation follows velocity', () => {
   for (let i = 0; i < 110; i++) { a.flap(); a.step(); }
   assert.equal(a.snapshot().bird.y, a.constants.RADIUS);
   assert.equal(a.snapshot().state, 'playing');
-  for (let i = 0; i < 45; i++) a.step();
-  assert.ok(a.snapshot().bird.vy > 0);
-  assert.ok(a.snapshot().bird.angle > 0);
+  const falling = load().api;
+  falling.flap();
+  falling.setBird(200, 0);
+  for (let i = 0; i < 12; i++) falling.step();
+  assert.equal(falling.snapshot().state, 'playing');
+  assert.ok(falling.snapshot().bird.vy > 0);
+  assert.ok(falling.snapshot().bird.angle > 0);
 });
 
 test('fixed pipe speed and spacing, bounded variable fixed-height gaps, ground speed', () => {
@@ -124,7 +153,7 @@ test('fixed pipe speed and spacing, bounded variable fixed-height gaps, ground s
   let previous = null;
   let enteredFromRight = false;
   for (let i = 0; i < 1100; i++) {
-    const approaching = a.snapshot().pipes.find(p => p.x - c.SPEED < 105 + c.RADIUS && p.x - c.SPEED + c.PIPE_WIDTH > 105 - c.RADIUS);
+    const approaching = a.snapshot().pipes.find(p => p.x - c.SPEED - 5 < 105 + c.RADIUS && p.x - c.SPEED + c.PIPE_WIDTH + 5 > 105 - c.RADIUS);
     a.setBird(approaching ? (approaching.gapTop + approaching.gapBottom) / 2 : 260, 0);
     a.step();
     const s = a.snapshot();
@@ -171,7 +200,9 @@ test('visit best persists across games but a fresh load starts at zero', () => {
   a.flap(); throughGap(g);
   a.setBird(a.constants.GROUND, 0); a.step();
   assert.equal(a.snapshot().best, 3);
-  assert.ok(g.drawing.some(x => x[0] === 'text' && x[1] === 'Score 1   Best 3'));
+  assert.equal(g.elements.get('score').textContent, 'Score 1');
+  assert.equal(g.elements.get('best').textContent, 'Best 3');
+  assert.equal(g.elements.get('panel-detail').textContent, 'Score 1   Best 3');
   assert.equal(load().api.snapshot().best, 0);
 });
 
@@ -191,7 +222,8 @@ test('pipe and ground crashes freeze pipes, settle bird, show panel, and delay r
     for (let i = 0; i < 100; i++) a.step();
     assert.deepEqual(a.snapshot().pipes.map(p => p.x), x);
     assert.equal(a.snapshot().bird.y, a.constants.GROUND - a.constants.RADIUS);
-    assert.ok(g.drawing.some(item => item[0] === 'text' && item[1] === 'Game Over'));
+    assert.equal(g.elements.get('panel-title').textContent, 'Game Over');
+    assert.equal(g.elements.get('panel').hidden, false);
     a.flap();
     assert.equal(a.snapshot().state, 'get-ready');
     assert.equal(a.snapshot().score, 0);
@@ -205,10 +237,13 @@ test('shapes and responsive 2:3 canvas contract', () => {
   assert.ok(g.drawing.some(x => x[0] === 'rect' && x[1] === '#43b84e'));
   assert.match(html, /aspect-ratio:\s*2\s*\/\s*3/);
   assert.match(html, /width:\s*min\(100vw,\s*66\.666667vh\)/);
-  for (const [w, h] of [[1200, 700], [320, 850]]) {
-    const width = Math.min(w, h * 2 / 3), height = width * 3 / 2;
-    assert.ok(width <= w && height <= h + 0.001);
-    assert.ok(Math.abs(width / height - 2 / 3) < 1e-9);
-    assert.ok(Math.abs(width - w) < 0.001 || Math.abs(height - h) < 0.001);
-  }
+});
+
+test('cap-only contact crashes even when the bird misses the pipe body', () => {
+  const a = load().api;
+  a.flap();
+  a.setBird(300, 0);
+  a.setPipes([{ x: 123, gapTop: 310, gapBottom: 475, scored: false }]);
+  a.step();
+  assert.equal(a.snapshot().state, 'game-over');
 });
