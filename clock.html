@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Three city clocks</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { min-height: 100vh; margin: 0; padding: 2rem 1rem; display: grid; place-items: center; background: #e8edf2; }
+    main { width: min(100%, 72rem); }
+    h1 { margin: 0 0 2rem; color: #203047; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; text-align: center; }
+    .clocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 3vw, 2rem); justify-items: center; }
+    .dial {
+      position: relative; width: min(100%, 19rem); aspect-ratio: 1;
+      border-radius: 50%; border: 5px solid var(--rim); background: var(--surface);
+      color: var(--ink); box-shadow: 0 12px 30px #162b4530, inset 0 0 0 2px var(--inner-rim);
+    }
+    .dial[data-daylight="day"] { --surface: #fff9e9; --ink: #263852; --rim: #d6ab60; --inner-rim: #e8d3a7; --second: #b84934; }
+    .dial[data-daylight="night"] { --surface: #172942; --ink: #f4f4e7; --rim: #758ca9; --inner-rim: #405a78; --second: #f0ab79; }
+    .tick { position: absolute; width: 2px; height: 9px; background: var(--ink); transform: translate(-50%, -50%) rotate(var(--angle)); opacity: .65; }
+    .tick.hour-tick { width: 4px; height: 17px; opacity: 1; }
+    .numeral { position: absolute; transform: translate(-50%, -50%); font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 650; line-height: 1; font-variant-numeric: tabular-nums; }
+    .city { position: absolute; top: 67%; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: clamp(.88rem, 1.6vw, 1rem); font-weight: 650; letter-spacing: .04em; }
+    .hand { position: absolute; left: 50%; top: 50%; border-radius: 99px; background: var(--ink); transform-origin: 50% 100%; }
+    .hand.hour { width: 8px; height: 25%; margin-left: -4px; margin-top: -25%; }
+    .hand.minute { width: 5px; height: 34%; margin-left: -2.5px; margin-top: -34%; }
+    .hand.second { width: 2px; height: 40%; margin-left: -1px; margin-top: -40%; background: var(--second); }
+    .pin { position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: var(--second); transform: translate(-50%, -50%); }
+    @media (max-width: 760px) {
+      body { display: block; }
+      .clocks { grid-template-columns: 1fr; gap: 1.5rem; }
+      h1 { margin-bottom: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Time around the world</h1>
+    <div class="clocks">
+      <section class="dial" data-city="London" data-zone="Europe/London" aria-label="London clock"><span class="city">London</span><span class="hand hour" aria-hidden="true"></span><span class="hand minute" aria-hidden="true"></span><span class="hand second" aria-hidden="true"></span><span class="pin" aria-hidden="true"></span></section>
+      <section class="dial" data-city="Hong Kong" data-zone="Asia/Hong_Kong" aria-label="Hong Kong clock"><span class="city">Hong Kong</span><span class="hand hour" aria-hidden="true"></span><span class="hand minute" aria-hidden="true"></span><span class="hand second" aria-hidden="true"></span><span class="pin" aria-hidden="true"></span></section>
+      <section class="dial" data-city="New York" data-zone="America/New_York" aria-label="New York clock"><span class="city">New York</span><span class="hand hour" aria-hidden="true"></span><span class="hand minute" aria-hidden="true"></span><span class="hand second" aria-hidden="true"></span><span class="pin" aria-hidden="true"></span></section>
+    </div>
+  </main>
+  <script>
+    (() => {
+      const dials = Array.from(document.querySelectorAll('.dial'));
+      const cities = dials.map(dial => ({
+        dial,
+        formatter: new Intl.DateTimeFormat('en-GB', {
+          timeZone: dial.dataset.zone, hourCycle: 'h23',
+          hour: '2-digit', minute: '2-digit', second: '2-digit'
+        }),
+        hands: {
+          hour: dial.querySelector('.hand.hour'),
+          minute: dial.querySelector('.hand.minute'),
+          second: dial.querySelector('.hand.second')
+        }
+      }));
+
+      for (const { dial } of cities) {
+        for (let index = 0; index < 60; index++) {
+          const angle = index * 6;
+          const radians = angle * Math.PI / 180;
+          const tick = document.createElement('span');
+          tick.className = index % 5 === 0 ? 'tick hour-tick' : 'tick';
+          tick.setAttribute('aria-hidden', 'true');
+          tick.style.left = `${50 + 44 * Math.sin(radians)}%`;
+          tick.style.top = `${50 - 44 * Math.cos(radians)}%`;
+          tick.style.setProperty('--angle', `${angle}deg`);
+          dial.append(tick);
+        }
+        for (let number = 1; number <= 12; number++) {
+          const radians = number * Math.PI / 6;
+          const numeral = document.createElement('span');
+          numeral.className = 'numeral';
+          numeral.textContent = String(number);
+          numeral.style.left = `${50 + 34 * Math.sin(radians)}%`;
+          numeral.style.top = `${50 - 34 * Math.cos(radians)}%`;
+          dial.append(numeral);
+        }
+      }
+
+      let timer;
+      function render() {
+        const now = new Date();
+        for (const { dial, formatter, hands } of cities) {
+          const parts = Object.fromEntries(formatter.formatToParts(now).map(part => [part.type, part.value]));
+          const hour = Number(parts.hour);
+          const minute = Number(parts.minute);
+          const second = Number(parts.second);
+          const fraction = now.getMilliseconds() / 1000;
+          dial.dataset.daylight = hour >= 6 && hour < 18 ? 'day' : 'night';
+          hands.hour.style.transform = `rotate(${((hour % 12) + minute / 60 + (second + fraction) / 3600) * 30}deg)`;
+          hands.minute.style.transform = `rotate(${(minute + (second + fraction) / 60) * 6}deg)`;
+          hands.second.style.transform = `rotate(${second * 6}deg)`;
+        }
+      }
+      function schedule() {
+        clearTimeout(timer);
+        timer = setTimeout(() => { render(); schedule(); }, 1000 - (Date.now() % 1000));
+      }
+      document.addEventListener('visibilitychange', () => { render(); schedule(); });
+      render();
+      schedule();
+    })();
+  </script>
+</body>
+</html>
