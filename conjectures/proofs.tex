@@ -33,23 +33,29 @@
 \maketitle
 
 \begin{abstract}
-The proposal states five conjectures (Conjectures 1--5) and leaves one question open: whether the value of information can be negative once refusals sting (Section~4.4). None of the five conjectures holds as stated in the core model. Each is false in general, which is shown by an explicit counterexample, and each has a true core, which is proved under conditions stated exactly. The open question is answered: in the core model, information about compatibility always has non-negative value. So does information about willingness that comes from monotone signals, such as the guide's cues. A non-monotone signal about willingness can have strictly negative value under all three models of the sting. Every number in this note is reproduced by \texttt{verify.py}, which also runs randomised checks of each theorem.
+The proposal states five conjectures (Conjectures 1--5) and leaves one question open: whether the value of information can be negative once refusals sting (Section~4.4). This note tests each conjecture in the core model (M2), where the value after the date is truncated after one more date.
+\begin{itemize}[nosep]
+\item Conjectures~1 and~5 are false as stated. Conjectures~2 and~3 are false as stated for decisions on the day. Each is refuted by an explicit counterexample, and each has a true core, which is proved under conditions stated exactly.
+\item Conjectures~2 and~3 are posed in M2+. The note settles only their core-model analogues; the M2+ versions remain open.
+\item Conjecture~4 is conditional on concavity, which the note shows fails whenever entry prices bind. Its threshold and spend claims are proved, without the premise in the core model and under it at the last step of M2+. No counterexample satisfying the premise is given. Its claim about cheaper opening activities does not follow from the shadow-value logic, and fails once the premise is dropped.
+\end{itemize}
+The open question is answered for signals about compatibility or about willingness alone. Information about compatibility always has non-negative value. So does information about willingness from monotone signals, such as the guide's cues. A non-monotone signal about willingness can have strictly negative value under all three models of the sting. Every number in this note is reproduced by \texttt{verify.py}, which also runs randomised checks of each theorem.
 \end{abstract}
 
 \section*{Summary}
 
 \begin{center}
 \small
-\begin{tabular}{@{}p{2.6cm}p{3.1cm}p{9.0cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}p{3.3cm}>{\raggedright\arraybackslash}p{8.8cm}@{}}
 \toprule
 Claim & Verdict & What is proved \\
 \midrule
-Conjecture 1 (threshold rules) & False in general (Prop.~\ref{prop:c1-counter}) & Threshold rules hold under a single condition (M) (Theorem~\ref{thm:c1}). The condition is automatic when the after-date choice does not depend on what the date reveals. With two types it reads $v_j(C_H-C_L)\ge\kt\,|\psi(C_H)-\psi(C_L)|$ (Corollary~\ref{cor:c1}). \\[2pt]
-Conjecture 2 (outside option) & True for Phase~C; false on the day in general & Raising $U$ shrinks the set of beliefs at which the agent asks for another date. On the day, raising $U$ makes continuing \emph{less} attractive at beliefs where the agent would cut contact after the date, and \emph{more} attractive where they would ask for another date (Lemma~\ref{lem:pivot}, Theorem~\ref{thm:c2}). \\[2pt]
-Conjecture 3 (relationship value) & First part: true for Phase~C, false on the day in general. Second part: false & Raising $R$ has the mirror-image effect of raising $U$ (Theorem~\ref{thm:c3}). The investment value of a step peaks where the after-date choice is closest to indifference, not where beliefs are least settled. It vanishes as beliefs settle (Proposition~\ref{prop:inv}). \\[2pt]
-Conjecture 4 (tight budgets) & Premise rarely holds; conclusion partly true & Concavity gives the shadow-value claim by definition, but entry prices make $V$ non-concave in $B$. Without any concavity, thresholds rise as the budget falls in the core model. Under concavity, spend falls with the budget. ``Cheaper opening activities'' is false (Proposition~\ref{prop:c4}). \\[2pt]
-Conjecture 5 (spending to learn) & First and last parts true; ``peaks under uncertainty'' false & Optimal spend is never below the Proposition~1 level, under all three sting models. It converges to that level as beliefs settle. The premium need not be largest when beliefs are least settled (Proposition~\ref{prop:c5}). \\[2pt]
-Open question, Sec.~4.4 & Answered & EVSI $\ge0$ for every signal about $C$, and for every MLRP signal about $q$, under D1, D2 and KR. A non-MLRP signal about $q$ can have negative EVSI under D1, D2 and KR (Theorem~\ref{thm:voi}, Examples~\ref{ex:neg} and~\ref{ex:negD2}). \\
+Conjecture 1 (threshold rules) & False in general (Prop.~\ref{prop:c1-counter}) & Threshold rules hold under a single condition (M) (Theorem~\ref{thm:c1}). The condition is automatic when the after-date choice does not depend on what the date reveals. With two types it is implied by $v_j(C_H-C_L)\ge\kt\,|\psi(C_H)-\psi(C_L)|$ (Corollary~\ref{cor:c1}). \\[2pt]
+Conjecture 2 (outside option; posed in M2+) & Core-model analogue: true for Phase~C, false on the day in general. M2+ version open & Raising $U$ shrinks the set of beliefs at which the agent asks for another date. On the day, raising $U$ makes continuing \emph{less} attractive at beliefs where the agent would cut contact after the date, and \emph{more} attractive where they would ask for another date (Lemma~\ref{lem:pivot}, Theorem~\ref{thm:c2}). \\[2pt]
+Conjecture 3 (relationship value; posed in M2+) & First part, core-model analogue: as for Conjecture~2, with signs reversed. M2+ version open. Second part: false when uncertainty is compared across beliefs & Raising $R$ has the mirror-image effect of raising $U$ (Theorem~\ref{thm:c3}). The investment value of a step peaks where the after-date choice is closest to indifference, can be zero at maximal uncertainty, and vanishes as beliefs settle (Proposition~\ref{prop:inv}). \\[2pt]
+Conjecture 4 (tight budgets) & Premise fails near entry prices; no counterexample under it & Concavity gives the shadow-value claim by definition, but entry prices make $V$ non-concave in $B$. Thresholds rise as the budget falls: in the core model without concavity, and at the last step of M2+ when $\Vend$ is concave in $B$. ``Cheaper openings'' does not follow from the shadow-value logic, and fails without the premise (Proposition~\ref{prop:c4}). \\[2pt]
+Conjecture 5 (spending to learn) & Premise false; ``falls back as beliefs settle'' true; ``peaks under uncertainty'' false & EVSI need not be largest when beliefs are least settled. Optimal spend is never below the Proposition~1 level, under all three sting models, and converges to it as beliefs settle. The premium can be zero at maximal uncertainty and positive elsewhere. The caveat about stings is moot for this information (Proposition~\ref{prop:c5}). \\[2pt]
+Open question, Sec.~4.4 & Answered for signals about $C$ alone or $q$ alone & EVSI $\ge0$ for every signal about $C$, and for every MLRP signal about $q$, under D1, D2 and KR. A non-MLRP signal about $q$ can have negative EVSI under D1, D2 and KR (Theorem~\ref{thm:voi}, Examples~\ref{ex:neg} and~\ref{ex:negD2}). \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -71,7 +77,7 @@ After step $j$ the agent observes a rating $y$ whose likelihood $P_j(y\mid c)$ h
 \end{assumption}
 
 \begin{remark}[The fractional likelihood]
-The fractional Binomial (2) is a tempered quasi-likelihood. It does not by itself define a distribution for the rating, so expected posterior moments need not equal prior moments. Under it, $\E[\E_{b'}f(C)\mid b]=\E_bf(C)$ holds for $f(c)=c$ when $\E[\tilde y\mid C]=m_aC$, but not for nonlinear $f$. The results below that use the martingale property for nonlinear functions of $C$ therefore hold exactly with integer $m_a$ and exact Bayes, and approximately with fractional $m_a$. The results that use only monotonicity carry over unchanged.
+The fractional Binomial (2) is a tempered quasi-likelihood. It does not by itself define a distribution for the rating, so expected posterior moments need not equal prior moments. Under it, $\E[\E_{b'}f(C)\mid b]=\E_bf(C)$ holds for $f(c)=c$ when $\E[\tilde y\mid C]=m_aC$, but not for nonlinear $f$. The results below that use the martingale property for nonlinear functions of $C$ therefore hold exactly with integer $m_a$ and exact Bayes, and approximately with fractional $m_a$. The results that use only monotonicity need, in addition, a generative model for the rating. For example, take $y\sim\mathrm{Bin}(10,C)$ with the tempered update (3). The posterior is then monotone in $y$ and in the prior, and the predictive distribution of $y$ is stochastically increasing in the belief.
 \end{remark}
 
 \begin{assumption}[No sting without a stake]\label{S:plus}
@@ -122,15 +128,19 @@ The agent asks if and only if $\pp_j>0$ and $G_j\ge0$, and the optimal venue max
 By Lemma~\ref{lem:vend}, or directly from (19)--(21), $\Vend$ depends on $b$ only through its marginal on $(C,q_D)$. By A4 and A5 an answer is informative only about $q$, which is independent of $(C,q_D)$. Hence $\Vend(b_{\mathrm{no}})=\Vend(b_{\mathrm{yes}})=\Vend(b)$, so $L=0$. At spend $s$, let $G(s)$ be the term in braces minus $\Vend(b)$. Asking is worth $\Vend(b)+pG(s)-\kappa(p)G(s)^+$. This is $\Vend+\pp\,G(s)$ when $G(s)\ge0$, and is below $\Vend$ when $G(s)<0$. Maximising over $s$ and comparing with ending gives \eqref{eq:Vj}.
 \end{proof}
 
+The proposal's Remark after Proposition~3 already observes $\ell=0$ under independence with the truncated $\Vend$. Lemma~\ref{lem:core} records it at every step, together with the resulting form of the value. The lemma depends on the truncation: with the full recursion of M2+, a refusal lowers $\E[q]$ and hence $\Vend$, so $\ell>0$, as the proposal notes.
+
 Since $\pp^{\,+}\in[0,1]$, \eqref{eq:Vj} can be rewritten as
 \[
 V_j=\max\Bigl\{\Vend(b),\;\pp_j^{\,+}\bigl(G_j+\Vend(b)\bigr)+(1-\pp_j^{\,+})\Vend(b)\Bigr\}.
 \]
-This is the Bellman equation of an \emph{optimal stopping problem}. After each ask the date continues with probability $\pp^{\,+}$ and pays the step's flow. With probability $1-\pp^{\,+}$ it ends at the current belief about $C$, and when the date ends the agent receives $\Vend$ at the terminal belief. Call this fictitious measure $\Pt$, with expectation $\Et$. Because $\pp$ does not depend on $C$, and ratings are Bayesian, the belief about $C$ is a $\Pt$-martingale. So for every policy $\pi$ and stopping time $\tau\le J+1$,
+This is the Bellman equation of a \emph{fictitious optimal stopping problem} with the same value function. After each ask the date continues with probability $\pp^{\,+}$ and pays the step's flow. With probability $1-\pp^{\,+}$ it ends at the current belief about $C$, and when the date ends the agent receives $\Vend$ at the terminal belief. Call this fictitious measure $\Pt$, with expectation $\Et$. Because $\pp$ does not depend on $C$, and ratings are Bayesian, the belief about $C$ is a $\Pt$-martingale. So for every policy $\pi$ and stopping time $\tau\le J+1$,
 \begin{equation}\label{eq:mart}
 \Et^{\pi}\bigl[\E_{b_\tau}f(C)\bigr]=\E_bf(C)\qquad\text{for every bounded }f.
 \end{equation}
 This is the tool behind most of what follows.
+
+The two problems differ only in the payoff of asking when $G_j<0$. Asking is then worth $\Vend+p\,G_j$ in the real problem and $\Vend+\pp\,G_j$ in the fictitious one. Neither choice is optimal in either problem, and the two expressions have the same sign when $\pp>0$, so values and decisions coincide.
 
 \begin{remark}[Closed form of Proposition 1]\label{rem:closed}
 With $\bar s_j=k_j$ and $x=\E[C]v_j$, the net value of a step at the optimal spend is
@@ -145,7 +155,7 @@ Discretionary spend is therefore positive exactly when the step is worth taking 
 Conjecture~1 concerns the one-dimensional case, with $q$ and $q_D$ known. Then $p_j=\varphi_jq$ and $\pp_j$ are constants, and the agent asks at step $j$ iff $\pp_j>0$ and $G_j\ge0$ (Lemma~\ref{lem:core}). At each step the belief lies in a totally ordered family $F_j$:
 \begin{itemize}[nosep]
 \item two types, $b=\pi=P(C=C_H)$; or
-\item Beta, $b=\mathrm{Beta}(\alpha,n_j-\alpha)$, with $n_j=n_1+\sum_{i<j}m_i$ fixed by the step.
+\item Beta, $b=\mathrm{Beta}(\alpha,n_j-\alpha)$, with $n_j=n_1+\sum_{i<j}m_i$ fixed by the step. Here ratings are $\mathrm{Bin}(m_j,C)$, so that beliefs stay in the family.
 \end{itemize}
 Both families are ordered by the likelihood ratio, and $\E_bC$ is strictly increasing along them. With MLRP ratings:
 \begin{enumerate}[label=(\roman*),nosep]
@@ -230,7 +240,7 @@ and $\Psi$ is nondecreasing.
 \end{proof}
 
 \begin{proposition}[Conjecture 1 fails without (M)]\label{prop:c1-counter}
-Take two types $C\in\{0.2,0.8\}$ and one step left, with $v=50$, $k=30$, $c^{\mathrm{time}}=0$, $\sigma=\lambda=1$ and one Bernoulli rating ($m=1$). Let $q=0.9$, D1 with $\eta=0.2$, $q_D=0.8$, $\bar h=0.5$, $\delta_D=0.9$, $R=6000$, $U=1000$. Then the agent asks at the last step on $(0.071,\,0.232)\cup(0.667,\,1]$ and ends on the rest of $[0,1]$. The set of asking beliefs is not an interval, and no threshold rule is optimal.
+Take two types $C\in\{0.2,0.8\}$ and one step left, with $v=50$, $k=30$, $c^{\mathrm{time}}=0$, $\sigma=\lambda=1$ and one Bernoulli rating ($m=1$). Let $q=0.9$, D1 with $\eta=0.2$, $q_D=0.8$, $\bar h=0.5$, $\delta_D=0.9$, $R=6000$, $U=1000$. Then the agent asks at the last step on $[0.0706,\,0.2311]\cup[0.6667,\,1]$ and ends on the rest of $[0,1]$. The set of asking beliefs is not an interval, and no threshold rule is optimal.
 \end{proposition}
 
 \begin{proof}
@@ -250,25 +260,27 @@ I(\pi_k)=\kt\bigl(\pi_k\cdot0.8\cdot676.19+(1-\pi_k)\cdot0.2\cdot(-78.75)\bigr)=
 while $W(\pi_k)=-16.87$, giving $G(\pi_k)=15.29>0$.
 \item At $\pi=0.05$, $G=-9.32<0$.
 \end{itemize}
-$G$ therefore changes sign three times. \texttt{verify.py} computes $G$ on a fine grid and confirms the switch points.
+$G$ therefore changes sign three times. \texttt{verify.py} computes $G$ on a fine grid and locates the switch points by bisection.
 \end{proof}
 
 The mechanism is the after-date option. Near $\pi_k$ the agent is close to indifferent between cutting contact and asking for a second date. The last step's rating settles that choice, so the step is worth taking for what it reveals, even though it is not worth its price as an evening out. At somewhat higher beliefs the second date is already decided, the information is worthless, and the agent ends. Here (M) fails badly: $v(C_H-C_L)=30$, while $\kt|\psi(C_H)-\psi(C_L)|=574$.
 
 \begin{remark}
-When (M) fails, the asking set at each step is still a finite union of intervals in $\E[C]$. A card can record it as such, with extra columns near the after-date indifference point.
+In this example, where (M) fails, the asking set is a union of two intervals in $\E[C]$. A card can record it as such, with extra columns near the after-date indifference point. We do not prove a general bound on the number of intervals.
 \end{remark}
 
 \section{Conjectures 2 and 3: the outside option and the value of a relationship}\label{sec:c23}
+
+\paragraph{Scope.} Conjectures~2 and~3 are stated in Appendix~A.1, that is, in M2+. Conjecture~3 sits under ``the full recursion'', which replaces the truncation (21). The results of this section are for the core model with the truncated $\Vend$. Their proofs use $\ell=0$ (Lemma~\ref{lem:core}), which fails in the full recursion. They therefore settle the core-model analogues of Conjectures~2 and~3, and show that the conjectured signs are not implied by the structure the core model shares with M2+. The M2+ statements themselves remain open.
 
 $U$ and $R$ enter the core model only through $\Vend$, that is, through $a$ and $\psi$. One lemma covers both.
 
 \begin{lemma}[Pivotality]\label{lem:pivot}
 Assume \ref{S:core}--\ref{S:qD}. Beliefs about $q$ and the budget are arbitrary. Let a parameter change from $\theta$ to $\theta'$ change $a$ arbitrarily and raise $\psi$ pointwise, $\psi_{\theta'}\ge\psi_\theta$ on $[0,1]$, leaving everything else unchanged. Let
 \[
-D_j=V^{\mathrm{ask}}_j-\Vend
+D_j=V^{\mathrm{ask}}_j-\Vend=\pp_jG_j
 \]
-be the value of asking minus the value of ending at step $j$; when $\pp_j>0$, $D_j=\pp_jG_j$.
+be the value of asking minus the value of ending at step $j$ in the fictitious problem of Section~\ref{sec:setting}. When $\pp_j>0$, the agent asks iff $D_j\ge0$; the real gain from asking has the same sign.
 \begin{enumerate}[label=(\roman*)]
 \item If $\Psi_\theta(b)>0$, so that the agent would ask for another date, then $D_j(b;\theta')\le D_j(b;\theta)$.
 \item If $\Psi_{\theta'}(b)\le0$, so that the agent would cut contact, then $D_j(b;\theta')\ge D_j(b;\theta)$.
@@ -276,36 +288,37 @@ be the value of asking minus the value of ending at step $j$; when $\pp_j>0$, $D
 \end{lemma}
 
 \begin{proof}
-By Lemma~\ref{lem:core}, the value of any policy $\pi$ that asks now is
+In the fictitious problem, the value of any policy $\pi$ that asks now is
 \[
-\Phi(\pi;\theta)=\Et^{\pi}\Bigl[\textstyle\sum\text{flows}\Bigr]+\Et^{\pi}\bigl[\Vend(b_\tau;\theta)\bigr].
+\Phi(\pi;\theta)=\Et^{\pi}\Bigl[\textstyle\sum\text{flows}\Bigr]+\Et^{\pi}\bigl[\Vend(b_\tau;\theta)\bigr],
 \]
+and $V_j^{\mathrm{ask}}=\sup_\pi\Phi(\pi;\theta)$.
 Neither the flows nor $\Pt^{\pi}$ depend on $\theta$; only the terminal payoff does. Let $\pi$ and $\pi'$ be $\varepsilon$-optimal asking policies at $\theta$ and $\theta'$, and write $\delta V(x)=\Vend(x;\theta')-\Vend(x;\theta)$. Then
 \[
 \Et^{\pi}[\delta V(b_\tau)]-\varepsilon\;\le\;V_j^{\mathrm{ask}}(\theta')-V_j^{\mathrm{ask}}(\theta)\;\le\;\Et^{\pi'}[\delta V(b_\tau)]+\varepsilon.
 \]
-By Lemma~\ref{lem:vend}, $\delta V(x)=\E_x[a_{\theta'}-a_\theta]+\kt\,\phi(x)$, where
+By Lemma~\ref{lem:vend}, $\delta V(x)=\E_x[a_{\theta'}-a_\theta]+\kt\,\chi(x)$, where
 \[
-\phi(x)=\Psi_{\theta'}(x)^+-\Psi_\theta(x)^+,\qquad 0\le\phi(x)\le\E_x\zeta,\qquad \zeta=\psi_{\theta'}-\psi_\theta\ge0.
+\chi(x)=\Psi_{\theta'}(x)^+-\Psi_\theta(x)^+,\qquad 0\le\chi(x)\le\E_x\zeta,\qquad \zeta=\psi_{\theta'}-\psi_\theta\ge0.
 \]
 The first term of $\delta V$ is linear in $x$, so by \eqref{eq:mart} it cancels against the same term in $\delta V(b)$.
 
-(i) Here $\Psi_{\theta'}(b)\ge\Psi_\theta(b)>0$, so $\phi(b)=\E_b\zeta$. Then
+(i) Here $\Psi_{\theta'}(b)\ge\Psi_\theta(b)>0$, so $\chi(b)=\E_b\zeta$. Then
 \[
 D_j(\theta')-D_j(\theta)\le\kt\bigl(\Et^{\pi'}[\E_{b_\tau}\zeta]-\E_b\zeta\bigr)+\varepsilon=\varepsilon,
 \]
 using \eqref{eq:mart} again.
 
-(ii) Here $\Psi_\theta(b)\le\Psi_{\theta'}(b)\le0$, so $\phi(b)=0$. Then
+(ii) Here $\Psi_\theta(b)\le\Psi_{\theta'}(b)\le0$, so $\chi(b)=0$. Then
 \[
-D_j(\theta')-D_j(\theta)\ge\kt\,\Et^{\pi}[\phi(b_\tau)]-\varepsilon\ge-\varepsilon.
+D_j(\theta')-D_j(\theta)\ge\kt\,\Et^{\pi}[\chi(b_\tau)]-\varepsilon\ge-\varepsilon.
 \]
 Let $\varepsilon\to0$.
 \end{proof}
 
 The intuition is that the direct value of $\Vend$ is linear in beliefs, so it is the same, in expectation, whether the agent continues or ends. A parameter therefore changes the value of continuing only through the information value of the date for the after-date choice. That value rises when the parameter moves the after-date choice towards indifference, and falls when it moves the choice away.
 
-\begin{theorem}[Conjecture 2]\label{thm:c2}
+\begin{theorem}[Conjecture 2, core-model analogue]\label{thm:c2}
 Assume \ref{S:core} and \ref{S:plus}, and let $U<U'$.
 \begin{enumerate}[label=(\alph*)]
 \item \emph{Phase C (true).} The set of beliefs at which the agent asks for another date shrinks. The agent asks iff $\pp(P_D)>0$ and $V_D(b_{\mathrm{yes}})>U$, and
@@ -326,16 +339,16 @@ is strictly decreasing in $U$. This part does not need \ref{S:qD}.
 (b) We have $\partial\psi/\partial U=-(1-h)\bigl(1-\delta_D(1-h)\bigr)\le0$, so $\psi_U\ge\psi_{U'}$. Apply Lemma~\ref{lem:pivot} with $\theta=U'$ and $\theta'=U$, recalling that the agent asks iff $\pp_j>0$ and $D_j\ge0$, and that $\pp_j$ does not depend on $U$.
 \end{proof}
 
-\begin{example}[Conjecture 2 fails on the day, inside a threshold model]\label{ex:c2}
-Use the model of Proposition~\ref{prop:c1-counter} with $R=600$, $U=100$ and a last step with $v=100$ and $k=32$. Corollary~\ref{cor:c1}(b) holds, since $60\ge57.4$, so the asking set is a threshold.
+\begin{example}[Conjecture 2's analogue fails on the day, inside a threshold model]\label{ex:c2}
+Use the model of Proposition~\ref{prop:c1-counter} with $R=600$, $U=100$ and a last step with $v=100$ and $k=32$. Corollary~\ref{cor:c1}(b) holds, since $60\ge57.4$, so the asking set is a threshold. It still holds after raising $U$ by $5$, since $60\ge57.0$.
 \begin{itemize}[nosep]
 \item The threshold is $\pi^*=0.1605$, where $\Psi=4.24>0$.
-\item Raising $U$ by $5$ \emph{lowers} the threshold to $0.1508$.
+\item Raising $U$ by $5$ \emph{lowers} the threshold to $0.1507$.
 \item With $k=25$ instead, the threshold is $0.0606$, where $\Psi=-3.30<0$. There raising $U$ by $5$ raises it to $0.0622$, as conjectured.
 \end{itemize}
 \end{example}
 
-\begin{theorem}[Conjecture 3, first part]\label{thm:c3}
+\begin{theorem}[Conjecture 3, first part, core-model analogue]\label{thm:c3}
 Assume \ref{S:core} and \ref{S:plus}, and let $R<R'$.
 \begin{enumerate}[label=(\alph*)]
 \item \emph{Phase C (true).} The set of beliefs at which the agent asks for another date grows, because $V_D-U$ is increasing in $R$.
@@ -344,7 +357,7 @@ Assume \ref{S:core} and \ref{S:plus}, and let $R<R'$.
 \item On $\{b:\Psi_R(b)>0\}$: $A_j(R')\subseteq A_j(R)$. A more valuable relationship makes continuing \emph{harder}, contrary to the conjecture.
 \item On $\{b:\Psi_{R'}(b)\le0\}$: $A_j(R)\subseteq A_j(R')$, as conjectured.
 \end{itemize}
-In Example~\ref{ex:c2}, raising $R$ by $30$ raises the threshold from $0.1605$ to $0.1677$. With $k=25$ it lowers the threshold from $0.0606$ to $0.0584$.
+In Example~\ref{ex:c2}, raising $R$ by $30$ raises the threshold from $0.1605$ to $0.1676$. With $k=25$ it lowers the threshold from $0.0606$ to $0.0584$. At $R=630$ the sufficient condition of Corollary~\ref{cor:c1}(b) narrowly fails ($60<60.65$). That $G$ still crosses zero once is checked numerically in \texttt{verify.py}.
 \end{enumerate}
 \end{theorem}
 
@@ -361,23 +374,26 @@ Assume \ref{S:core}--\ref{S:qD}.
 \begin{enumerate}[label=(\roman*)]
 \item $I_j\ge0$.
 \item \emph{Two types}, with $x_0=\psi(C_L)<0<x_1=\psi(C_H)$: $I_j$ is nondecreasing on $[0,\pi_k]$ and nonincreasing on $[\pi_k,1]$, where $\pi_k=-x_0/(x_1-x_0)$ is the after-date indifference point. Moreover $I_j(\pi)=0$ whenever every posterior lies on the same side of $\pi_k$ as $\pi$. If $x_0,x_1$ have the same sign, $I_j\equiv0$.
-\item \emph{Settling:} for Beta beliefs, writing $\psi(c)=\sum_k\psi_kc^k$, which has degree at most $3$,
+\item \emph{Settling:} for Beta beliefs with $\mathrm{Bin}(m_j,C)$ ratings, writing $\psi(c)=\sum_r\psi_rc^r$, which has degree at most $3$,
 \[
-I_j\bigl(\mathrm{Beta}(\alpha,n-\alpha)\bigr)\le\kt\,\frac{m_j}{n}\sum_{k\le3}k\lvert\psi_k\rvert\;\longrightarrow\;0\qquad(n\to\infty).
+I_j\bigl(\mathrm{Beta}(\alpha,n-\alpha)\bigr)\le\kt\,\frac{m_j}{n}\sum_{r\le3}r\lvert\psi_r\rvert\;\longrightarrow\;0\qquad(n\to\infty).
 \]
-\item \emph{``Largest when least settled'' is false.} In the model of Proposition~\ref{prop:c1-counter}, $I(1/2)=0$ but $I(\pi_k)=32.2$. The consumption value depends on beliefs only through $\E[C]$, so the investment share of the step's value is zero at maximal uncertainty, $\pi=1/2$. It is positive at $\pi_k\approx0.10$, where the agent is fairly sure the match is incompatible. Nor is $I_j$ monotone in precision at a fixed mean: with Beta beliefs of mean $0.3$, $I=4.14$ at $n=8$ but $4.72$ at $n=16$.
+\item \emph{Across beliefs, investment value is not largest where uncertainty is largest.} With two types, $\mathrm{Var}(C)=\pi(1-\pi)(C_H-C_L)^2$ is largest at $\pi=1/2$. In the model of Proposition~\ref{prop:c1-counter}, $I(1/2)=0$ but $I(\pi_k)=32.2$, at $\pi_k\approx0.10$, where the agent is fairly sure the match is incompatible. So any share of the step's value attributed to investment is zero at maximal uncertainty and positive at $\pi_k$, however the share is normalised.
+\item \emph{At a fixed mean, investment value is not monotone in precision.} With Beta beliefs of mean $0.3$, $I=16.24,\,8.31,\,4.69,\,4.14,\,4.72,\,3.56,\,0.45$ for $n=1,2,4,\dots,64$. In this example the least settled belief, $n=1$, does have the largest value, but $I$ rises from $n=8$ to $n=16$.
 \end{enumerate}
 \end{proposition}
 
 \begin{proof}
 (ii) On $\{\Psi\le0\}$, $I/\kt=\sum_y(\cdot)^+$ with every summand nondecreasing, because its slope $P_y^Hx_1-P_y^Lx_0$ is positive. On $\{\Psi\ge0\}$, $I/\kt=\sum_y(\cdot)^+-\sum_y(\cdot)=\sum_y(\cdot)^-$, with every summand nonincreasing. If all posteriors lie on one side of $\pi_k$, $(\cdot)^+$ is linear on them and \eqref{eq:mart} gives $I=0$.
 
-(iii) Since $x\mapsto x^+$ is $1$-Lipschitz, $I_j\le\kt\,\E|\Psi(b')-\Psi(b)|$. For $b'=\mathrm{Beta}(\alpha+y,n-\alpha+m-y)$, each factor of $\E_{b'}C^k=\prod_{i<k}\frac{\alpha+y+i}{n+m+i}$ differs from the corresponding factor of $\E_bC^k$ by at most $m/(n+m+i)\le m/n$. All factors lie in $[0,1]$, so $|\E_{b'}C^k-\E_bC^k|\le km/n$.
+(iii) Since $x\mapsto x^+$ is $1$-Lipschitz, $I_j\le\kt\,\E|\Psi(b')-\Psi(b)|$. For $b'=\mathrm{Beta}(\alpha+y,n-\alpha+m-y)$, each factor of $\E_{b'}C^r=\prod_{i<r}\frac{\alpha+y+i}{n+m+i}$ differs from the corresponding factor of $\E_bC^r$ by at most $m/(n+m+i)\le m/n$. All factors lie in $[0,1]$, so $|\E_{b'}C^r-\E_bC^r|\le rm/n$.
 
-(iv) From $\pi=1/2$ the posteriors are $0.2$ and $0.8$, both above $\pi_k$, so (ii) gives $I=0$. The other values are computed in \texttt{verify.py}.
+(iv) From $\pi=1/2$ the posteriors are $0.2$ and $0.8$, both above $\pi_k$, so (ii) gives $I=0$.
+
+(v) The values are computed in \texttt{verify.py}.
 \end{proof}
 
-This is the classical point that the value of information is not monotone in prior uncertainty \cite{gould,hilton}. The true statement is that the investment share is largest near the after-date indifference point, and that it vanishes as beliefs settle.
+This is the classical point that the value of information is not monotone in prior uncertainty \cite{gould,hilton}. The verdict on ``largest when beliefs are least settled'' depends on its reading. Compared across beliefs, it is false: the investment value peaks near the after-date indifference point. Compared at a fixed mean, it is not monotone, but the example does not refute ``largest at the least settled belief''. Under either reading, the investment value vanishes as beliefs settle.
 
 \section{Conjecture 4: tight budgets}\label{sec:c4}
 
@@ -387,9 +403,10 @@ Assume \ref{S:core} and \ref{S:plus}.
 \item \emph{Shadow value (true, by definition).} If $V(b,\cdot)$ is concave, $\mu(B)=[V(B)-V(B-\varepsilon)]/\varepsilon$ is nonincreasing in $B$.
 \item \emph{The premise usually fails.} Suppose step $j$ has entry price $k_j>0$, $\pp_j>0$, and $G_j(b,\sigma k_j)>0$. Then $V_j(b,\cdot)$ jumps up at $B=\sigma k_j$ and is not concave on any interval containing $\sigma k_j$ in its interior.
 \item \emph{Thresholds (true in the core model, with no concavity needed).} $G_j(b,\cdot)$ is nondecreasing in $B$ for every $b$ and $j$. So the set of beliefs at which the agent asks shrinks as the budget falls.
-\item \emph{Spend (true under concavity).} If $V_{j+1}(b',\cdot)$ is concave for every $b'$, every selection of the optimal spend $s_j^*(b,B)$ can be taken nondecreasing in $B$. With less budget, the agent spends less, as if money were more expensive.
-\item \emph{Cheaper opening activities (false).} The cost of the optimal opening activity need not rise with the budget, nor fall with the price of money. See Examples~\ref{ex:openB} and~\ref{ex:openL}.
-\item \emph{Beyond the core.} Once the value after the date uses the budget, as in M2+ where another date must be paid for, thresholds can \emph{fall} as the budget falls. See Example~\ref{ex:m2plus}.
+\item \emph{Spend (true under concavity).} If $V_{j+1}(b',\cdot)$ is concave for every $b'$, the set of optimal spends $s_j^*(b,B)$ is ascending in $B$ in the strong set order. In particular its greatest and least elements are nondecreasing in $B$: with less budget, the agent spends less, as if money were more expensive. By (ii), the premise holds on the whole budget range essentially only when no later step is ever asked. In the core model this mainly covers the last step, where $V_{J+1}=\Vend$ and $s_J^*=\min\{s^0,B/\sigma-k_J\}$ directly.
+\item \emph{Cheaper opening activities: not implied by the shadow-value logic, and false without the premise.} The cost of the optimal opening activity need not fall with the price of money (Example~\ref{ex:openL}). Without the premise, it need not rise with the budget (Example~\ref{ex:openB}). We give no counterexample in which $V$ is concave in $B$.
+\item \emph{Beyond the core, last step (true under the premise).} Suppose the value after the date uses the budget, $\Vend(b,B)$, as in M2+ where another date must be paid for. If $\Vend(b,\cdot)$ is concave, then $G_J(b,\cdot)$ is nondecreasing in $B$.
+\item \emph{Beyond the core, without the premise (false).} If $\Vend(b,\cdot)$ is not concave, thresholds can \emph{fall} as the budget falls (Example~\ref{ex:m2plus}).
 \end{enumerate}
 \end{proposition}
 
@@ -404,7 +421,13 @@ Assume \ref{S:core} and \ref{S:plus}.
 \[
 \E\bigl[V_{j+1}(x)-V_{j+1}(x+d)\bigr],\qquad x=B-\sigma(k_j+s'),\quad d=\sigma(s'-s).
 \]
-This is nondecreasing in $B$ by concavity. So $F$ has increasing differences in $(s,B)$, $S_j(B)=[0,B/\sigma-k_j]$ is ascending, and Topkis' theorem applies.
+This is nondecreasing in $B$ by concavity. So $F$ has increasing differences in $(s,B)$, $S_j(B)=[0,B/\sigma-k_j]$ is ascending, and Topkis' theorem \cite{topkis} applies.
+
+(vi) We have
+\[
+G_J(b,B)=\sup_{s\in S_J(B)}\bigl\{W_J(b;s)-c_J+\Vend(b,B-\sigma(k_J+s))\bigr\}-\Vend(b,B).
+\]
+Let $B<B'$, and let $s$ be $\varepsilon$-optimal at $B$. Then $s$ is feasible at $B'$. With $d=\sigma(k_J+s)$, concavity gives $\Vend(B'-d)-\Vend(B')\ge\Vend(B-d)-\Vend(B)$. Hence $G_J(b,B')\ge G_J(b,B)-\varepsilon$.
 \end{proof}
 
 \begin{example}[Opening activity and the budget]\label{ex:openB}
@@ -422,8 +445,8 @@ Read ``as if money were more expensive'' as a rise in $\lambda$. Let coffee have
 By the envelope theorem, $\partial V^{a}/\partial\lambda=-\sigma\,\E^{a}[\text{outlay}]$. A higher $\lambda$ therefore favours the opening with the lower \emph{expected total outlay}, which need not be the cheaper opening.
 \end{example}
 
-\begin{remark}
-Under the conjecture's own premise, the overall value $V=\max(V^{\mathrm{coffee}},V^{\mathrm{dinner}})$ is concave. Where the optimal opening switches transversally, a maximum of two differentiable functions has a convex kink. So the premise allows switches only at points of tangency, and cannot by itself deliver a systematic move to cheaper openings.
+\begin{remark}[Heuristic]
+Suppose that, under the conjecture's own premise, the overall value $V=\max(V^{\mathrm{coffee}},\,V^{\mathrm{dinner}})$ is concave, and that both $V^a$ are differentiable at a point where the optimal opening switches. At a transversal switch, a maximum of two differentiable functions has a convex kink, so the switch can only occur at a point of tangency. This suggests the premise sits uneasily with any systematic move to cheaper openings. It is not a proof: the entry-price jumps of Proposition~\ref{prop:c4}(ii) break differentiability.
 \end{remark}
 
 \begin{example}[M2+: thresholds can fall with the budget]\label{ex:m2plus}
@@ -431,7 +454,7 @@ At the last step the net value is $w=10$ and the entry price $k=20$, with $\sigm
 \[
 G_J(B)=w+\Vend(B-20)-\Vend(B).
 \]
-This is $10$ at $B=30$, where a second date is unaffordable anyway; $-20$ at $B=50$, where continuing would cost the second date; and $10$ at $B=70$. The agent asks at $30$, ends at $50$, and asks at $70$.
+This is $10$ at $B=30$, where a second date is unaffordable anyway; $-20$ at $B=50$, where continuing would cost the second date; and $10$ at $B=70$. The agent asks at $30$, ends at $50$, and asks at $70$. Here $\Vend(\cdot)$ is a step function and not concave; by Proposition~\ref{prop:c4}(vi), the reversal requires that.
 \end{example}
 
 \section{Conjecture 5: spending to learn}\label{sec:c5}
@@ -447,11 +470,11 @@ Assume \ref{S:core}--\ref{S:qD}, a slack budget and $\pp_j>0$. Beliefs about $q$
 \begin{enumerate}[label=(\roman*)]
 \item \emph{Optimal spend is never below Proposition~1's spend.} Every optimal spend satisfies $s_j^*(b)\ge s^0(\E_bC)$, under all three sting models.
 \item \emph{It falls back as beliefs settle.} Suppose $m(\cdot)$ takes finitely many values, and beliefs settle: $b_n\to\delta_{\bar c}$ weakly, for example Beta beliefs with $n\to\infty$ and mean $\to\bar c$. Then $s_j^*(b_n)\to s^0(\bar c)$.
-\item \emph{``Peaks under uncertainty'' is false.} Take two types and the after-date model of Proposition~\ref{prop:c1-counter}, at the last step, with spend buying a binary signal of accuracy
+\item \emph{``Peaks under uncertainty'' is false.} Take two types and the after-date model of Proposition~\ref{prop:c1-counter}, at a last step with $v=50$ and $k=20$. Spend buys a binary signal of accuracy
 \[
-a(s)=\tfrac12+0.35(1-e^{-s/20})<1-\pi_k .
+\omega(s)=\tfrac12+0.35(1-e^{-s/20})<1-\pi_k .
 \]
-At $\pi=1/2$, where uncertainty is greatest, the information premium is exactly zero: $s^*=s^0=0$. At $\pi_k=0.104$, $s^*=18.85$ while $s^0=0$.
+At $\pi=1/2$, where uncertainty is greatest, the information premium is exactly zero: $s^*=s^0=5$. At $\pi_k=0.104$, $s^*=20.44$ while $s^0=0$. The agent asks at both beliefs: the gain from asking at $s^*$ is $5.58$ at $\pi=1/2$ and $5.95$ at $\pi_k$.
 \end{enumerate}
 \end{proposition}
 
@@ -468,9 +491,9 @@ Hence $\mathrm{EVSI}_m(b)=e_m(b)-V_{j+1}(b)$ is continuous, non-negative, and ze
 \[
 \varepsilon_n=\max_m\mathrm{EVSI}_m(b_n)\to0 .
 \]
-Maximisers of $\Phi_n=f_{\mu_n}+e$ lie in a fixed compact set, because $f_{\mu_n}\to-\infty$ linearly while $e$ varies by at most $\varepsilon_n$. On that set, $f_{\mu_n}\to f_{\bar c}$ uniformly. Since $f_{\bar c}$ is strictly concave with unique maximiser $s^0(\bar c)$, the standard argument applies: for $|s-s^0|\ge\epsilon$, $f_{\bar c}(s)\le f_{\bar c}(s^0)-\eta_\epsilon$. Once $2\varepsilon_n+2\sup|f_{\mu_n}-f_{\bar c}|<\eta_\epsilon$, every maximiser of $\Phi_n$ is within $\epsilon$ of $s^0$.
+Maximisers of $\Phi_n=f_{\mu_n}+e$ lie in a fixed compact set, because $f_{\mu_n}\to-\infty$ linearly while $e$ varies by at most $\varepsilon_n$. On that set, $f_{\mu_n}\to f_{\bar c}$ uniformly. Since $f_{\bar c}$ is strictly concave with unique maximiser $s^0(\bar c)$, the standard argument applies: for $|s-s^0|\ge\epsilon$, $f_{\bar c}(s)\le f_{\bar c}(s^0)-\gamma_\epsilon$. Once $2\varepsilon_n+2\sup|f_{\mu_n}-f_{\bar c}|<\gamma_\epsilon$, every maximiser of $\Phi_n$ is within $\epsilon$ of $s^0$.
 
-(iii) From $\pi=1/2$ the low posterior is $1-a(s)>\pi_k$, so both posteriors lie above the kink and $\mathrm{EVSI}\equiv0$ for every $s$. At $\pi_k$, $\mathrm{EVSI}(s)=\kt(2a(s)-1)\,\pi_k\,\psi(C_H)$ is strictly increasing in $s$. The optimal spends are computed in \texttt{verify.py}.
+(iii) From $\pi=1/2$ the low posterior is $1-\omega(s)>\pi_k$, so both posteriors lie above the kink and $\mathrm{EVSI}\equiv0$ for every $s$. At $\pi_k$, $\mathrm{EVSI}(s)=\kt(2\omega(s)-1)\,\pi_k\,\psi(C_H)$ is strictly increasing in $s$. The optimal spends and the gains from asking are computed in \texttt{verify.py}.
 \end{proof}
 
 \begin{remark}
@@ -526,30 +549,32 @@ Three facts about MLR segments are standard. Let $b_t=(1-t)b_1+tb_2$ with $b_1\l
 
 \emph{Step 1: expectations over MLRP signals preserve $\mathcal C$.} Let $V\in\mathcal C$ and let $z$ be an MLRP signal. Along a segment,
 \[
-\E[V(b_{t,z})]=\sum_z\bigl(A_z(t)+B_z(t)\bigr)\,\phi_z\!\Bigl(\frac{B_z(t)}{A_z(t)+B_z(t)}\Bigr),
+\E[V(b_{t,z})]=\sum_z\bigl(A_z(t)+B_z(t)\bigr)\,\xi_z\!\Bigl(\frac{B_z(t)}{A_z(t)+B_z(t)}\Bigr),
 \]
-with $A_z(t)=(1-t)P(z\mid b_1)$ and $B_z(t)=tP(z\mid b_2)$ affine, and $\phi_z$ convex. This is a perspective, hence convex in $t$. Monotonicity follows from MLRP. Expectations over ratings (independent of $q$) and suprema over spend also preserve $\mathcal C$.
+with $A_z(t)=(1-t)P(z\mid b_1)$ and $B_z(t)=tP(z\mid b_2)$ affine, and $\xi_z$ convex. This is a perspective, hence convex in $t$. Monotonicity follows from MLRP. Expectations over ratings (independent of $q$) and suprema over spend also preserve $\mathcal C$.
 
 \emph{Step 2: the ask step preserves $\mathcal C$.} Suppose $X\in\mathcal C$, and recall from Lemma~\ref{lem:core} that $V_j-\Vend=f(p)^+X(b_{\mathrm{yes}})^+$.
 
 Monotonicity: by (K), $f=p\cdot(f/p)$ is nondecreasing where positive; $p$ is nondecreasing in the order; and $b\mapsto b_{\mathrm{yes}}$ is monotone.
 
-Convexity along a segment: let $g(t)=f(p(t))\,\phi(s(t))$, where $\phi(s)=X$ along the yes-segment is convex and nondecreasing. Assume $\phi\in C^2$ for now. Since $s'=\bar p_1\bar p_2/\bar p^2\ge0$ and $s''=-2\bar p's'/\bar p$,
+Convexity along a segment: let $g(t)=f(p(t))\,\xi(s(t))$, where $\xi(s)=X$ along the yes-segment is convex and nondecreasing, and $p(t)=\varphi_j\bar p(t)$. Since $p'/p=\bar p'/\bar p$, we have $s'=\bar p_1\bar p_2/\bar p^2\ge0$ and $s''=-2\bar p's'/\bar p=-2p's'/p$. Suppose first that $\xi\in C^2$. Then
 \[
-g''=f''\,p'^2\,\phi+f\,\phi''\,s'^2+2\,p'\phi's'\Bigl(f'-\frac fp\Bigr).
+g''=f''\,p'^2\,\xi+f\,\xi''\,s'^2+2\,p'\xi's'\Bigl(f'-\frac fp\Bigr).
 \]
-On the set where $f>0$ and $\phi>0$, every term is non-negative:
+On the set where $f>0$ and $\xi>0$, every term is non-negative:
 \begin{itemize}[nosep]
 \item $f''\ge0$ by (K);
 \item $p'\ge0$, because LR order implies ordered means;
-\item $\phi'\ge0$ and $\phi''\ge0$;
+\item $\xi'\ge0$ and $\xi''\ge0$;
 \item $f'-f/p=p\,(f/p)'\ge0$ by (K).
 \end{itemize}
-A general convex nondecreasing $\phi$ is a uniform limit of $C^2$ ones, and convexity survives limits. The set where $f>0$ and $\phi>0$ is an interval $[t_0,1]$, and $g$ vanishes at $t_0$ if $t_0>0$. So $f^+\phi^+$ is $0$ on $[0,t_0]$ and convex nondecreasing on $[t_0,1]$, hence convex on $[0,1]$.
+For general $\xi$, the set $T=\{t:f(p(t))>0,\ \xi(s(t))>0\}$ is open in $[0,1]$ and, as shown next, an interval. Fix a compact subinterval $K\subset T$ on which $s(t)$ stays in $[\underline s,\bar s]\subset(0,1)$. On $[\underline s,\bar s]$, $\xi$ is a uniform limit of $C^2$ convex nondecreasing functions $\xi_n$ (mollify), and $\xi_n>0$ on $s(K)$ for $n$ large. So $g_n=f\,\xi_n\circ s$ is convex on $K$, and so is its uniform limit $g$. Convexity on every compact subinterval gives convexity on $T$, and continuity extends it to $\bar T$.
+
+Because $f(p(t))$ is nondecreasing where positive and $\xi\circ s$ is nondecreasing, $\bar T$ is an interval $[t_0,1]$. If $t_0>0$, then $g(t_0)=0$ by continuity, since $s(t_0)\in(0,1)$ and $\xi$ is continuous there. So $f^+\xi^+$ is $0$ on $[0,t_0]$ and convex nondecreasing on $[t_0,1]$, hence convex on $[0,1]$.
 
 Induction on $j$, starting from $V_{J+1}-\Vend\equiv0$, gives $V_j(b_C,\cdot)-\Vend(b_C)\in\mathcal C$.
 
-\emph{Step 3: from convexity on segments to non-negative EVSI.} Let $z\in\{z_1<\dots<z_K\}$ be an MLRP signal. Reveal it in stages: first whether $z=z_K$, then, given $z<z_K$, whether $z=z_{K-1}$, and so on. At each stage MLRP implies $b_{\{z=z_k\}}\ge_{\mathrm{LR}}b_{\{z<z_k\}}$, and the current belief lies on the MLR segment between them. So the expected value weakly rises at each stage. The tower property gives $\E[V(b_z)]\ge V(b)$.
+\emph{Step 3: from convexity on segments to non-negative EVSI.} Let $z\in\{z_1<\dots<z_N\}$ be an MLRP signal. Reveal it in stages: first whether $z=z_N$, then, given $z<z_N$, whether $z=z_{N-1}$, and so on. At each stage MLRP implies $b_{\{z=z_i\}}\ge_{\mathrm{LR}}b_{\{z<z_i\}}$, and the current belief lies on the MLR segment between them. So the expected value weakly rises at each stage. The tower property gives $\E[V(b_z)]\ge V(b)$.
 \end{proof}
 
 \begin{example}[Negative EVSI under D1]\label{ex:neg}
@@ -572,42 +597,42 @@ Let $q\in\{0.1,0.8,1\}$ with prior $(\tfrac14,\tfrac12,\tfrac14)$, and use the s
 \begin{itemize}[nosep]
 \item Prior: $V=0.2363\times0.0906=0.0214$.
 \item Posterior ``extreme'': $V=0.055\times0.2679=0.0147$.
-\item Posterior ``middling'': $V=0$, because step 2 is no longer worth asking for and step 1 is not worth taking alone.
+\item Posterior ``middling'': $V=0$. Step 2 would still be asked for ($\pp=0.48>0$), but its value $0.48$ no longer covers step 1's net loss: $G_1=-0.5+0.48=-0.02<0$.
 \end{itemize}
 So $\mathrm{EVSI}=0.0074-0.0214=-0.0140<0$.
 \end{example}
 
 \paragraph{Answer to the open question.}
-In the core model, the value of information can be negative only for information about willingness that is not ordered by the likelihood ratio. Ratings, and cues of the kind used in Section~5.4, which are MLRP, always have non-negative value. This is consistent with the proposal's numerical search, which found no counterexample.
+In the core model with $q_D$ known, consider signals informative about $C$ alone or about $q$ alone. Among these, only information about willingness that is not ordered by the likelihood ratio can have negative value. Ratings, and cues of the kind used in Section~5.4, which are MLRP, always have non-negative value. This is consistent with the proposal's numerical search, which found no counterexample. Three cases are not covered: signals informative about both $C$ and $q$, signals about $q_D$ when it is uncertain, and settings with $\ell>0$, such as the full recursion of M2+ or the joint prior of A.3.
 
 \section{The conjectural prediction about opening activities}
 
-Prediction~6 of Appendix~A.9 says that more uncertainty before the date favours a more informative opening activity, depending on where beliefs sit relative to the decision threshold. As an unconditional statement this is false, for the same reason as Proposition~\ref{prop:inv}(iv): at maximal uncertainty the EVSI of both openings can be zero. What is true follows from Theorem~\ref{thm:voi}(a), Blackwell's theorem and Proposition~\ref{prop:inv}:
+Prediction~6 of Appendix~A.9 says that more uncertainty before the date favours a more informative opening activity, depending on where beliefs sit relative to the decision threshold. As stated, it is conditional and not precise enough to prove or refute. What the results above give is:
 \begin{itemize}[nosep]
-\item the informativeness premium of a Blackwell-more-informative opening is never negative;
-\item it vanishes as beliefs settle;
-\item with two types it is largest near the relevant indifference point.
+\item the informativeness premium of a Blackwell-more-informative opening is never negative (Theorem~\ref{thm:voi}(a) and Blackwell's theorem);
+\item the premium vanishes as beliefs settle (the argument of Proposition~\ref{prop:c5}(ii));
+\item for the part of the premium that comes from the after-date choice, with two types, the premium is largest near the after-date indifference point and can be zero at maximal uncertainty (Proposition~\ref{prop:inv}). The full opening premium also involves the on-the-day kinks of $V_1$, and we do not locate its peak.
 \end{itemize}
 
 \section{Suggested changes to the proposal}
 
 \begin{enumerate}
 \item Replace Conjecture~1 by Theorem~\ref{thm:c1} with Corollary~\ref{cor:c1}, and cite Proposition~\ref{prop:c1-counter}. Where (M) fails, the card may need more than one boundary near the after-date indifference point.
-\item Replace Conjectures~2 and~3 (first part) by Lemma~\ref{lem:pivot} and Theorems~\ref{thm:c2}--\ref{thm:c3}. Keep the Phase~C statements, which are true. Note that in the core model $R$ affects escalation only through information, because $h$ does not depend on the step reached. Prediction~2 (market thickness) and Prediction~5 (relationship value) of Appendix~A.9 should be restated accordingly.
+\item For the core model, add Lemma~\ref{lem:pivot} and Theorems~\ref{thm:c2}--\ref{thm:c3}. Keep the Phase~C statements, which are true. Note that in the core model $R$ affects escalation only through information, because $h$ does not depend on the step reached. Keep Conjectures~2 and~3 as open M2+ statements, noting that the core model shows their signs are not structural. Prediction~2 (market thickness) and Prediction~5 (relationship value) of Appendix~A.9 should carry the same caveat.
 \item Replace ``largest when beliefs are least settled'', in Conjectures~3 and~5 and in Prediction~6, by ``largest near the after-date indifference point, and vanishing as beliefs settle''.
-\item In Conjecture~4, drop the concavity premise, which fails whenever entry prices bind. State Proposition~\ref{prop:c4}(iii)--(iv) instead, and drop ``cheaper opening activities'' from the conjecture and from Prediction~3.
+\item In Conjecture~4, note that the concavity premise fails whenever entry prices bind. State Proposition~\ref{prop:c4}(iii), (iv) and (vi) instead. Weaken ``cheaper opening activities'', in the conjecture and in Prediction~3, given Examples~\ref{ex:openB} and~\ref{ex:openL}.
 \item In Section~4.4 and the ``Convexity'' bullet of Section~8, replace the open question with Theorem~\ref{thm:voi}.
 \item Technical points:
 \begin{itemize}[nosep]
 \item state the convention $\kappa\Delta^+$;
 \item note that the fractional likelihood is a quasi-likelihood, so results relying on the martingale property are exact only with integer $m_a$;
 \item record the closed form in Remark~\ref{rem:closed};
-\item record that $\ell=0$ throughout the core model (Lemma~\ref{lem:core}), so the decision to ask on the day reduces to $p\ge p^*_m(0)$ together with $G\ge0$.
+\item record, extending the proposal's own Remark after Proposition~3, that $\ell=0$ at every step of the core model (Lemma~\ref{lem:core}), so the decision to ask on the day reduces to $p\ge p^*_m(0)$ together with $G\ge0$.
 \end{itemize}
 \end{enumerate}
 
 \section*{Numerical verification}
-\texttt{python3 verify.py} reproduces every number above and runs randomised checks of:
+\texttt{python3 verify.py} reproduces every number above and runs randomised checks. Its labels refer to results by name, not number. It checks:
 \begin{itemize}[nosep]
 \item Corollary~\ref{cor:c1}(b)--(c): monotone $G_j$ whenever the condition holds;
 \item the sign pattern of Lemma~\ref{lem:pivot} for $U$ and $R$, at several thousand belief points;

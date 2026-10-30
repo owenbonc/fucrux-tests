@@ -11,6 +11,7 @@ import itertools
 import math
 
 import numpy as np
+from scipy.optimize import brentq
 from scipy.special import betaln, comb
 
 rng = np.random.default_rng(20261030)
@@ -203,12 +204,14 @@ runs = [(grid[i], ask[i]) for i in range(len(grid)) if i == 0 or ask[i] != ask[i
 print("  ask region switches at pi =", [f"{x:.3f}:{'ask' if a else 'end'}" for x, a in runs])
 for x in [0.05, pik, 0.2, 0.4, 0.6, 0.7, 0.9]:
     print(f"    pi={x:.4f}  E[C]={fam.mean(x):.3f}  G={day.G(0, x):9.3f}  I={day.I(0, x):8.3f}  ask={day.asks(0, x)}")
+roots = [brentq(lambda x: day.G(0, x), lo, hi) for lo, hi in [(0.05, 0.1), (0.2, 0.3), (0.6, 0.7)]]
+print("  exact switch points (bisection):", [f"{r:.4f}" for r in roots])
 check("C1 counterexample: G changes sign 3 times (ask set not an interval)", sign_changes(G) == 3,
       f"{sign_changes(G)} changes")
-check("C1 counterexample: condition (M2) of Cor. 1b is violated",
+check("C1 counterexample: two-type sufficient condition (Cor. b) is violated",
       50 * (0.8 - 0.2) < day.kt * abs(xH - xL), f"{50*0.6:.1f} < {day.kt*abs(xH-xL):.1f}")
 
-# Theorem 1 / Corollary 1b: random two-type models satisfying the condition.
+# Threshold theorem / corollary (b): random two-type models satisfying the condition.
 ok, tested = True, 0
 for t in range(400):
     cL, cH = sorted(rng.uniform(0, 1, 2))
@@ -229,10 +232,10 @@ for t in range(400):
         g = np.array([d.G(j, x) for x in np.linspace(0.001, 0.999, 300)])
         if np.any(np.diff(g) < -1e-7):
             ok = False
-print(f"  random two-type models satisfying Cor. 1b: {tested}")
-check("Cor. 1b: G_j nondecreasing in pi at every step whenever the condition holds", ok and tested > 50)
+print(f"  random two-type models satisfying corollary (b): {tested}")
+check("Threshold corollary (b), two types: G_j nondecreasing in pi at every step whenever the condition holds", ok and tested > 50)
 
-# Corollary 1c, Beta family: X_n(alpha) nondecreasing and kt*slope <= v_j  =>  G_j nondecreasing.
+# Threshold corollary (c), Beta family: X_n(alpha) nondecreasing and kt*slope <= v_j  =>  G_j nondecreasing.
 ok, tested = True, 0
 fb = BetaB()
 for t in range(150):
@@ -246,7 +249,7 @@ for t in range(150):
     cs = np.linspace(0, 1, 2001)
     pv = np.array([psi_fun(P)(c) for c in cs])
     if np.any(np.diff(pv) < 0):
-        continue           # Cor. 1c is stated for nondecreasing psi
+        continue           # corollary (c) is stated for nondecreasing psi
     slope = np.max(np.diff(pv) / np.diff(cs))
     if not all(s["v"] >= d.kt * slope for s in steps):
         continue
@@ -257,8 +260,8 @@ for t in range(150):
         g = np.array([d.G(j, (n * u, n * (1 - u))) for u in np.linspace(0.02, 0.98, 120)])
         if np.any(np.diff(g) < -1e-7):
             ok = False
-print(f"  random Beta models satisfying Cor. 1c: {tested}")
-check("Cor. 1c: G_j nondecreasing in E[C] (Beta, fixed n) whenever the condition holds", ok and tested > 20)
+print(f"  random Beta models satisfying corollary (c): {tested}")
+check("Threshold corollary (c), Beta: G_j nondecreasing in E[C] (Beta, fixed n) whenever the condition holds", ok and tested > 20)
 
 # ============================================================================
 print("\nConjectures 2 and 3 -- outside option and relationship value (pivotality lemma)")
@@ -297,7 +300,7 @@ for name, key, step in [("U", "U", 50.0), ("R", "R", 300.0)]:
             else:
                 continue
             agree &= bool(want)
-    check(f"Lemma 3 sign pattern for {name} on random models ({tested} belief points)", agree and tested > 500)
+    check(f"Pivotality lemma sign pattern for {name} on random models ({tested} belief points)", agree and tested > 500)
 
 # Explicit counterexamples on the Conjecture-1 model.
 x = 0.20
@@ -322,12 +325,12 @@ def switch_points(P):
 print("  switch points of the ask set (U):", [f"{v:.4f}" for v in switch_points(P1)],
       "->", [f"{v:.4f}" for v in switch_points(PU)])
 
-# A model that satisfies Cor. 1b (so the ask set is a threshold), threshold moves the "wrong" way.
+# A model that satisfies corollary (b) (so the ask set is a threshold), threshold moves the "wrong" way.
 P2 = dict(P1, R=600.0, U=100.0, steps=[dict(v=100.0, k=32.0, c=0.0, phi=1.0, m=1)])
 d2 = Day(P2, fam)
 ps2 = psi_fun(P2)
-print(f"  threshold model: v(C_H-C_L)={100*0.6:.1f} >= kt|psi(C_H)-psi(C_L)|={d2.kt*abs(ps2(0.8)-ps2(0.2)):.2f}")
-check("threshold model satisfies Cor. 1b", 100 * 0.6 >= d2.kt * abs(ps2(0.8) - ps2(0.2)))
+print(f"  threshold model (corollary (b) checked at base; single crossing checked numerically for each shift): v(C_H-C_L)={100*0.6:.1f} >= kt|psi(C_H)-psi(C_L)|={d2.kt*abs(ps2(0.8)-ps2(0.2)):.2f}")
+check("threshold model satisfies corollary (b) at the base parameters", 100 * 0.6 >= d2.kt * abs(ps2(0.8) - ps2(0.2)))
 fine = np.linspace(0.0005, 0.9995, 19991)
 
 
@@ -335,7 +338,7 @@ def threshold(P):
     g = np.array([G_at(P, x) for x in fine])
     assert sign_changes(g) == 1, "not a threshold"
     i = int(np.argmax(g >= 0))
-    return fine[i]
+    return brentq(lambda x: G_at(P, x), fine[i - 1], fine[i])
 
 
 t0 = threshold(P2)
@@ -357,13 +360,13 @@ check("C3(ii) counterexample: investment value zero at maximal uncertainty, posi
       abs(I_half) < 1e-9 and I_k > 1)
 Is = np.array([day.I(0, x) for x in grid])
 imax = grid[np.argmax(Is)]
-check("Prop 5(ii): investment value unimodal with peak at the Phase-C kink",
+check("Investment-value proposition (ii): unimodal with peak at the Phase-C kink",
       sign_changes(np.diff(Is)) <= 1 and abs(imax - pik) < 2e-3, f"argmax {imax:.4f} vs pi_k {pik:.4f}")
 # settling: Beta with growing n at fixed mean near the Phase-C kink in mean
 dB = Day(P1, fb)
 vals = [dB.I(0, (n * 0.3, n * 0.7)) for n in [2, 8, 32, 128, 512, 2048]]
 print("  Beta, mean 0.3, I at n=2..2048:", [f"{v:.3f}" for v in vals])
-check("Prop 5(iii): investment value -> 0 as beliefs settle", vals[-1] < 0.05 * max(vals))
+check("Investment-value proposition (iii): investment value -> 0 as beliefs settle", vals[-1] < 0.05 * max(vals))
 ns = [1, 2, 4, 8, 16, 32, 64]
 nonmono = [dB.I(0, (n * 0.3, n * 0.7)) for n in ns]
 print("  Beta, mean 0.3, I at n=1..64:", [f"{v:.3f}" for v in nonmono])
@@ -497,13 +500,13 @@ for t in range(40):
         vals = [-1e18 if v is None else v for v in vals]
         if np.any(np.diff(vals) < -1e-8):
             ok = False
-check("Prop 6(iii): core-model G_j(b,B) nondecreasing in B", ok)
+check("Budget proposition (iii): core-model G_j(b,B) nondecreasing in B", ok)
 
 # ============================================================================
 print("\nConjecture 5 -- spending to learn")
 # ============================================================================
 # Last step, spend s sharpens a binary signal of accuracy a(s) about the type.
-def spend_opt(pi, P=P1, v=50.0, k=30.0, a_max=0.85, s0=20.0):
+def spend_opt(pi, P=P1, v=50.0, k=20.0, a_max=0.85, s0=20.0):
     ktv = kt(P)
     ps = psi_fun(P)
     xL, xH = ps(fam.cL), ps(fam.cH)
@@ -520,18 +523,22 @@ def spend_opt(pi, P=P1, v=50.0, k=30.0, a_max=0.85, s0=20.0):
     vals = [obj(s)[0] for s in ss]
     s_star = ss[int(np.argmax(vals))]
     s0_ = max(mu * v / (P["sigma"] * P["lam"]) - k, 0.0)
-    return s_star, s0_
+    # gain from asking at s* relative to ending: W(s*) + EVSI(s*)  (last step, budget slack)
+    G_star = mu * v * (1 + math.log1p(s_star / k)) - P["sigma"] * P["lam"] * (k + s_star) + obj(s_star)[1]
+    return s_star, s0_, G_star
 
 
 for pi in [pik, 0.5]:
-    s_star, s0_ = spend_opt(pi)
-    print(f"  pi={pi:.4f}: Var-share pi(1-pi)={pi*(1-pi):.3f}  s*={s_star:.2f}  Prop-1 spend={s0_:.2f}")
-ss_k, s0_k = spend_opt(pik)
-ss_h, s0_h = spend_opt(0.5)
+    s_star, s0_, Gs = spend_opt(pi)
+    print(f"  pi={pi:.4f}: pi(1-pi)={pi*(1-pi):.3f}  s*={s_star:.2f}  Prop-1 spend={s0_:.2f}  G(s*)={Gs:.2f}")
+ss_k, s0_k, G_k = spend_opt(pik)
+ss_h, s0_h, G_h = spend_opt(0.5)
+check("C5 counterexample: the agent asks at both beliefs (G(s*) > 0)", G_k > 0 and G_h > 0)
 check("C5 counterexample: spend premium zero at maximal uncertainty, positive near the kink",
       abs(ss_h - s0_h) < 0.02 and ss_k - s0_k > 1.0)
+check("C5 counterexample: accuracy stays below 1 - pi_k", 0.85 < 1 - pik)
 prem = [spend_opt(p)[0] - spend_opt(p)[1] for p in np.linspace(0.01, 0.99, 99)]
-check("Prop 7(i): s* >= Prop-1 spend at every belief", min(prem) > -0.02)
+check("Spend-to-learn proposition (i): s* >= Prop-1 spend at every belief", min(prem) > -0.02)
 
 # ============================================================================
 print("\nValue of information (Section 4.4 open question)")
@@ -553,7 +560,7 @@ for t in range(200):
     v = np.array([d.V(0, x) for x in xs])
     if np.min(v[:-2] - 2 * v[1:-1] + v[2:]) < -1e-7 * max(1, np.max(np.abs(v))):
         ok = False
-check("Thm 8(a): V_0 convex in beliefs about C under D1, D2, KR (random models)", ok)
+check("VOI theorem (a): V_0 convex in beliefs about C under D1, D2, KR (random models)", ok)
 
 
 # (b) Information about q: MLRP signals, general (grid) priors on q, C known, V_end = 0
@@ -601,7 +608,7 @@ for model in ["D1", "D2", "KR"]:
         w_min = min(w_min, ev - v0)
     worst[model] = w_min
 print("  most negative EVSI of an MLRP cue found:", {k: f"{v:.2e}" for k, v in worst.items()})
-check("Thm 8(b): EVSI of MLRP signals about q is non-negative (random search)",
+check("VOI theorem (b): EVSI of MLRP signals about q is non-negative (random search)",
       all(v > -1e-10 for v in worst.values()))
 
 # (c) Non-MLRP signal about q with negative value (three-point prior, D1, two steps)
@@ -624,7 +631,7 @@ for eta in [0.0, 0.5]:
     ev = p1 * V3(b1, eta) + (1 - p1) * V3(b2, eta) - V3(b0, eta)
     print(f"  eta={eta}: V(prior)={V3(b0, eta):.5f}, E V(posterior)={V3(b0, eta)+ev:.5f}, EVSI={ev:.5f}")
 ev = p1 * V3(b1, 0.5) + (1 - p1) * V3(b2, 0.5) - V3(b0, 0.5)
-check("Example 9: a non-MLRP signal about q has negative value under D1 (eta=0.5)", ev < -1e-4, f"EVSI={ev:.5f}")
+check("Negative-EVSI example (D1): a non-MLRP signal about q has negative value under D1 (eta=0.5)", ev < -1e-4, f"EVSI={ev:.5f}")
 for model in ["D2", "KR"]:
     def V3m(b, eta=0.5):
         st = (model, eta)
@@ -633,7 +640,7 @@ for model in ["D2", "KR"]:
         X = max(0.0, phat(Eqy, st) * 1.0)
         return max(0.0, phat(Eq, st) * X)
     ev_m = p1 * V3m(b1) + (1 - p1) * V3m(b2) - V3m(b0)
-    print(f"  {model}, eta=0.5, same example: EVSI={ev_m:.5f} (positive: this example is specific to D1)")
+    print(f"  {model}, eta=0.5, same example: EVSI={ev_m:.5f} (positive: the D1 example does not carry over)")
 # D2 / KR version: q in {0.1, 0.8, 1.0}, prior (1/4, 1/2, 1/4), same 'extreme vs middling' signal,
 # eta = 2 under D2 (equivalently eta(Lambda-1) = 2 under KR), step values w1 = -1/2, w2 = 1.
 Q3b = np.array([0.1, 0.8, 1.0])
@@ -649,6 +656,6 @@ for model, st in [("D2", ("D2", 2.0)), ("KR", ("KR", 2.0, 2.0))]:
         return max(0.0, f(Eq) * X) if X > 0 else 0.0
     ev_b = p1b * V3b(b1b) + (1 - p1b) * V3b(b2b) - V3b(b0b)
     print(f"  {model}: V(prior)={V3b(b0b):.5f}, V(b1)={V3b(b1b):.5f}, V(b2)={V3b(b2b):.5f}, EVSI={ev_b:.5f}")
-    check(f"Example 9': a non-MLRP signal about q has negative value under {model}", ev_b < -1e-3)
+    check(f"Negative-EVSI example (D2/KR): a non-MLRP signal about q has negative value under {model}", ev_b < -1e-3)
 
 print("\n" + ("ALL CHECKS PASSED" if not FAILS else f"{len(FAILS)} CHECK(S) FAILED: {FAILS}"))
