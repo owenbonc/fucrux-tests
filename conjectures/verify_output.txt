@@ -1,0 +1,79 @@
+
+Conjecture 1 -- threshold rules
+  psi(C_L)=-78.752  psi(C_H)=676.192  Phase-C kink pi_k=0.1043  kt=0.760
+  ask region switches at pi = ['0.001:end', '0.071:ask', '0.232:end', '0.667:ask']
+    pi=0.0500  E[C]=0.230  G=   -9.316  I=   9.184  ask=False
+    pi=0.1043  E[C]=0.263  G=   15.294  I=  32.165  ask=True
+    pi=0.2000  E[C]=0.320  G=    3.749  I=  17.749  ask=True
+    pi=0.4000  E[C]=0.440  G=   -8.000  I=   0.000  ask=False
+    pi=0.6000  E[C]=0.560  G=   -2.000  I=   0.000  ask=False
+    pi=0.7000  E[C]=0.620  G=    1.016  I=   0.000  ask=True
+    pi=0.9000  E[C]=0.740  G=    7.760  I=   0.000  ask=True
+  PASS  C1 counterexample: G changes sign 3 times (ask set not an interval)   [3 changes]
+  PASS  C1 counterexample: condition (M2) of Cor. 1b is violated   [30.0 < 573.8]
+  random two-type models satisfying Cor. 1b: 273
+  PASS  Cor. 1b: G_j nondecreasing in pi at every step whenever the condition holds
+  random Beta models satisfying Cor. 1c: 95
+  PASS  Cor. 1c: G_j nondecreasing in E[C] (Beta, fixed n) whenever the condition holds
+
+Conjectures 2 and 3 -- outside option and relationship value (pivotality lemma)
+  PASS  Lemma 3 sign pattern for U on random models (7305 belief points)
+  PASS  Lemma 3 sign pattern for R on random models (7343 belief points)
+  at pi=0.2: Psi=72.24 (ask after date), G=3.749, G(U+20)=5.449, G(R+100)=2.628
+  PASS  C2 counterexample: higher U raises G (lowers the continuation threshold)
+  PASS  C3 counterexample: higher R lowers G (raises the continuation threshold)
+  at pi=0.07: Psi=-25.91 (cut after date), G=-0.254, G(U+20)=-0.926, G(R+100)=0.600
+  PASS  C2 holds where Phase C cuts: higher U lowers G
+  PASS  C3 holds where Phase C cuts: higher R raises G
+  switch points of the ask set (U): ['0.0710', '0.2315', '0.6670'] -> ['0.0725', '0.2450', '0.6670']
+  threshold model: v(C_H-C_L)=60.0 >= kt|psi(C_H)-psi(C_L)|=57.38
+  PASS  threshold model satisfies Cor. 1b
+  threshold pi*: base 0.1605 (Psi there 4.24 > 0), U+5 -> 0.1508, R+30 -> 0.1677
+  PASS  C2 counterexample in a threshold model: higher U lowers the threshold
+  PASS  C3 counterexample in a threshold model: higher R raises the threshold
+  threshold pi* (k=25): base 0.0606 (Psi there -3.30 < 0), U+5 -> 0.0622, R+30 -> 0.0584
+  PASS  C2/C3 hold where Phase C cuts: higher U raises, higher R lowers the threshold
+  investment value I(1/2)=0.0000, I(pi_k)=32.1649
+  PASS  C3(ii) counterexample: investment value zero at maximal uncertainty, positive at the kink
+  PASS  Prop 5(ii): investment value unimodal with peak at the Phase-C kink   [argmax 0.1045 vs pi_k 0.1043]
+  Beta, mean 0.3, I at n=2..2048: ['8.311', '4.135', '3.562', '0.000', '0.000', '0.000']
+  PASS  Prop 5(iii): investment value -> 0 as beliefs settle
+  Beta, mean 0.3, I at n=1..64: ['16.243', '8.311', '4.685', '4.135', '4.717', '3.562', '0.449']
+  PASS  I at fixed mean is not monotone in n: I(n=16) > I(n=8)
+
+Conjecture 4 -- tight budgets
+  PASS  V(B) is not concave when a step with positive net value has an entry price
+  B=10: values {coffee: 2.231} -> coffee
+  B=45: values {coffee: 2.231, dinner: 22.067} -> dinner
+  B=60: values {coffee: 25.769, dinner: 24.328} -> coffee
+  B=80: values {coffee: 26.559, dinner: 24.328} -> coffee
+  PASS  C4 counterexample: dinner opening at B=45, coffee opening at B=80
+  coffee-first minus dinner-first at lambda=1.30, 1.35, 1.40: [0.4076, 0.0, -0.4]
+  PASS  C4 counterexample: a higher price of money switches the opening from coffee to dinner
+  PASS  closed form W* = x ln(x/(sigma lam k)) (x=25.0, k=10.0)
+  PASS  closed form W* = x ln(x/(sigma lam k)) (x=63.0, k=40.0)
+  M2+ example G_J(B) at B=30,50,70: [10.0, -20.0, 10.0]
+  PASS  M2+: ask at B=30, end at B=50, ask at B=70
+  PASS  Prop 6(iii): core-model G_j(b,B) nondecreasing in B
+
+Conjecture 5 -- spending to learn
+  pi=0.1043: Var-share pi(1-pi)=0.093  s*=18.85  Prop-1 spend=0.00
+  pi=0.5000: Var-share pi(1-pi)=0.250  s*=0.00  Prop-1 spend=0.00
+  PASS  C5 counterexample: spend premium zero at maximal uncertainty, positive near the kink
+  PASS  Prop 7(i): s* >= Prop-1 spend at every belief
+
+Value of information (Section 4.4 open question)
+  PASS  Thm 8(a): V_0 convex in beliefs about C under D1, D2, KR (random models)
+  most negative EVSI of an MLRP cue found: {'D1': '-2.22e-16', 'D2': '0.00e+00', 'KR': '0.00e+00'}
+  PASS  Thm 8(b): EVSI of MLRP signals about q is non-negative (random search)
+  eta=0.0: V(prior)=0.39200, E V(posterior)=0.39200, EVSI=0.00000
+  eta=0.5: V(prior)=0.18700, E V(posterior)=0.18123, EVSI=-0.00577
+  PASS  Example 9: a non-MLRP signal about q has negative value under D1 (eta=0.5)   [EVSI=-0.00577]
+  D2, eta=0.5, same example: EVSI=0.00155 (positive: this example is specific to D1)
+  KR, eta=0.5, same example: EVSI=0.00155 (positive: this example is specific to D1)
+  D2: V(prior)=0.02140, V(b1)=0.01474, V(b2)=0.00000, EVSI=-0.01403
+  PASS  Example 9': a non-MLRP signal about q has negative value under D2
+  KR: V(prior)=0.02140, V(b1)=0.01474, V(b2)=0.00000, EVSI=-0.01403
+  PASS  Example 9': a non-MLRP signal about q has negative value under KR
+
+ALL CHECKS PASSED
