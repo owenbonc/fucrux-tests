@@ -1,0 +1,339 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\newcommand{\E}{\mathbb{E}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}{Standing assumption}
+\renewcommand{\theassumption}{S\arabic{assumption}}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Vend}{V_{\mathrm{end}}}
+\newcommand{\pp}{\hat p}
+\newcommand{\py}{\pi_{\mathrm{yes}}}
+\newcommand{\pn}{\pi_{\mathrm{no}}}
+\newcommand{\qb}{\bar q}
+
+\title{The conjectures of the revised proposal\\(chemistry prior, commitment, several dates):\\ proofs, counterexamples and corrected statements}
+\author{Second companion note}
+\date{31 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The revised proposal keeps the benchmark model (M2) and adds two relaxations: a two-class chemistry prior (M3) and commitment (M4). It states five conjectures. Conjectures~4 and~5, and the benchmark part of Conjecture~1, are unchanged; the first companion note settles them, and its results stand. This note settles the rest.
+\begin{itemize}[nosep]
+\item \emph{Conjecture~1 on the chemistry prior is false}, for two separate reasons. The after-date decision can make information pivotal, as in the benchmark. More strikingly, \emph{any} sting breaks threshold rules once a relationship is valuable enough. A refusal is most informative at intermediate beliefs, so the agent asks when fairly sure the chemistry is low, and when fairly sure it is high, but not in between. Without a sting, and with an after-date plan that does not depend on beliefs, threshold rules hold at every step.
+\item \emph{Conjecture~2 is true at certainty and false in general.} With a known high-chemistry match, a higher relationship value always raises the value of escalating. At any fixed belief short of certainty it can lower it, when commitment is weak relative to the fear of bad news; an exact asymptotic slope says which. The claim that the range of beliefs with negative commitment value shrinks with $R$ holds whenever the after-date plan does not switch. It fails, though only by small amounts, when it does.
+\item \emph{Conjecture~3 is false} in the several-dates model built on the chemistry prior, solved exactly by value iteration. A better outside option lowers the threshold for continuing at beliefs where the agent would ask for another date. Its Phase~C part is true.
+\end{itemize}
+Two further findings bear on the proposal. Under the chemistry prior with a sting, even a monotone signal about chemistry can have negative value. And Proposition~6 needs an extra condition. Every number is reproduced by \texttt{verify\_v2.py} (model code in \texttt{chem.py}).
+\end{abstract}
+
+\section*{Summary}
+\begin{center}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.7cm}>{\raggedright\arraybackslash}p{3.4cm}>{\raggedright\arraybackslash}p{8.6cm}@{}}
+\toprule
+Claim & Verdict & What is proved \\
+\midrule
+Conjecture 1, chemistry prior & False (Props.~\ref{prop:c1A}, \ref{prop:c1B}) & Thresholds in $\pi$ at every step without a sting, when the after-date plan is the same at every belief (Theorem~\ref{thm:c1}). With a sting, the last-step rule is ``ask iff $A\ge\rho(\pi)$'', with $\rho$ zero at $\pi=0,1$ and positive in between. For large $R$ this yields two asking bands, near $0$ and near $1$ (Proposition~\ref{prop:c1B}). \\[2pt]
+Conjecture 1, benchmark & Unchanged & First note: false in general, true under condition (M). \\[2pt]
+Conjecture 2, first part & True at $\pi=1$; false at fixed $\pi<1$ in general & At $\pi=1$ the gain from a yes is nondecreasing in $R$, under any stings (Theorem~\ref{thm:c2a}). For large $R$, $\partial D/\partial R=\Phi(\pi)$ exactly, with $\Phi>0$ near $\pi=1$ and possibly $\Phi<0$ elsewhere (Proposition~\ref{prop:asym}). \\[2pt]
+Conjecture 2, second part & True without plan switches; false in general & The negative-commitment set shrinks with $R$ at beliefs where the after-date plan does not switch, and always at $\pi=0,1$. A counterexample uses a switch; violations found are small (Proposition~\ref{prop:c2b}). \\[2pt]
+Conjecture 3 (M2+) & Phase C true; on the day false & Exact full-recursion counterexample, with no sting (Proposition~\ref{prop:c3}). \\[2pt]
+Conjectures 4, 5 & Unchanged & First note's results stand. The threshold part of Conjecture~4 extends to M3/M4 when refusals are bad news. The spend part of Conjecture~5 loses its guarantee under the chemistry prior with a sting (Section~\ref{sec:c45}). \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Setting}\label{sec:setting}
+
+Notation follows the revised proposal. There are two classes, $z\in\{L,H\}$, with $(C,q,q_D)=(C_z,q_z,q_{D,z})$, $C_H>C_L$, $q_H>q_L$ and $q_{D,H}>q_{D,L}$ (A13). The belief is $\pi=P(z=H)$, and $\pi_z$ denotes the weight on class $z$. At step $j$ write
+\[
+\qb=\pi q_H+(1-\pi)q_L,\qquad p=\varphi_j\qb,\qquad \py=\frac{\pi q_H}{\qb},\qquad \pn=\frac{\pi(1-\varphi_jq_H)}{1-p}.
+\]
+A short calculation gives
+\begin{equation}\label{eq:spread}
+\py-\pn=\frac{\pi(1-\pi)(q_H-q_L)}{\qb\,(1-\varphi_j\qb)}.
+\end{equation}
+The effective weight is $\pp(p)=p-\kappa_m(p)$, as in the first note.
+
+\begin{assumption}\label{S:basic}
+Ratings after step $j$ are $\mathrm{Bin}(m_j,C_z)$ given the class, with exact Bayes updating; this is MLRP in the class. The value after the date is truncated after one more date (21), except in Section~\ref{sec:c3}. The relationship chance is $h_z(n)$ after a date that reached step $n$: $h_z(n)=h_z$ in M3, $\psi_nh_z$ (bonding) or $h_z+\theta_n$ (sliding) in M4, with $h_z=\bar h\,C_zq_{D,z}$. Another date has a fixed chance $h^D_z$. The expected sting is $\kappa_m(p)\Delta^+$.
+\end{assumption}
+
+\begin{assumption}\label{S:noC}
+Where stated, the ask for another date carries no sting. This is the condition of the proposal's Propositions~4--8.
+\end{assumption}
+
+For a Phase-C plan $d\in\{\text{cut},\text{ask}\}$, let $X^d_z$ be its value against class $z$:
+\[
+X^{\text{cut}}_z=U,\qquad X^{\text{ask}}_z=q_{D,z}V_{D,z}+(1-q_{D,z})U,\qquad V_{D,z}=\delta_D\bigl(h^D_zC_zR+(1-h^D_z)U\bigr).
+\]
+
+\begin{lemma}[After-date value]\label{lem:vend}
+Under \ref{S:basic} and \ref{S:noC},
+\[
+\Vend(\pi;n)=\max_{d}\sum_z\pi_z\Bigl[h_z(n)C_zR+\bigl(1-h_z(n)\bigr)X^d_z\Bigr].
+\]
+This is convex and piecewise linear in $\pi$. It is affine wherever the optimal plan is the same at every belief.
+\end{lemma}
+
+\begin{proof}
+Bayes' rule after ``no relationship'' gives $(1-\E h)\,f(\pi_{\mathrm{not}})=\sum_z\pi_z(1-h_z(n))f(\delta_z)$ for every $f$ that is linear in the belief. The value of each plan is linear in the belief once the sting is absent, so $(1-\E h)V_C(\pi_{\mathrm{not}})=\max_d\sum_z\pi_z(1-h_z(n))X^d_z$.
+\end{proof}
+
+\begin{lemma}[Anatomy of an ask]\label{lem:anat}
+At step $j$, with $n$ steps completed, let $X$ be the value after a yes (step, rating, continuation), and let
+\[
+G=X-\Vend(\pi;n),\qquad L=\Vend(\pi;n)-\Vend(\pn;n),\qquad \Delta=G+L.
+\]
+The value of asking minus ending is $D=pG-(1-p)L-\kappa(p)\Delta^+$. Suppose $\Vend(\cdot;n)$ is affine with slope $a_1$, and write
+\[
+A=X-\Vend(\py;n),\qquad \Gamma=a_1(\py-\pn).
+\]
+Then
+\begin{equation}\label{eq:anat}
+D=p\,A-\kappa(p)\,(A+\Gamma)^+ .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Bayes plausibility gives $p\py+(1-p)\pn=\pi$, so an affine $\Vend$ satisfies $p\Vend(\py)+(1-p)\Vend(\pn)=\Vend(\pi)$. Hence $pG-(1-p)L=pA$. Also $\Delta=X-\Vend(\pn)=A+\Gamma$.
+\end{proof}
+
+Here $A$ is the value of the step net of the news a yes carries, and $\Gamma$ is the gap the news opens between a yes and a no. By \eqref{eq:spread}, $\Gamma$ is zero at $\pi=0$ and $\pi=1$ and positive in between.
+
+\section{Conjecture 1 on the chemistry prior}\label{sec:c1}
+
+\begin{theorem}[Thresholds without a sting]\label{thm:c1}
+Under \ref{S:basic} and \ref{S:noC} in M3, suppose there is no sting on the day ($\eta=0$) and the optimal Phase-C plan is the same at every $\pi$. Then for every step, $D_j=p_jA_j$ with $A_j$ nondecreasing in $\pi$. So the agent asks exactly on $\{\pi\ge\pi^*_j\}$.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:vend}, $\Vend$ is affine, and Lemma~\ref{lem:anat} with $\kappa=0$ gives $D_j=p_jA_j$. Since the rating is a martingale on the affine $\Vend$,
+\[
+A_j(\pi)=W_j^*(\py)-c_j+\E\bigl[O_{j+1}(\pi')\mid\py\bigr],\qquad O_{j+1}=D_{j+1}^+ .
+\]
+By induction, $O_{j+1}=(p_{j+1}A_{j+1})^+$ is nondecreasing: $p$ is increasing and $A_{j+1}$ is nondecreasing. The posterior after a rating is increasing in the prior and in the rating, and the rating's predictive distribution rises with the belief, so the expectation is nondecreasing in $\py$. $W^*_j$ is increasing in $\E[C]$. Finally, $\py$ is increasing in $\pi$. Since $p_j>0$, $D_j$ has the sign of $A_j$.
+\end{proof}
+
+\begin{proposition}[Counterexample A: the after-date decision is pivotal]\label{prop:c1A}
+Take M3 with $C=(0.2,0.8)$, $q=(0.895,0.9)$, $q_D=(0.795,0.8)$, $\bar h=0.5$, $R=6000$, $U=1000$ and $\delta_D=0.9$. The last step has $v=50$ and $k=30$ with one Bernoulli rating, and there is no sting anywhere. The agent asks on $[0.0681,0.2340]\cup[0.6654,1]$. The mechanism is that of the first note's Proposition~8, carried into M3.
+\end{proposition}
+
+\begin{proposition}[Counterexample B: fear of finding out]\label{prop:c1B}
+Under \ref{S:basic} and \ref{S:noC} in M3, take the last step ($O\equiv0$), and suppose the Phase-C plan is constant, so $\Vend$ is affine with slope $a_1>0$. Then $A(\pi)=W^*(\py)-c$ is nondecreasing, and the agent asks if and only if
+\begin{equation}\label{eq:rho}
+\pp(p)>0\quad\text{and}\quad A(\pi)\ \ge\ \rho(\pi):=\frac{\kappa(p)}{\pp(p)}\,a_1\,\frac{\pi(1-\pi)(q_H-q_L)}{\qb(1-\varphi\qb)} .
+\end{equation}
+Suppose further:
+\begin{itemize}[nosep]
+\item $\kappa>0$ on $(0,1)$: D1 or D2 with $\eta>0$, or KR with $\eta(\Lambda-1)>0$;
+\item $\pp(\varphi q_L)>0$;
+\item the step is worth taking even with a low-chemistry match: $A(0)=W^*(C_L)-c>0$.
+\end{itemize}
+Then there is $\bar a$ such that, whenever $a_1>\bar a$, the agent asks for all $\pi$ near $0$ and all $\pi$ near $1$, but not at $\pi=1/2$. In particular, if $\delta_D=0$, or if $\delta_Dh^D_LC_L>0$, then $a_1\to\infty$ as $R\to\infty$, so the asking set fails to be a threshold for every $R$ large enough.
+\end{proposition}
+
+\begin{proof}
+\emph{The rule \eqref{eq:rho}.} In \eqref{eq:anat}, if $A+\Gamma>0$ then $D=\pp A-\kappa\Gamma$, which is non-negative iff $A\ge\kappa\Gamma/\pp$ when $\pp>0$. If $A+\Gamma\le0$ then $D=pA\le0$. If $\pp\le0$ and $A+\Gamma>0$ then $D<0$, because $\Gamma>0$. Substitute \eqref{eq:spread}.
+
+\emph{Near $0$ and $1$.} As $\pi\to0$, we have $\rho\to0$, $A\to A(0)>0$ and $\pp\to\pp(\varphi q_L)>0$, so $D>0$ near $0$. On $\{\pp>0\}$, $\pp$ is increasing for all three models; under D2 and KR use $p>1-1/\eta'$ there. So $\pp(\varphi q_H)>0$. Also $A(1)\ge A(0)>0$, and $\rho\to0$ as $\pi\to1$, so $D>0$ near $1$.
+
+\emph{At $1/2$.} $A(1/2)$ does not depend on $a_1$, while $\rho(1/2)=a_1\cdot c_0$ with $c_0>0$. So $D(1/2)<0$ once $a_1>\bar a:=\max\{0,A(1/2)/c_0\}$.
+
+\emph{Large $R$.} If $V_{D,L}>U$, which holds for large $R$ when $\delta_Dh^D_LC_L>0$, both classes favour asking, so the plan is ``ask'' at every belief. If $\delta_D=0$ it is ``cut'' everywhere. Then
+\[
+a_1=R\,(\bar c_H-\bar c_L)+\text{const},\qquad \bar c_z=h_zC_z+(1-h_z)\,q_{D,z}\,\delta_D\,h^D_zC_z,
+\]
+with ``ask'' and $\bar c_z=h_zC_z$ with ``cut''. In both cases $\bar c_H>\bar c_L$, because every factor is ordered.
+\end{proof}
+
+\begin{example}\label{ex:c1B}
+Take $C=(0.5,0.6)$, $q=(0.5,0.95)$, $q_D=(0.5,0.9)$, $\bar h=1$, $U=100$ and $\delta_D=0.9$. The last step has $v=40$, $k=10$ and one rating.
+\begin{itemize}[nosep]
+\item D1 with $\eta=0.5$, $R=1000$: the agent asks on $[0,0.0404]\cup[0.6904,1]$.
+\item Same, $R=3000$: the agent asks on $[0,0.0103]\cup[0.9003,1]$.
+\item D2 with $\eta=0.8$, or KR with $\eta(\Lambda-1)=0.8$, $R=3000$: the agent asks on $[0,0.0154]\cup[0.9328,1]$.
+\end{itemize}
+The Phase-C plan is ``ask'' at every belief. Without a sting the agent asks everywhere.
+\end{example}
+
+The intuition is that a refusal tells the agent most when they are most unsure. Near $\pi=0$ a no confirms what they expected; near $\pi=1$ it is unlikely and barely moves them. In between, a no is likely enough and informative enough that, with a large stake, its expected sting outweighs a step that is worth having for its own sake. This is a new mechanism; it does not arise in the benchmark, where refusals carry no news.
+
+For the guide, a single threshold score per step (Table~5 of the proposal) is not enough. Under any sting the card may need a low asking band and a high one. Both shrink towards the ends as $R$ grows, consistent with Proposition~7 of the proposal. M4 nests M3 ($\psi_n\equiv1$, $\theta_n\equiv0$), so both counterexamples apply there too.
+
+\section{Conjecture 2: relationship value with commitment}\label{sec:c2}
+
+\begin{theorem}[First part, at certainty]\label{thm:c2a}
+Take M4 under \ref{S:basic}, with $h_H(n)$ nondecreasing in $n$. Stings are arbitrary, on the day and in Phase~C, and the budget is arbitrary. At $\pi=1$, the gain from a yes, $G_j$, is nondecreasing in $R$ at every step. Whenever $\pp_j>0$, so is the value of escalating $D_j$. Hence the set of $R$ at which a known high-chemistry match is asked to escalate is an upper set.
+\end{theorem}
+
+\begin{proof}
+At $\pi=1$ nothing is learned, $p=\varphi_jq_H$, and a no ends the date at the step already reached, so $L=0$. In Phase~C the plan maximises the value against class $H$,
+\[
+X_H(R)=U+\pp(q_{D,H})^+\,\bigl(V_{D,H}(R)-U\bigr)^+ ,
+\]
+which does not depend on $n$. Hence
+\[
+\Vend(1;m;R)=X_H(R)+h_H(m)\bigl(C_HR-X_H(R)\bigr).
+\]
+$X_H$ is convex and piecewise linear with slope at most $\delta_Dh^D_HC_H\le C_H$, so $C_HR-X_H(R)$ is nondecreasing. So $\Vend(1;m;\cdot)$ has increasing differences in $(m,R)$.
+
+As in the first note's Lemma~3, $V_j(1;n)=\Vend(1;n)+\pp_j^+G_j^+$, with
+\[
+G_j=\sup_s\bigl[W_j^*-c_j\bigr]+\bigl[\Vend(1;n+1)-\Vend(1;n)\bigr]+\pp_{j+1}^+G_{j+1}^+ .
+\]
+The middle bracket is nondecreasing in $R$, and $G_{j+1}$ is nondecreasing by induction. The base case is the last step, where the last term is absent. Finally, $D=pG$ for $G<0$ and $D=\pp G$ for $G\ge0$, which is nondecreasing in $G$ when $\pp\ge0$.
+\end{proof}
+
+\begin{proposition}[First part, short of certainty]\label{prop:asym}
+Under \ref{S:basic} and \ref{S:noC}, take the last step after $n$ steps, a belief $\pi\in(0,1]$, and suppose $\delta_Dh^D_LC_L>0$ (or $\delta_D=0$). Let
+\[
+\bar c_z(m)=h_z(m)C_z+(1-h_z(m))\,q_{D,z}\,\delta_D\,h^D_zC_z,\qquad \bar K(\pi)=\sum_z(\py)_z\bigl[\bar c_z(n+1)-\bar c_z(n)\bigr].
+\]
+Assume $\bar c_H(n)>\bar c_L(n)$. Then there is $\bar R(\pi)$ such that, for $R\ge\bar R$, $D(\pi;R)$ is affine in $R$ with slope
+\begin{equation}\label{eq:Phi}
+\Phi(\pi)=\pp(p)\,\bar K(\pi)\;-\;\kappa(p)\,(\py-\pn)\bigl[\bar c_H(n)-\bar c_L(n)\bigr].
+\end{equation}
+\begin{enumerate}[label=(\roman*),nosep]
+\item $\Phi(1)=\pp(\varphi q_H)\bigl[\bar c_H(n+1)-\bar c_H(n)\bigr]\ge0$. If this is positive, $\Phi>0$ on a neighbourhood of $\pi=1$, and Conjecture~2(a) holds there for all large $R$.
+\item Where $\Phi(\pi)<0$, a higher $R$ lowers the value of escalating, and the agent stops asking for large $R$. Proposition~7 of the proposal then survives commitment.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For large $R$ the plan is ``ask'' at every belief, as in Proposition~\ref{prop:c1B}. Then
+\[
+\Vend(\pi;m)=R\sum_z\pi_z\bar c_z(m)+\sum_z\pi_ze_z(m),
+\]
+with $e_z$ free of $R$. The rating is a martingale on this affine function, so
+\[
+G=W^*-c+\Vend(\py;n+1)-\Vend(\pi;n),\qquad L=\Vend(\pi;n)-\Vend(\pn;n).
+\]
+$\Delta=G+L$ has $R$-coefficient $\sum\py\bar c(n+1)-\sum\pn\bar c(n)$, which is positive, so $\Delta>0$ for large $R$. $D=pG-(1-p)L-\kappa\Delta$ is then affine in $R$. Using $p\py+(1-p)\pn=\pi$, the slope of $pG-(1-p)L$ is $p\bar K$, and the slope of $\kappa\Delta$ is
+\[
+\kappa\bigl[\bar K+(\py-\pn)(\bar c_H(n)-\bar c_L(n))\bigr].
+\]
+Subtracting gives \eqref{eq:Phi}. Continuity of $\Phi$ gives (i).
+\end{proof}
+
+\begin{example}\label{ex:c2a}
+Take $C=(0.3,0.8)$, $q=q_D=(0.5,0.9)$, $\bar h=0.5$, $\delta_D=0.9$, D1 with $\eta=0.5$, and a last step with $v=40$ and $k=15$.
+\begin{itemize}[nosep]
+\item Weak bonding, $\psi=1.05$: at $\pi=0.9$, $D=16.81,\ 13.43,\ 0.74,\ -16.17$ for $R=10^3,\ 5\cdot10^3,\ 2\cdot10^4,\ 4\cdot10^4$, and $\Phi(0.9)=-0.0008$. At $\pi=1$, $D$ rises: $28.3,\ 63.0,\ 193.1,\ 366.5$.
+\item Strong bonding, $\psi=1.5$: $\Phi(0.9)=0.068>0$.
+\end{itemize}
+The numerical slopes equal \eqref{eq:Phi} to six decimals.
+\end{example}
+
+So ``likely high-chemistry'' must be quantified. A higher $R$ helps escalation exactly where $\Phi>0$, that is, where commitment outweighs the sting of the news a refusal carries. That region always contains a neighbourhood of certainty, and can be small.
+
+\begin{proposition}[Second part]\label{prop:c2b}
+Take sliding, \ref{S:basic} and \ref{S:noC}, let $K(\pi;R)=\Vend(\pi;n+1)-\Vend(\pi;n)$, and let $\Delta\theta=\theta_{n+1}-\theta_n>0$.
+\begin{enumerate}[label=(\roman*)]
+\item Suppose at $\pi$ the optimal plan is the same plan $d$ at $n$ and at $n+1$, for every $R$ in $[R_1,R_2]$. Then
+\[
+K(\pi;R)=\Delta\theta\sum_z\pi_z\bigl(C_zR-X^d_z(R)\bigr)
+\]
+is nondecreasing on $[R_1,R_2]$. So if $\pi$ has non-negative commitment value at $R_1$, it keeps it.
+\item At $\pi=0$ and $\pi=1$ this holds for all $R$. If there is no second-date option (plan ``cut''), the negative set is
+\[
+N(R)=\Bigl[0,\ \frac{U-C_LR}{(C_H-C_L)R}\Bigr),
+\]
+which shrinks as $R$ rises.
+\item In general the conjecture is false. Take $C=(0.28,0.93)$, $q_D=(0.71,0.99)$, $\bar h=0.85$, $\delta_D=0.95$, $U=100$ and $\theta_{n+1}-\theta_n=0.06$. At $\pi=0.27$, $K=+0.271$ at $R=230$ but $K=-0.362$ at $R=250$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) By Lemma~\ref{lem:vend}, with the plan fixed, $K$ is as displayed. Moreover $\partial X^{\text{ask}}_z/\partial R=q_{D,z}\delta_Dh^D_zC_z\le C_z$, and $X^{\text{cut}}_z=U$.
+
+(ii) At a degenerate belief, $\pi_{\mathrm{not}}$ is the same degenerate belief, so the plan maximises $X^d_z$ and does not depend on $n$. Then
+\[
+C_zR-\max_dX^d_z=\min_d\bigl(C_zR-X^d_z\bigr)
+\]
+is nondecreasing.
+
+(iii) Computed in \texttt{verify\_v2.py}. At $R=230$ the agent would ask for another date after a date that reached $n$ steps, but cut after one that reached $n+1$: sliding makes ``no relationship'' worse news about chemistry. At $R=250$ the agent asks after both. Commitment then locks in a relationship that, at this belief, is worth less than the second-date plan ($\sum\pi_z(C_zR-X^{\text{ask}}_z)<0$).
+\end{proof}
+
+\begin{remark}
+In a targeted search the largest violation was $0.27$ on a scale where $U=100$. Conjecture~2(b) is therefore close to true, but fails exactly where the after-date plan switches between $n$ and $n+1$.
+\end{remark}
+
+\section{Conjecture 3 in the several-dates model}\label{sec:c3}
+
+Conjecture~3 is stated for M2+, the full date-by-date recursion. Here M2+ is built on the chemistry prior, which keeps the belief one-dimensional and the after-date update closed form. Talking between dates is switched off; take $c_{\mathrm{talk}}$ large. A date starts with its opening step, then asks; after it comes a relationship, or Phase~C, where another date is worth $\delta_DV_{\mathrm{date}}(\pi_{\mathrm{yes}})$. The fixed point $V_{\mathrm{date}}$ is computed by value iteration on a grid of $\pi$; the contraction factor is at most $\delta_D$.
+
+\begin{proposition}\label{prop:c3}
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Phase C (true).} With no sting anywhere, the set of beliefs at which the agent asks for another date shrinks as $U$ rises.
+\item \emph{On the day (false).} Take $C=(0.24,0.63)$, $q=(0.74,0.76)$, $q_D=(0.42,0.59)$, $\bar h=0.36$, $R=1470$ and $\delta_D=0.88$. The opening step is coffee ($v=10$, $k=8$, one rating); the second step has $v=96$, $k=50$ and two ratings. There is no sting.
+\begin{itemize}[nosep]
+\item The on-day asking set is a threshold at both $U=313$ and $U=322$.
+\item Raising $U$ \emph{lowers} the threshold, from $0.6272$ to $0.6119$. At both thresholds the agent would ask for another date.
+\item The Phase-C asking region moves from $\pi\ge0.385$ to $\pi\ge0.406$, as part (a) says.
+\end{itemize}
+The numbers are identical on grids of $401$ and $1601$ points.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}[Proof of (a)]
+With no sting, every policy's value has the form $\alpha+\beta U$. Here $\beta\in[0,1]$ is the expected discount factor at the time the agent returns to search, and zero if they never do. So $V_{\mathrm{date}}(\pi;U)$ is a supremum of affine functions with slopes in $[0,1]$. Hence $\delta_DV_{\mathrm{date}}(\pi';U)-U$ is strictly decreasing in $U$. In Phase~C a no leads to $U$, so the agent asks iff $\delta_DV_{\mathrm{date}}(\pi_{\mathrm{yes}})\ge U$.
+\end{proof}
+
+The mechanism is the pivotality of the first note. The value of learning on the day comes from the after-date decision, and a better outside option moves that decision towards indifference, which makes learning more valuable. The full recursion does not remove this. The version of M2+ with independent Beta priors is not covered, because ``no relationship'' breaks conjugacy there; the mechanism is the same.
+
+\section{Conjectures 4 and 5, and the value of information}\label{sec:c45}
+
+The statements of Conjectures~4 and~5, and of Prediction~7 of Appendix~A.9, are unchanged, and the first note's results apply. Two points are specific to the chemistry prior.
+
+\paragraph{Conjecture 4.} The first note shows that thresholds rise as the budget falls in the core model. That carries over to M3 and M4 whenever refusals are weakly bad news ($L\ge0$). If $\pp\ge0$, the value of asking is nondecreasing in the value after a yes, which grows with the budget. If $\pp<0$ and $L\ge0$, then $D=\pp\,\Delta-L<0$ (or $D=pG-L\le0$) at every budget, so the agent never asks.
+
+\paragraph{Conjecture 5 and negative information value.} The first note's guarantee that spend is never below Proposition~1's level rests on information about compatibility having non-negative value. Under the chemistry prior with a sting this fails. Every signal about the class also moves the chance of a yes. At the last step, with affine $\Vend$ and D1,
+\[
+D=pA-\eta(1-p)A-\eta a_1(\py-\pi),
+\]
+using $(1-p)(\py-\pn)=\py-\pi$. The first term is a perspective of a convex function, and the last is convex. The middle term, $-\eta(1-p)\,W^*(\py)$, can be concave.
+
+\begin{example}\label{ex:negvoi}
+Take $C=(0.11,0.6)$, $q=(0.81,0.88)$, $q_D=(0.5,0.9)$, $\bar h=0.5$, $R=129$, $U=100$ and $\delta_D=0$. The last step has $v=31$ and $k=10$, with D1 and $\eta=1.5$. A binary cue with $P(\text{enc}\mid H)=0.52$ and $P(\text{enc}\mid L)=0.48$ is MLRP. Observed at $\pi=0.44$, it has $\mathrm{EVSI}=-0.0249$. The agent asks at the prior and at both posteriors. Without the sting, the same cue's EVSI is $+0.0037$.
+\end{example}
+
+So in M3 with a sting, neither the non-negativity of information value nor the bound ``spend is never below Proposition~1's level'' is guaranteed. Without a sting both hold, because the value is then convex in $\pi$. This answers, for the chemistry prior, the question Section~4.4 of the proposal still lists as open. Section~10.1 already withdraws the claim that the value of information can be negative; it should be reinstated in this qualified form.
+
+\section{Other points on the revised proposal}
+\begin{enumerate}
+\item \emph{Proposition 6 needs $C_zR\ge X^d_z$, or a slope condition.} Take $C=(0.2,0.8)$, $h=(0.1,0.5)$, $R=100$, $U=200$, and the plan ``cut'', which pays $U$ against both classes. Then $\Vend(0)=182>\Vend(1)=140$. $\Vend$ falls in $\pi$ and a refusal is \emph{good} news: a likely relationship is worth less than search.
+\item \emph{Table 3 and Prediction 6.} The benchmark's investment motive is not strongest ``where beliefs are least settled''. The first note shows it peaks near the after-date indifference point and can be zero at maximal uncertainty, which is also what the proposal's own Proposition~4 implies.
+\item \emph{Table 5.} ``One threshold score per step'' should become ``up to two asking bands per step'' wherever a sting is used (Proposition~\ref{prop:c1B}). The sting check of Section~6.1 will then flag exactly the middle band.
+\item \emph{Conjecture 2.} Restate ``for likely high-chemistry matches'' as ``where $\Phi>0$'' (Proposition~\ref{prop:asym}). Restate the second part as holding where the after-date plan does not switch with the step reached.
+\item \emph{Conjecture 3.} Keep the Phase~C part, and replace the on-day part by the first note's pivotality lemma: thresholds rise with $U$ where the agent would cut contact, and fall where they would ask for another date.
+\end{enumerate}
+
+\section*{Numerical verification}
+\texttt{python3 verify\_v2.py} (about one minute) reproduces every number above. It also runs randomised checks of:
+\begin{itemize}[nosep]
+\item Theorem~\ref{thm:c1}, as single crossing at every step in 150 models;
+\item Theorem~\ref{thm:c2a}, in 150 M4 models with random stings, bonding or sliding;
+\item the rule \eqref{eq:rho} and formula \eqref{eq:spread};
+\item formula \eqref{eq:Phi};
+\item Proposition~\ref{prop:c2b}(i)--(ii), over 115{,}000 parameter pairs;
+\item Proposition~\ref{prop:c3}(a), in random M2+ models.
+\end{itemize}
+The output is in \texttt{verify\_v2\_output.txt}.
+
+\end{document}

@@ -1,0 +1,43 @@
+
+Conjecture 1 (threshold rules) on the chemistry prior
+  (A) switch points of the ask set: ['0.0681', '0.2340', '0.6654']
+  PASS  C1 counterexample (A): ask set is not an interval, with no sting
+  (B) D1 eta=0.5, R=1000: ask on [0,0.0404] U [0.6904,1];  Phase-C plan constant: True
+  PASS  C1 counterexample (B), R=1000: ask near 0 and near 1, end at 1/2
+  PASS    same model without sting asks everywhere (R=1000)
+  (B) D1 eta=0.5, R=3000: ask on [0,0.0103] U [0.9003,1];  Phase-C plan constant: True
+  PASS  C1 counterexample (B), R=3000: ask near 0 and near 1, end at 1/2
+  PASS    same model without sting asks everywhere (R=3000)
+  PASS  C1 counterexample (B) also under D2   [[0.0154, 0.9328]]
+  PASS  C1 counterexample (B) also under KR   [[0.0154, 0.9328]]
+  PASS  Last-step characterisation: ask iff A >= kappa*Gamma/p_hat, Gamma formula
+  PASS  Threshold theorem (no sting, constant Phase-C plan): single crossing at every step (150 models)
+
+Conjecture 2 (relationship value with commitment)
+  PASS  Conj 2(a) at pi=1: G_j nondecreasing in R, and D_j too whenever p_hat>0 (150 random M4 models)
+  PASS  Asymptotic slope dD/dR = Phi(pi) for large R
+  weak bonding psi=1.05:  D(pi=0.9) at R=1e3,5e3,2e4,4e4: [np.float64(16.81), np.float64(13.43), np.float64(0.74), np.float64(-16.17)]   D(pi=1): [np.float64(28.33), np.float64(63.02), np.float64(193.08), np.float64(366.5)]
+  PASS  Conj 2(a) counterexample: at pi=0.9 higher R lowers the value of escalating and ends asking
+  sliding: K(0.27; R=230) = 0.2706 (plans n=1,2: True, False);  K(0.27; R=250) = -0.3619 (plans True, True)
+  PASS  Conj 2(b) counterexample: pi=0.27 has K>=0 at R=230 but K<0 at R=250
+  PASS    the counterexample needs a plan switch between n and n+1 at the lower R
+  PASS  Conj 2(b) true part: K nondecreasing in R when the plan does not switch, and at pi=0,1 (115139 pairs)
+
+Conjecture 3 (outside option) in M2+ on the chemistry prior (full recursion)
+  U=313 grid=401: on-day switch points [0.6272], Phase C would ask there: [True], Phase C asks for pi >= 0.3850
+  U=313 grid=1601: on-day switch points [0.6272], Phase C would ask there: [True], Phase C asks for pi >= 0.3850
+  U=322 grid=401: on-day switch points [0.6119], Phase C would ask there: [True], Phase C asks for pi >= 0.4060
+  U=322 grid=1601: on-day switch points [0.6119], Phase C would ask there: [True], Phase C asks for pi >= 0.4060
+  PASS  Conj 3 counterexample in M2+: higher U lowers the on-day threshold (single crossing at both U)
+  PASS    robust to the grid
+  PASS  Conj 3 true part: Phase-C asking region shrinks as U rises
+  PASS  Conj 3 true part (random M2+ models, no sting): delta_D V_date - U strictly decreasing in U
+
+Value of information and other findings on the chemistry prior
+  binary cue P(enc|H)=0.52, P(enc|L)=0.48 at pi=0.44: posteriors 0.4204, 0.4598; EVSI = -0.02494; D at the three beliefs: 0.088, 0.348, 0.559
+  PASS  Negative EVSI of an MLRP signal about the class under D1 (chemistry prior)
+  PASS    same signal without sting has non-negative value   [EVSI=0.00368]
+  Proposition 6 premise holds (cutting pays U against both classes) but V_end(0)=182.0 > V_end(1)=140.0
+  PASS  Proposition 6 needs C_z R >= X_z: otherwise V_end falls in pi and a refusal is good news
+
+ALL CHECKS PASSED
