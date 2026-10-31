@@ -21,6 +21,8 @@ Conjecture 2 (relationship value with commitment)
   sliding: K(0.27; R=230) = 0.2706 (plans n=1,2: True, False);  K(0.27; R=250) = -0.3619 (plans True, True)
   PASS  Conj 2(b) counterexample: pi=0.27 has K>=0 at R=230 but K<0 at R=250
   PASS    the counterexample needs a plan switch between n and n+1 at the lower R
+  stronger example: measure of N 0.741 -> 0.798, sup N 0.741 -> 0.801; K(0.77) 0.1542 -> -0.2902
+  PASS  Conj 2(b) stronger counterexample: N grows in measure and upper end
   PASS  Conj 2(b) true part: K nondecreasing in R when the plan does not switch, and at pi=0,1 (115139 pairs)
 
 Conjecture 3 (outside option) in M2+ on the chemistry prior (full recursion)
@@ -34,10 +36,9 @@ Conjecture 3 (outside option) in M2+ on the chemistry prior (full recursion)
   PASS  Conj 3 true part (random M2+ models, no sting): delta_D V_date - U strictly decreasing in U
 
 Value of information and other findings on the chemistry prior
-  binary cue P(enc|H)=0.52, P(enc|L)=0.48 at pi=0.44: posteriors 0.4204, 0.4598; EVSI = -0.02494; D at the three beliefs: 0.088, 0.348, 0.559
-  PASS  Negative EVSI of an MLRP signal about the class under D1 (chemistry prior)
-  PASS    same signal without sting has non-negative value   [EVSI=0.00368]
-  Proposition 6 premise holds (cutting pays U against both classes) but V_end(0)=182.0 > V_end(1)=140.0
-  PASS  Proposition 6 needs C_z R >= X_z: otherwise V_end falls in pi and a refusal is good news
+  Delta^+ artefact: a_1=-3.742 (refusals are good news), stakes at p0, pi, p1: [np.float64(-0.369), np.float64(-0.069), np.float64(0.243)]; EVSI with Delta^+ = -0.02494, with the literal kappa*Delta = 0.00323
+  PASS  Negative EVSI arises only from the Delta^+ kink when refusals are good news (a_1<0)
+  PASS  Convexity proposition: V convex in pi at the last step under its conditions (582 models)
+  PASS  Proposition 6 holds in M3: V_end nondecreasing under its hypothesis (5987 models)
 
 ALL CHECKS PASSED

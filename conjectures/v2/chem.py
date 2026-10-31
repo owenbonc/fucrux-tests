@@ -24,12 +24,13 @@ class Chem:
     commit: ('none',) | ('bond', psi) | ('slide', theta), psi/theta indexed by n = 0..J."""
 
     def __init__(self, C, q, qD, h, R, U, dD, steps, sting=NOSTING, stingC=NOSTING,
-                 commit=("none",), hD=None, sigma=1.0, lam=1.0):
+                 commit=("none",), hD=None, sigma=1.0, lam=1.0, plus=True):
         self.C, self.q, self.qD, self.h0 = C, q, qD, h
         self.hD = hD if hD is not None else h
         self.R, self.U, self.dD = R, U, dD
         self.steps, self.sting, self.stingC, self.commit = steps, sting, stingC, commit
         self.sigma, self.lam = sigma, lam
+        self.plus = plus          # True: sting kappa*Delta^+ ; False: the proposal's literal kappa*Delta
         self.J = len(steps)
 
     def h(self, z, n):
@@ -97,7 +98,8 @@ class Chem:
     def D(self, j, pi):
         """Value of asking for step j minus value of ending (Delta^+ convention)."""
         p, X, Vno, Vnow = self.parts(j, pi)
-        return p * X + (1 - p) * Vno - kappa(p, *self.sting) * max(X - Vno, 0.0) - Vnow
+        stake = max(X - Vno, 0.0) if self.plus else X - Vno
+        return p * X + (1 - p) * Vno - kappa(p, *self.sting) * stake - Vnow
 
     def K(self, pi, n):
         return self.Vend(pi, n + 1) - self.Vend(pi, n)
